@@ -11,6 +11,7 @@
 
 @implementation AppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -24,7 +25,7 @@
     
 //    CreateViewController *vc = [[CreateViewController alloc]init];
 //    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
@@ -163,7 +164,7 @@
     [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
     
     // Welcome message
-    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
     
 }
 
