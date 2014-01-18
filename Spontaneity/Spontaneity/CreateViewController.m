@@ -105,7 +105,7 @@
 
 - (void)exit
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)pinterest
