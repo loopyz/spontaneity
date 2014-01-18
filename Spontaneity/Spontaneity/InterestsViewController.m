@@ -284,6 +284,7 @@
 - (void)didFinishSelecting
 {
     [self dismissViewControllerAnimated:YES completion:^() {
+        //At this point selections contains whatever interests the user selected
         // TODO: store selections in Firebase
     }];
 }
