@@ -79,6 +79,7 @@
         [self.eventKeys addObject:eventKey];
         
         // Retrieve event from Facebook
+        // TODO: retrieve cover photo: ?fields=cover -- "cover" "source"
         [FBRequestConnection startWithGraphPath:[@"/" stringByAppendingString:eventKey]
                                      parameters:nil
                                      HTTPMethod:@"GET"
@@ -153,19 +154,25 @@
     return [self.events count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Updating cell");
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
-    cell.backgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
-    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
+    cell.backgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
+    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     
@@ -173,11 +180,46 @@
     NSMutableDictionary* event = self.events[eventKey];
     NSLog(@"Updating event: %@", event[@"name"]);
     
-    cell.textLabel.text = event[@"name"];
+    //cell.textLabel.text = event[@"name"];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.center = CGPointMake(cell.textLabel.center.x - 50, cell.textLabel.center.y);
     [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
     
-    [[cell detailTextLabel] setText:event[@"description"]];
+//    [[cell detailTextLabel] setText:event[@"description"]];
     [[cell detailTextLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+    [cell detailTextLabel].textColor = [UIColor whiteColor];
+    
+    // Event title
+    UILabel *ttitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 320, 40)];
+    ttitle.font = [UIFont systemFontOfSize:22];
+    ttitle.textColor    = [UIColor whiteColor];
+    ttitle.textAlignment = UITextAlignmentLeft;
+    [ttitle setText:@"Jogging @ Park"];
+    [cell.contentView addSubview:ttitle];
+    
+    // Date label
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 320, 40)];
+    dateLabel.font = [UIFont systemFontOfSize:10];
+    dateLabel.textColor    = [UIColor whiteColor];
+    dateLabel.textAlignment = UITextAlignmentLeft;
+    [dateLabel setText:@"date: 1/14/19"];
+    [cell.contentView addSubview:dateLabel];
+    
+    // Time label
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 45, 320, 40)];
+    timeLabel.font = [UIFont systemFontOfSize:10];
+    timeLabel.textColor    = [UIColor whiteColor];
+    timeLabel.textAlignment = UITextAlignmentLeft;
+    [timeLabel setText:@"time: 10:30pm"];
+    [cell.contentView addSubview:timeLabel];
+    
+    // Address 1 label
+    UILabel *addrUpperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 320, 40)];
+    addrUpperLabel.font = [UIFont systemFontOfSize:10];
+    addrUpperLabel.textColor    = [UIColor whiteColor];
+    addrUpperLabel.textAlignment = UITextAlignmentLeft;
+    [addrUpperLabel setText:@"3923 Morrison Ave: 10:30pm"];
+    [cell.contentView addSubview:addrUpperLabel];
     
     return cell;
 }
