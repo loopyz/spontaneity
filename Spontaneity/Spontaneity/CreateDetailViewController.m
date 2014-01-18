@@ -15,11 +15,15 @@
 
 @implementation CreateDetailViewController
 
+@synthesize timeLabel;
+@synthesize neededLabel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _editTimeClicks = 0;
+        _neededPeople = 5;
         
         //creates background image
         UIGraphicsBeginImageContext(self.view.frame.size);
@@ -92,31 +96,31 @@
 
 - (void)addTimeLabel
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
+    timeLabel = [[UILabel alloc] init];
+    timeLabel.textColor = [UIColor whiteColor];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"HH:mm a"];
     NSString *newTime = [timeFormatter stringFromDate:[NSDate date]];
     
-    label.text = [@"Time: " stringByAppendingString:newTime];
+    timeLabel.text = [@"Time: " stringByAppendingString:newTime];
     
     //creates shadow
-    label.layer.shadowColor = [[UIColor blackColor] CGColor];
-    label.layer.shadowOffset = CGSizeMake(0.0, 1.0);
-    label.layer.shadowOpacity = 1.0;
+    timeLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    timeLabel.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    timeLabel.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 170, 400, 100);
+    timeLabel.frame = CGRectMake(20, 170, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    timeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
     
     //add up and down arrows
-    [self addArrowButtons:220 y:170];
+    [self addTimeArrowButtons:220 y:170];
     
     //adds event details label
-    [self.view addSubview:label];
+    [self.view addSubview:timeLabel];
     
 }
 
@@ -144,31 +148,31 @@
 
 - (void)addNeededLabel
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
+    neededLabel = [[UILabel alloc] init];
+    neededLabel.textColor = [UIColor whiteColor];
     
     //take number from the invited section
-    int people = 6;
+    int people = 5;
     
-    label.text = [@"Needed: " stringByAppendingString:[NSString stringWithFormat:@"%d", people]];
+    neededLabel.text = [@"Needed: " stringByAppendingString:[NSString stringWithFormat:@"%d", people]];
     
     
     //creates shadow
-    label.layer.shadowColor = [[UIColor blackColor] CGColor];
-    label.layer.shadowOffset = CGSizeMake(0.0, 1.0);
-    label.layer.shadowOpacity = 1.0;
+    neededLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    neededLabel.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    neededLabel.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 310, 400, 100);
+    neededLabel.frame = CGRectMake(20, 310, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    neededLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
     
     //add up and down arrows
-    [self addArrowButtons:220 y:310];
+    [self addNeededArrowButtons:220 y:310];
     
     //adds event details label
-    [self.view addSubview:label];
+    [self.view addSubview:neededLabel];
 }
 
 - (void)addSubmitButton
@@ -185,13 +189,13 @@
     
 }
 
-- (void)addArrowButtons:(int)x y:(int) y
+- (void)addTimeArrowButtons:(int)x y:(int)y
 {
     //creates up button
     UIImage *createUpButtonImage = [UIImage imageNamed:@"up-arrow.png"];
     UIButton *upButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [upButton addTarget:self
-               action:@selector(aMethod:)
+                 action:@selector(addTimeClicks)
      forControlEvents:UIControlEventTouchDown];
     
     upButton.frame = CGRectMake(x, y+33, 33.6, 17.6);
@@ -201,7 +205,7 @@
     UIImage *createDownButtonImage = [UIImage imageNamed:@"down-arrow.png"];
     UIButton *downButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [downButton addTarget:self
-                 action:@selector(aMethod:)
+                 action:@selector(subTimeClicks)
        forControlEvents:UIControlEventTouchDown];
     
     downButton.frame = CGRectMake(x, y+53, 33.62, 17.6);
@@ -210,6 +214,78 @@
     
     [self.view addSubview:upButton];
     [self.view addSubview:downButton];
+}
+
+- (void)addNeededArrowButtons:(int)x y:(int)y
+{
+    //creates up button
+    UIImage *createUpButtonImage = [UIImage imageNamed:@"up-arrow.png"];
+    UIButton *upButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [upButton addTarget:self
+                 action:@selector(addPeopleClicks)
+       forControlEvents:UIControlEventTouchDown];
+    
+    upButton.frame = CGRectMake(x, y+33, 33.6, 17.6);
+    [upButton setBackgroundImage:createUpButtonImage forState:UIControlStateNormal];
+    
+    //creates down button
+    UIImage *createDownButtonImage = [UIImage imageNamed:@"down-arrow.png"];
+    UIButton *downButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [downButton addTarget:self
+                   action:@selector(subPeopleClicks)
+         forControlEvents:UIControlEventTouchDown];
+    
+    downButton.frame = CGRectMake(x, y+53, 33.62, 17.6);
+    [downButton setBackgroundImage:createDownButtonImage forState:UIControlStateNormal];
+    
+    
+    [self.view addSubview:upButton];
+    [self.view addSubview:downButton];
+}
+
+- (void)editTime
+{
+    
+    NSDateComponents *changeComponent = [[NSDateComponents alloc] init];
+    changeComponent.second = 60 * 60 * _editTimeClicks;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *newDate = [theCalendar dateByAddingComponents:changeComponent toDate:[NSDate date] options:0];
+    
+    
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm a"];
+    NSString *newTime = [timeFormatter stringFromDate:newDate];
+    
+    timeLabel.text = [@"Time: " stringByAppendingString:newTime];
+}
+
+- (void)editPeople:(int)p
+{
+    _neededPeople += p;
+    neededLabel.text = [@"Needed: " stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)_neededPeople]];
+}
+
+- (void)addTimeClicks
+{
+    _editTimeClicks++;
+    [self editTime];
+}
+
+- (void)subTimeClicks
+{
+    _editTimeClicks--;
+    [self editTime];
+}
+
+- (void)addPeopleClicks
+{
+    [self editPeople:1];
+}
+
+- (void)subPeopleClicks
+{
+    [self editPeople:-1];
 }
 
 - (void)viewDidLoad
