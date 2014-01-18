@@ -20,10 +20,9 @@
 @end
 
 @implementation EventListViewController
-{
-    NSMutableArray* eventKeys;
-    NSMutableDictionary* events;
-}
+
+@synthesize eventKeys;
+@synthesize events;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

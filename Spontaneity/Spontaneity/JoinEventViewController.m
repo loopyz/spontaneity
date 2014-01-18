@@ -20,7 +20,6 @@
     if (self) {
         UIGraphicsBeginImageContext(self.view.frame.size);
         
-        //This image isn't here yet but will be soon (Lucy's making it)
         [[UIImage imageNamed:@"bars-bg-2.png"] drawInRect:self.view.bounds];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
