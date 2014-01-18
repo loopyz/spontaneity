@@ -94,7 +94,7 @@
                               }];
     }];
     
-    // TODO: implement changed/deleted
+    // TODO: implement changed
 //    [eventsRef observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
 //        NSLog(@"Event changed: %@", snapshot.name);
 //        
@@ -113,14 +113,14 @@
 //        [self.tableView reloadData];
 //    }];
     
-//    [openOrdersRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-//        NSLog(@"Order deleted: %@", snapshot.value);
-//        
-//        [orders removeObjectForKey:snapshot.name];
-//        [orderKeys removeObject:snapshot.name];
-//        
-//        [self.tableView reloadData];
-//    }];
+    [eventsRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"Event deleted: %@", snapshot.value);
+        
+        [self.events removeObjectForKey:snapshot.value];
+        [self.eventKeys removeObject:snapshot.value];
+        
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
