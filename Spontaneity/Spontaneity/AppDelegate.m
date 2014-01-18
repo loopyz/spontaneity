@@ -10,7 +10,6 @@
 #import "CreateViewController.h"
 #import "InterestsViewController.h"
 #import "EventListViewController.h"
-#import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
