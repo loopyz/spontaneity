@@ -138,6 +138,8 @@
 - (void)search
 {
     SearchViewController *svc = [[SearchViewController alloc] init];
+    svc.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
+
     [self presentViewController:svc animated:YES completion:nil];
 }
 
