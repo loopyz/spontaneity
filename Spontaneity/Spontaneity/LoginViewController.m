@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 
 @interface LoginViewController ()
-- (IBAction)buttonClicked:(id)sender;
+- (IBAction)buttonTouched:(id)sender;
 @end
 
 @implementation LoginViewController
@@ -27,19 +27,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)buttonClicked:(id)sender
+- (IBAction)buttonTouched:(id)sender
 {
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
@@ -64,6 +52,34 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 274)/2, 150, 274, 81)];
+    imgView.image = [UIImage imageNamed:@"logo.png"];
+    [self.view addSubview:imgView];
+    
+	// Do any additional setup after loading the view.
+    self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.loginButton setTitle:@"Show View" forState:UIControlStateNormal];
+
+    self.loginButton.frame = CGRectMake((self.view.frame.size.width - 263)/2, 300, 263, 52);
+    [self.loginButton addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage *btnImage = [UIImage imageNamed:@"facebook.png"];
+    [self.loginButton setImage:btnImage forState:UIControlStateNormal];
+    self.loginButton.contentMode = UIViewContentModeScaleToFill;
+    
+    [self.view addSubview:self.loginButton];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
