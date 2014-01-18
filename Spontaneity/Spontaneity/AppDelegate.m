@@ -10,6 +10,7 @@
 #import "CreateViewController.h"
 #import "InterestsViewController.h"
 #import "EventListViewController.h"
+#import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -30,12 +31,13 @@
     // Set loginUIViewController as root view controller
 //    [[self window] setRootViewController:loginViewController];
     
-//    CreateViewController *vc = [[CreateViewController alloc]init];
+    CreateViewController *vc = [[CreateViewController alloc]init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
     self.navigationController = navigationController;
     
-    self.window.rootViewController = navigationController;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
+    
     [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
