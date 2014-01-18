@@ -20,7 +20,7 @@
     UIButton *clubbing;
     UIButton *sports;
     UIButton *adrenaline;
-    UIButton *tech;
+    UIButton *baking;
     UIButton *exercise;
     UIButton *games;
     UIButton *beauty;
@@ -135,21 +135,21 @@
         [self.view addSubview:adrLabel];
         adrLabel.text = @"adrenaline";
         
-        tech = [UIButton buttonWithType:UIButtonTypeCustom];
-        [tech addTarget:self
+        baking = [UIButton buttonWithType:UIButtonTypeCustom];
+        [baking addTarget:self
                  action:@selector(interestSelected:)
        forControlEvents:UIControlEventTouchDown];
-        [tech setImage:[UIImage imageNamed:@"Tech.png"]
+        [baking setImage:[UIImage imageNamed:@"baking.png"]
               forState: UIControlStateNormal];
-        tech.frame = CGRectMake(220, 230, 90, 90);
-        [self.view addSubview:tech];
-        UILabel *techLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 290, 100, 100.0) ];
-        techLabel.textAlignment =  NSTextAlignmentCenter;
-        techLabel.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
-        techLabel.backgroundColor = [UIColor clearColor];
-        techLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
-        [self.view addSubview:techLabel];
-        techLabel.text = @"tech";
+        baking.frame = CGRectMake(220, 230, 90, 90);
+        [self.view addSubview:baking];
+        UILabel *bakingLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 290, 100, 100.0) ];
+        bakingLabel.textAlignment =  NSTextAlignmentCenter;
+        bakingLabel.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
+        bakingLabel.backgroundColor = [UIColor clearColor];
+        bakingLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
+        [self.view addSubview:bakingLabel];
+        bakingLabel.text = @"baking";
         
         //3rd row
         exercise = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -265,11 +265,11 @@
         } else {
             [selections addObject:@"adrenaline"];
         }
-    } else if (sender == tech) {
-        if ([selections indexOfObject:@"tech"] != NSNotFound) {
-            [selections removeObject:@"tech"];
+    } else if (sender == baking) {
+        if ([selections indexOfObject:@"baking"] != NSNotFound) {
+            [selections removeObject:@"baking"];
         } else {
-            [selections addObject:@"tech"];
+            [selections addObject:@"baking"];
         }
     } else if (sender == exercise) {
         if ([selections indexOfObject:@"exercise"] != NSNotFound) {
