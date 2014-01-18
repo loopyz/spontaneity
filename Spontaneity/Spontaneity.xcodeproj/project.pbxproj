@@ -13,7 +13,7 @@
 		0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB2D188A0AB80076D96E /* CreateDetailViewController.m */; };
 		0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB30188A0AE50076D96E /* SearchViewController.m */; };
 		0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB33188A0B0D0076D96E /* EventListViewController.m */; };
-		0B5B72BF188A2869004B29DF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5B72BE188A2869004B29DF /* FacebookSDK.framework */; };
+		0B41CD8F188A43B400DAB725 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B41CD8E188A43B400DAB725 /* FacebookSDK.framework */; };
 		0B5B7381188A2EE1004B29DF /* create-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7341188A2EE1004B29DF /* create-button.png */; };
 		0B5B7382188A2EE1004B29DF /* create-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7342188A2EE1004B29DF /* create-button@2x.png */; };
 		0B5B7383188A2EE1004B29DF /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7343188A2EE1004B29DF /* facebook.png */; };
@@ -112,7 +112,7 @@
 		0B2FCB30188A0AE50076D96E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		0B2FCB32188A0B0D0076D96E /* EventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListViewController.h; sourceTree = "<group>"; };
 		0B2FCB33188A0B0D0076D96E /* EventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListViewController.m; sourceTree = "<group>"; };
-		0B5B72BE188A2869004B29DF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		0B41CD8E188A43B400DAB725 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		0B5B7341188A2EE1004B29DF /* create-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button.png"; sourceTree = "<group>"; };
 		0B5B7342188A2EE1004B29DF /* create-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button@2x.png"; sourceTree = "<group>"; };
 		0B5B7343188A2EE1004B29DF /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B5B72BF188A2869004B29DF /* FacebookSDK.framework in Frameworks */,
+				0B41CD8F188A43B400DAB725 /* FacebookSDK.framework in Frameworks */,
 				0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */,
 				0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */,
 				0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */,
@@ -339,7 +339,7 @@
 		0B74588E188A08FC00F0EE6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B5B72BE188A2869004B29DF /* FacebookSDK.framework */,
+				0B41CD8E188A43B400DAB725 /* FacebookSDK.framework */,
 				0B74588F188A08FC00F0EE6E /* Foundation.framework */,
 				0B745891188A08FC00F0EE6E /* CoreGraphics.framework */,
 				0B745893188A08FC00F0EE6E /* UIKit.framework */,
@@ -691,6 +691,7 @@
 					"$(inherited)",
 					/Users/gregory/MHacks/spontaneity/Spontaneity,
 					/Users/Angela/Documents/spontaneity/Spontaneity,
+					/Users/Angela/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
@@ -712,6 +713,7 @@
 					"$(inherited)",
 					/Users/gregory/MHacks/spontaneity/Spontaneity,
 					/Users/Angela/Documents/spontaneity/Spontaneity,
+					/Users/Angela/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
