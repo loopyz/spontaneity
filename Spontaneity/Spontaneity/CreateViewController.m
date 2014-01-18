@@ -275,8 +275,6 @@
 
 - (NSString*)dateToString:(NSDate*)date
 {
-    if (!date)
-        NSLog(@"no date!");
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZ'"];
     return [formatter stringFromDate:date];
@@ -300,9 +298,6 @@
                             description, @"description",
                             nil
                             ];
-    
-    for(id key in params)
-        NSLog(@"=== %@:%@ ===", key, [params objectForKey:key]);
     
     /* make the API call */
     [FBRequestConnection startWithGraphPath:@"/me/events"
