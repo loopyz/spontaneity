@@ -10,4 +10,9 @@
 
 @interface CreateViewController : UIViewController
 
+@property (nonatomic) NSInteger editTimeClicks;
+@property (nonatomic) NSInteger neededPeople;
+@property (strong, nonatomic) UILabel *timeLabel;
+@property (strong, nonatomic) UILabel *neededLabel;
+
 @end

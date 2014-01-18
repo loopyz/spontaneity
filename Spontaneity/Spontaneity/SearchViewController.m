@@ -111,14 +111,17 @@
 
 - (void)interestSelected:(id)sender
 {
+    NSString *imgName = @"bars-bg-2.png";
     NSLog(@"selected a category to search!");
-    if (sender == sports) {
-        NSLog(@"sports!");
+    if (sender == clubbing) {
+        imgName = @"clubbing-bg-2.png";
     } else if (sender == bars) {
-        SearchedEventsViewController *svc = [[SearchedEventsViewController alloc] init];
-        [self presentViewController:svc animated:YES completion:nil];
-        
+        imgName = @"bars-bg.png";
+    } else if (sender == exercise) {
+        imgName = @"create-bg-2.png";
     }
+    SearchedEventsViewController *svc = [[SearchedEventsViewController alloc] initWithNibName:imgName bundle:nil];
+    [self presentViewController:svc animated:YES completion:nil];
 }
 
 - (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
