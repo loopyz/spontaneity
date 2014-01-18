@@ -37,19 +37,18 @@
 
 - (void)addButton
 {
-//    UIButton *playButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    playButton.frame = CGRectMake(110.0, 360.0, 100.0, 30.0);
-//    [playButton setTitle:@"Play" forState:UIControlStateNormal];
-//    playButton.backgroundColor = [UIColor clearColor];
-//    [playButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal ];
-//    UIImage *buttonImageNormal = [UIImage imageNamed:@"blueButton.png"];
-//    UIImage *strechableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-//    [playButton setBackgroundImage:strechableButtonImageNormal forState:UIControlStateNormal];
-//    UIImage *buttonImagePressed = [UIImage imageNamed:@"whiteButton.png"];
-//    UIImage *strechableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
-//    [playButton setBackgroundImage:strechableButtonImagePressed forState:UIControlStateHighlighted];
-//    [playButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:playButton];
+    UIImage *createButtonImage = [UIImage imageNamed:@"create-button.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(aMethod:)
+     forControlEvents:UIControlEventTouchDown];
+
+    button.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 250.0, 250.0);
+    [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
+    [self.view addSubview:button];
+
+
+
 }
 
 - (void)didReceiveMemoryWarning
