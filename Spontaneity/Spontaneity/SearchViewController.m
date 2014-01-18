@@ -26,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.view.backgroundColor = [UIColor blackColor];
+        self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
         
         /* Setting up navigation bar items */
         UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
@@ -57,7 +57,7 @@
        forControlEvents:UIControlEventTouchDown];
         [bars setImage:[UIImage imageNamed:@"bar-cat.png"]
               forState: UIControlStateNormal];
-        bars.frame = CGRectMake(0, 20, self.view.frame.size.width, 141);
+        bars.frame = CGRectMake(-2, 20, self.view.frame.size.width+4, 141);
         [self.view addSubview:bars];
         
         clubbing = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -66,7 +66,7 @@
        forControlEvents:UIControlEventTouchDown];
         [clubbing setImage:[UIImage imageNamed:@"clubbing-cat.png"]
               forState: UIControlStateNormal];
-        clubbing.frame = CGRectMake(0, 156, self.view.frame.size.width, 141);
+        clubbing.frame = CGRectMake(-2, 156, self.view.frame.size.width+4, 141);
         [self.view addSubview:clubbing];
         
         exercise = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -75,7 +75,7 @@
            forControlEvents:UIControlEventTouchDown];
         [exercise setImage:[UIImage imageNamed:@"exercise-cat.png"]
                   forState: UIControlStateNormal];
-        exercise.frame = CGRectMake(0, 292, self.view.frame.size.width, 141);
+        exercise.frame = CGRectMake(-2, 292, self.view.frame.size.width+4, 141);
         [self.view addSubview:exercise];
         
         sports = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,8 +84,18 @@
            forControlEvents:UIControlEventTouchUpInside];
         [sports setImage:[UIImage imageNamed:@"sports-cat.png"]
                   forState: UIControlStateNormal];
-        sports.frame = CGRectMake(0, 429, self.view.frame.size.width, 141);
+        sports.frame = CGRectMake(-2, 429, self.view.frame.size.width+4, 143);
         [self.view addSubview:sports];
+        
+        /* Exit button */
+        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [exitButton addTarget:self
+                       action:@selector(exit)
+             forControlEvents:UIControlEventTouchDown];
+        [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
+                    forState: UIControlStateNormal];
+        exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
+        [self.view addSubview:exitButton];
         
     }
     return self;
@@ -101,6 +111,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)exit
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)openCreateView

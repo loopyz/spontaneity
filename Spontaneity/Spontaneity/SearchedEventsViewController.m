@@ -42,7 +42,7 @@
         [exitButton addTarget:self
                      action:@selector(exit)
            forControlEvents:UIControlEventTouchDown];
-        [exitButton setImage:[UIImage imageNamed:@"close-button.png"]
+        [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
                   forState: UIControlStateNormal];
         exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
         [self.view addSubview:exitButton];
