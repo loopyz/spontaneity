@@ -24,5 +24,6 @@
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 - (void)userLoggedIn;
 - (void)userLoggedOut;
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title;
 
 @end
