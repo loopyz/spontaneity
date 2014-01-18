@@ -69,7 +69,6 @@
     return self;
 }
 
-<<<<<<< HEAD
 - (void)startStandardUpdates
 {
     // Create the location manager if this object does not
@@ -87,7 +86,6 @@
 }
 
 
-=======
 - (void)addTitle
 {
     UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
@@ -97,7 +95,6 @@
     self.navigationItem.titleView = logoView;
 }
 
->>>>>>> 4516d6a1423519a138454a6b753695211548149c
 // Loads stored user's interests from Firebase
 - (void)loadAndUpdateInterests {
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -470,6 +467,7 @@
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
     [self loadAndUpdateInterests];
+
     // TODO: remove hardcoding
     _eventName = @"Chocolate Bar";
     _location = @"Under the Sea";
@@ -477,6 +475,8 @@
     [self loadAndUpdateInterests];
     
 	// Do any additional setup after loading the view.
+    
+    printf("%s", "end of didload");
 }
 
 - (void)didReceiveMemoryWarning
