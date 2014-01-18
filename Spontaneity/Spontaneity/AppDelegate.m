@@ -178,10 +178,10 @@
     [[FBRequest requestForMe] startWithCompletionHandler:
      ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
          if (error)
-             NSLog(error);
+             NSLog(@"Error retrieving user: %@", error.description);
          else {
-             NSLog(@"User id %@",[aUser objectForKey:@"username"]);
-             self.username = aUser[@"username"];
+             NSLog(@"User id %@",[aUser objectForKey:@"id"]);
+             self.username = aUser[@"id"];
          }
          
          // Welcome message
