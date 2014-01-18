@@ -21,7 +21,10 @@
 
 @end
 
-@implementation CreateViewController
+@implementation CreateViewController {
+    bool done;
+    
+}
 
 @synthesize timeLabel;
 @synthesize neededLabel;
@@ -32,8 +35,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         _editTimeClicks = 0;
         _neededPeople = 5;
+        
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [locationManager startUpdatingLocation];
         
         //creates background image
         UIGraphicsBeginImageContext(self.view.frame.size);
@@ -428,15 +438,74 @@
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
-    [self loadAndUpdateInterests];
+    //[self loadAndUpdateInterests];
     
-	// Do any additional setup after loading the view.
+    printf("%s", "end of didload");
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    NSLog(@"lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    //NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil && !done) {
+        done = true;
+        //[locationManager stopUpdatingLocation];
+        
+        NSLog(@"%f %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
+        
+
+        //randomly generate interest
+        NSString *interest = @"bars";
+        
+        // NOTE: only gets restaurants with menus
+        NSString *requestString = [NSString
+                                   stringWithFormat:@"http://lucy.ws/yelp.php?term=%s&cll=%f%@%f", interest,
+                                   currentLocation.coordinate.latitude, @"%2C+", currentLocation.coordinate.longitude];
+        
+        
+        NSURL *url = [[NSURL alloc] initWithString:requestString];
+        NSLog(@"%@", requestString);
+        
+        [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            if (error) {
+                NSLog(@"Error %@; %@", error, [error localizedDescription]);
+            } else {
+                NSLog(@"success");
+                NSError *localError = nil;
+                NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
+                
+                NSArray *restaurants = parsedObject[@"objects"];
+                
+            }
+        }];
+    }
+    
+    printf("%s", "meow end of locationManager");
 }
 
 @end
