@@ -284,6 +284,7 @@
 - (void)didFinishSelecting
 {
     NSLog(@"Hit finish button!");
+    //At this point selections contains whatever interests the user selected
     
 }
 

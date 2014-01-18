@@ -31,8 +31,11 @@
     // Set loginUIViewController as root view controller
 //    [[self window] setRootViewController:loginViewController];
     
-    HomeViewController *vc = [[HomeViewController alloc]init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    CreateViewController *vc = [[CreateViewController alloc]init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
+    self.navigationController = navigationController;
+    
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
     self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     
     [self.window makeKeyAndVisible];
