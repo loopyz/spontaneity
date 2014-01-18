@@ -7,9 +7,12 @@
 //  For listing events you've found so you can join them
 
 #import <Firebase/Firebase.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 #import "EventListViewController.h"
 #import "CreateViewController.h"
+
+#define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface EventListViewController ()
 
@@ -17,7 +20,8 @@
 
 @implementation EventListViewController
 {
-    NSMutableArray *events;
+    NSMutableArray* eventKeys;
+    NSMutableDictionary* events;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,8 +52,73 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
+    // Initialize array that will store events and event keys.
+    self.events = [[NSMutableDictionary alloc] init];
+    self.eventKeys = [[NSMutableArray alloc] init];
     
+    // Initialize the root of our Firebase namespace.
+    self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+    
+    [self loadAndUpdateEvents:@"ivanw100"];
+}
+
+// Loads stored user's events from Firebase
+- (void)loadAndUpdateEvents:(NSString *)username {
+    NSLog(@"Username: %@", username);
+    
+    Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"] childByAppendingPath:username] childByAppendingPath:@"events"];
+    
+    [eventsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        NSString* eventKey = snapshot.value;
+        NSLog(@"Event ID added: %@", eventKey);
+        [self.eventKeys addObject:eventKey];
+        
+        // Retrieve event from Facebook
+        [FBRequestConnection startWithGraphPath:[@"/" stringByAppendingString:eventKey]
+                                     parameters:nil
+                                     HTTPMethod:@"GET"
+                              completionHandler:^(
+                                                  FBRequestConnection *connection,
+                                                  id result,
+                                                  NSError *error
+                                                  ) {
+                                  
+                                  // Store event in events array
+                                  [self.events setObject:result forKey:eventKey];
+                                  [self.tableView reloadData];
+                              }];
+    }];
+    
+    // TODO: implement changed/deleted
+//    [eventsRef observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+//        NSLog(@"Event changed: %@", snapshot.name);
+//        
+//        NSInteger newVal = [snapshot.value[@"status"] intValue];
+//        if (newVal == 1)
+//        {
+//            [orderKeys removeObject:snapshot.name];
+//        } else if (newVal == 0)
+//        {
+//            NSInteger oldVal = [orders[snapshot.name][@"status"] intValue];
+//            if (oldVal == 1) {
+//                [orderKeys addObject:snapshot.name];
+//            }
+//        }
+//        
+//        [self.tableView reloadData];
+//    }];
+    
+//    [openOrdersRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+//        NSLog(@"Order deleted: %@", snapshot.value);
+//        
+//        [orders removeObjectForKey:snapshot.name];
+//        [orderKeys removeObject:snapshot.name];
+//        
+//        [self.tableView reloadData];
+//    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,26 +142,50 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 1;
+    return [self.events count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSLog(@"Updating cell");
     
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
     cell.backgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
+    
+    // Update cell name and description
+    NSMutableDictionary* event = self.events[eventKey];
+    NSLog(@"Updating event: %@", event[@"name"]);
+    
+    cell.textLabel.text = event[@"name"];
+    [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    [[cell detailTextLabel] setText:event[@"description"]];
+    [[cell detailTextLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+    
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
+    NSLog(@"Selected event: %@", eventKey);
+    // TODO: Navigate to event detail controller
+}
+
 
 /*
  // Override to support conditional editing of the table view.
