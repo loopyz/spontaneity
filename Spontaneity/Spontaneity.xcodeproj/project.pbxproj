@@ -100,8 +100,6 @@
 		0B7458AB188A08FC00F0EE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745893188A08FC00F0EE6E /* UIKit.framework */; };
 		0B7458B3188A08FC00F0EE6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B7458B1188A08FC00F0EE6E /* InfoPlist.strings */; };
 		0B7458B5188A08FC00F0EE6E /* SpontaneityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */; };
-		F37DBDC2188A47DF0094E5C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DBDC1188A47DF0094E5C0 /* FacebookSDK.framework */; };
-		F3DBDA74188A5CD40068A17D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA73188A5CD40068A17D /* Firebase.framework */; };
 		F3DBDA76188A5D430068A17D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA75188A5D430068A17D /* libicucore.dylib */; };
 		F3DBDA78188A5D4B0068A17D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA77188A5D4B0068A17D /* libc++.dylib */; };
 		F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA79188A5D520068A17D /* CFNetwork.framework */; };
@@ -142,6 +140,9 @@
 		F3DBDAC1188AF28E0068A17D /* technology-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAAC188AF28E0068A17D /* technology-bg@2x.png */; };
 		F3DBDAC5188AFC820068A17D /* red-search.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAC4188AFC820068A17D /* red-search.png */; };
 		F3DBDAC7188AFD010068A17D /* red-search-small.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAC6188AFD010068A17D /* red-search-small.png */; };
+		F3DBDAC9188B403A0068A17D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDAC8188B403A0068A17D /* Firebase.framework */; };
+		F3DBDACB188B40520068A17D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDACA188B40520068A17D /* FacebookSDK.framework */; };
+		F3DBDACD188B40690068A17D /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDACC188B40690068A17D /* Pinterest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,8 +262,6 @@
 		0B7458B0188A08FC00F0EE6E /* SpontaneityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpontaneityTests-Info.plist"; sourceTree = "<group>"; };
 		0B7458B2188A08FC00F0EE6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpontaneityTests.m; sourceTree = "<group>"; };
-		F37DBDC1188A47DF0094E5C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		F3DBDA73188A5CD40068A17D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		F3DBDA75188A5D430068A17D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F3DBDA77188A5D4B0068A17D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F3DBDA79188A5D520068A17D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -302,9 +301,11 @@
 		F3DBDAAA188AF28E0068A17D /* sports-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sports-bg@2x.png"; sourceTree = "<group>"; };
 		F3DBDAAB188AF28E0068A17D /* technology-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "technology-bg.png"; sourceTree = "<group>"; };
 		F3DBDAAC188AF28E0068A17D /* technology-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "technology-bg@2x.png"; sourceTree = "<group>"; };
-		F3DBDAC2188AF7C60068A17D /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pinterest.framework; path = ../../PinItSDKiOS/Pinterest.embeddedframework/Pinterest.framework; sourceTree = "<group>"; };
 		F3DBDAC4188AFC820068A17D /* red-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-search.png"; sourceTree = "<group>"; };
 		F3DBDAC6188AFD010068A17D /* red-search-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-search-small.png"; sourceTree = "<group>"; };
+		F3DBDAC8188B403A0068A17D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../Firebase.framework; sourceTree = "<group>"; };
+		F3DBDACA188B40520068A17D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		F3DBDACC188B40690068A17D /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pinterest.framework; path = ../../PinItSDKiOS/Pinterest.embeddedframework/Pinterest.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,14 +314,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */,
+				F3DBDACD188B40690068A17D /* Pinterest.framework in Frameworks */,
 				F3DBDA7E188A5D600068A17D /* SystemConfiguration.framework in Frameworks */,
 				F3DBDA7C188A5D590068A17D /* Security.framework in Frameworks */,
 				F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */,
+				F3DBDAC9188B403A0068A17D /* Firebase.framework in Frameworks */,
 				F3DBDA78188A5D4B0068A17D /* libc++.dylib in Frameworks */,
 				F3DBDA76188A5D430068A17D /* libicucore.dylib in Frameworks */,
-				F3DBDA74188A5CD40068A17D /* Firebase.framework in Frameworks */,
 				0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */,
-				F37DBDC2188A47DF0094E5C0 /* FacebookSDK.framework in Frameworks */,
+				F3DBDACB188B40520068A17D /* FacebookSDK.framework in Frameworks */,
 				0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */,
 				0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */,
 			);
@@ -524,15 +526,15 @@
 		0B74588E188A08FC00F0EE6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F3DBDAC2188AF7C60068A17D /* Pinterest.framework */,
+				F3DBDACC188B40690068A17D /* Pinterest.framework */,
+				F3DBDACA188B40520068A17D /* FacebookSDK.framework */,
+				F3DBDAC8188B403A0068A17D /* Firebase.framework */,
 				0B41CF42188AEF1F00DAB725 /* Pinterest.embeddedframework */,
 				F3DBDA7D188A5D600068A17D /* SystemConfiguration.framework */,
 				F3DBDA7B188A5D590068A17D /* Security.framework */,
 				F3DBDA79188A5D520068A17D /* CFNetwork.framework */,
 				F3DBDA77188A5D4B0068A17D /* libc++.dylib */,
 				F3DBDA75188A5D430068A17D /* libicucore.dylib */,
-				F3DBDA73188A5CD40068A17D /* Firebase.framework */,
-				F37DBDC1188A47DF0094E5C0 /* FacebookSDK.framework */,
 				0B74588F188A08FC00F0EE6E /* Foundation.framework */,
 				0B745891188A08FC00F0EE6E /* CoreGraphics.framework */,
 				0B745893188A08FC00F0EE6E /* UIKit.framework */,
@@ -939,6 +941,9 @@
 					/Users/Angela/Documents/spontaneity/Spontaneity,
 					/Users/Angela/Documents/FacebookSDK,
 					/Users/Angela/Downloads/PinItSDKiOS/Pinterest.embeddedframework,
+					/Users/gregory/MHacks,
+					/Users/gregory/Documents/FacebookSDK,
+					/Users/gregory/MHacks/PinItSDKiOS/Pinterest.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
@@ -962,6 +967,9 @@
 					/Users/Angela/Documents/spontaneity/Spontaneity,
 					/Users/Angela/Documents/FacebookSDK,
 					/Users/Angela/Downloads/PinItSDKiOS/Pinterest.embeddedframework,
+					/Users/gregory/MHacks,
+					/Users/gregory/Documents/FacebookSDK,
+					/Users/gregory/MHacks/PinItSDKiOS/Pinterest.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
