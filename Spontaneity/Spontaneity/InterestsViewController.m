@@ -59,9 +59,9 @@
          forControlEvents:UIControlEventTouchDown];
         [dining setImage:[UIImage imageNamed:@"dining.png"]
                 forState: UIControlStateNormal];
-        dining.frame = CGRectMake(5, 100, 100, 100);
+        dining.frame = CGRectMake(10, 100, 90, 90);
         [self.view addSubview:dining];
-        UILabel *diningLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 160, 100, 100.0) ];
+        UILabel *diningLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 160, 100, 100) ];
         diningLabel.textAlignment =  NSTextAlignmentCenter;
         diningLabel.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
         diningLabel.backgroundColor = [UIColor clearColor];
@@ -75,7 +75,7 @@
        forControlEvents:UIControlEventTouchDown];
         [bars setImage:[UIImage imageNamed:@"bars.png"]
               forState: UIControlStateNormal];
-        bars.frame = CGRectMake(110, 100, 100, 100);
+        bars.frame = CGRectMake(115, 100, 90, 90);
         [self.view addSubview:bars];
         UILabel *barLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 160, 100, 100.0) ];
         barLabel.textAlignment =  NSTextAlignmentCenter;
@@ -92,7 +92,7 @@
            forControlEvents:UIControlEventTouchDown];
         [clubbing setImage:[UIImage imageNamed:@"clubbing.png"]
                   forState: UIControlStateNormal];
-        clubbing.frame = CGRectMake(215, 100, 100, 100);
+        clubbing.frame = CGRectMake(220, 100, 90, 90);
         [self.view addSubview:clubbing];
         UILabel *clubbingLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 160, 100, 100.0) ];
         clubbingLabel.textAlignment =  NSTextAlignmentCenter;
@@ -109,7 +109,7 @@
          forControlEvents:UIControlEventTouchDown];
         [sports setImage:[UIImage imageNamed:@"sports.png"]
                 forState: UIControlStateNormal];
-        sports.frame = CGRectMake(5, 230, 100, 100);
+        sports.frame = CGRectMake(10, 230, 90, 90);
         [self.view addSubview:sports];
         UILabel *sportsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 290, 100, 100.0) ];
         sportsLabel.textAlignment =  NSTextAlignmentCenter;
@@ -125,7 +125,7 @@
              forControlEvents:UIControlEventTouchDown];
         [adrenaline setImage:[UIImage imageNamed:@"adrenaline.png"]
                     forState: UIControlStateNormal];
-        adrenaline.frame = CGRectMake(110, 230, 100, 100);
+        adrenaline.frame = CGRectMake(115, 230, 90, 90);
         [self.view addSubview:adrenaline];
         UILabel *adrLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 290, 100, 100.0) ];
         adrLabel.textAlignment =  NSTextAlignmentCenter;
@@ -141,7 +141,7 @@
        forControlEvents:UIControlEventTouchDown];
         [tech setImage:[UIImage imageNamed:@"Tech.png"]
               forState: UIControlStateNormal];
-        tech.frame = CGRectMake(215, 230, 100, 100);
+        tech.frame = CGRectMake(220, 230, 90, 90);
         [self.view addSubview:tech];
         UILabel *techLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 290, 100, 100.0) ];
         techLabel.textAlignment =  NSTextAlignmentCenter;
@@ -158,7 +158,7 @@
            forControlEvents:UIControlEventTouchDown];
         [exercise setImage:[UIImage imageNamed:@"exercise.png"]
                   forState: UIControlStateNormal];
-        exercise.frame = CGRectMake(5, 360, 100, 100);
+        exercise.frame = CGRectMake(10, 360, 90, 90);
         [self.view addSubview:exercise];
         
         UILabel *exLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 420, 100, 100.0) ];
@@ -175,7 +175,7 @@
         forControlEvents:UIControlEventTouchDown];
         [games setImage:[UIImage imageNamed:@"games.png"]
                forState: UIControlStateNormal];
-        games.frame = CGRectMake(110, 360, 100, 100);
+        games.frame = CGRectMake(115, 360, 90, 90);
         [self.view addSubview:games];
         
         UILabel *gamesLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 420, 100, 100.0) ];
@@ -193,7 +193,7 @@
          forControlEvents:UIControlEventTouchDown];
         [beauty setImage:[UIImage imageNamed:@"beauty.png"]
                 forState: UIControlStateNormal];
-        beauty.frame = CGRectMake(215, 360, 100, 100);
+        beauty.frame = CGRectMake(220, 360, 90, 90);
         [self.view addSubview:beauty];
         
         UILabel *beautyLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 420, 100, 100.0) ];
