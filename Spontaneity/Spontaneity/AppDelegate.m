@@ -7,14 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "InterestsViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[InterestsViewController alloc] init]];
+
     [self.window makeKeyAndVisible];
     return YES;
 }
