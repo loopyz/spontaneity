@@ -35,13 +35,13 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
     self.navigationController = navigationController;
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
     self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     
     [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
-    if (false) {//FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Lolwut Facebarbeque");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
@@ -56,7 +56,7 @@
         //UIButton *loginButton = [self.loginViewController loginButton];
         //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
         NSLog(@"Facebook open!");
-        [navigationController presentViewController:loginViewController animated:YES completion:NULL];
+        [eventListViewController presentViewController:loginViewController animated:YES completion:NULL];
     }
     
     return YES;
@@ -183,7 +183,7 @@
     
     [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
         InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
-        [self.navigationController presentViewController:interestsViewController animated:YES completion:NULL];
+        [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
     }];
     
 }
