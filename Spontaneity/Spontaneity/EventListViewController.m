@@ -32,9 +32,9 @@
         self.view.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
         
         /* Setting up navigation bar items */
-        UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-        UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo-gray"]];
-        titleImageView.frame = CGRectMake(40, 10, 124, 30);
+        UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 59.27)];
+        UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+        titleImageView.frame = CGRectMake(25, 10, 124, 30);
         [logoView addSubview:titleImageView];
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
         UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search.png"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
