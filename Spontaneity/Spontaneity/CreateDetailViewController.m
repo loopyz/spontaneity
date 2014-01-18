@@ -95,7 +95,11 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Time: ";
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm a"];
+    NSString *newTime = [timeFormatter stringFromDate:[NSDate date]];
+    
+    label.text = [@"Time: " stringByAppendingString:newTime];
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -108,8 +112,12 @@
     //set font style/text
     label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
     
+    //add up and down arrows
+    [self addArrowButtons:220 y:170];
+    
     //adds event details label
     [self.view addSubview:label];
+    
 }
 
 - (void)addInvitedLabel
@@ -139,7 +147,11 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Needed: ";
+    //take number from the invited section
+    int people = 6;
+    
+    label.text = [@"Needed: " stringByAppendingString:[NSString stringWithFormat:@"%d", people]];
+    
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -151,6 +163,9 @@
     
     //set font style/text
     label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    
+    //add up and down arrows
+    [self addArrowButtons:220 y:310];
     
     //adds event details label
     [self.view addSubview:label];
@@ -168,6 +183,33 @@
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
     
+}
+
+- (void)addArrowButtons:(int)x y:(int) y
+{
+    //creates up button
+    UIImage *createUpButtonImage = [UIImage imageNamed:@"up-arrow.png"];
+    UIButton *upButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [upButton addTarget:self
+               action:@selector(aMethod:)
+     forControlEvents:UIControlEventTouchDown];
+    
+    upButton.frame = CGRectMake(x, y+33, 33.6, 17.6);
+    [upButton setBackgroundImage:createUpButtonImage forState:UIControlStateNormal];
+    
+    //creates down button
+    UIImage *createDownButtonImage = [UIImage imageNamed:@"down-arrow.png"];
+    UIButton *downButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [downButton addTarget:self
+                 action:@selector(aMethod:)
+       forControlEvents:UIControlEventTouchDown];
+    
+    downButton.frame = CGRectMake(x, y+53, 33.62, 17.6);
+    [downButton setBackgroundImage:createDownButtonImage forState:UIControlStateNormal];
+    
+    
+    [self.view addSubview:upButton];
+    [self.view addSubview:downButton];
 }
 
 - (void)viewDidLoad

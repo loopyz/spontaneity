@@ -6,6 +6,8 @@
 //
 //  List of events you're attending
 
+#import <Firebase/Firebase.h>
+
 #import "EventListViewController.h"
 #import "CreateViewController.h"
 #import "SearchViewController.h"
@@ -48,6 +50,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
