@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "CreateViewController.h"
+#import "InterestsViewController.h"
+#import "EventListViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -22,16 +24,23 @@
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     self.loginViewController = loginViewController;
     
+    EventListViewController *eventListViewController = [[EventListViewController alloc] init];
+    self.eventListViewController = eventListViewController;
+    
     // Set loginUIViewController as root view controller
-    [[self window] setRootViewController:loginViewController];
+//    [[self window] setRootViewController:loginViewController];
     
 //    CreateViewController *vc = [[CreateViewController alloc]init];
-//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
+    self.navigationController = navigationController;
+    
+    self.window.rootViewController = navigationController;
     self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+    if (false) {//FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        NSLog(@"Lolwut Facebarbeque");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
                                            allowLoginUI:NO
@@ -39,12 +48,14 @@
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
                                           // also for intermediate states and NOT just when the session open
-                                          //[self sessionStateChanged:session state:state error:error];
+                                          [self sessionStateChanged:session state:state error:error];
                                       }];
-    } //else {
+    } else {
         //UIButton *loginButton = [self.loginViewController loginButton];
-//        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
-    //}
+        //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+        NSLog(@"Facebook open!");
+        [navigationController presentViewController:loginViewController animated:YES completion:NULL];
+    }
     
     return YES;
 }
@@ -166,7 +177,12 @@
     [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
     
     // Welcome message
-    //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    
+    [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+        InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+        [self.navigationController presentViewController:interestsViewController animated:YES completion:NULL];
+    }];
     
 }
 
