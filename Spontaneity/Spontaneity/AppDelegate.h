@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
+#import "EventListViewController.h"
 #import "LoginViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LoginViewController *loginViewController;
+@property (strong, nonatomic) EventListViewController *eventListViewController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 
 

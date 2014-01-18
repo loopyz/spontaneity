@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-//#import "CreateViewController.h"
+#import "CreateViewController.h"
+#import "InterestsViewController.h"
+#import "EventListViewController.h"
 #import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
@@ -20,8 +22,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Create a LoginUIViewController instance where we will put the login button
-//    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-//    self.loginViewController = loginViewController;
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    self.loginViewController = loginViewController;
+    
+    EventListViewController *eventListViewController = [[EventListViewController alloc] init];
+    self.eventListViewController = eventListViewController;
     
     // Set loginUIViewController as root view controller
 //    [[self window] setRootViewController:loginViewController];
@@ -34,6 +39,7 @@
     
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        NSLog(@"Lolwut Facebarbeque");
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
                                            allowLoginUI:NO
@@ -41,12 +47,14 @@
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
                                           // also for intermediate states and NOT just when the session open
-                                          //[self sessionStateChanged:session state:state error:error];
+                                          [self sessionStateChanged:session state:state error:error];
                                       }];
-    } //else {
+    } else {
         //UIButton *loginButton = [self.loginViewController loginButton];
-//        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
-    //}
+        //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+        NSLog(@"Facebook open!");
+        [eventListViewController presentViewController:loginViewController animated:YES completion:NULL];
+    }
     
     return YES;
 }
@@ -163,12 +171,25 @@
 // Show the user the logged-in UI
 - (void)userLoggedIn
 {
+    
     // Set the button title as "Log out"
     UIButton *loginButton = self.loginViewController.loginButton;
     [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
     
     // Welcome message
-    //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    
+    if ([self.loginViewController isViewLoaded])
+    {
+        [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+            InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+            [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
+        }];
+    } else
+    {
+        InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+        [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
+    }
     
 }
 
