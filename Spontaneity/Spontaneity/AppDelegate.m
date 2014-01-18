@@ -9,13 +9,10 @@
 #import "AppDelegate.h"
 #import "CreateViewController.h"
 #import "InterestsViewController.h"
-<<<<<<< HEAD
-=======
 #import "EventListViewController.h"
 #import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
->>>>>>> b4354b8fd4a3a9c07d926291ac38cdf79cafc52c
 
 @implementation AppDelegate
 
@@ -24,10 +21,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-<<<<<<< HEAD
-    InterestsViewController *vc = [[InterestsViewController alloc]init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-=======
     // Create a LoginUIViewController instance where we will put the login button
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     self.loginViewController = loginViewController;
@@ -45,7 +38,6 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
     self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     
->>>>>>> b4354b8fd4a3a9c07d926291ac38cdf79cafc52c
     [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
