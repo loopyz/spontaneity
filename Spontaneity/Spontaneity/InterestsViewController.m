@@ -44,6 +44,14 @@
         [self.view addSubview:interests];
         interests.text = @"Tap Your Interests";
         
+        //creates shadow
+        interests.layer.shadowColor = [[UIColor whiteColor] CGColor];
+        interests.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+        interests.layer.shadowOpacity = 1.0;
+
+        
+        
+        
         //1st Row
         dining = [UIButton buttonWithType:UIButtonTypeCustom];
         [dining addTarget:self
@@ -204,7 +212,7 @@
          forControlEvents:UIControlEventTouchDown];
         [finish setImage:[UIImage imageNamed:@"Finish-Button.png"]
                 forState: UIControlStateNormal];
-        finish.frame = CGRectMake(30, 500, 260.0, 50.0);
+        finish.frame = CGRectMake(30, 500, 260.0, 39.468);
         [self.view addSubview:finish];
         
     }
