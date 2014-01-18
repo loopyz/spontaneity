@@ -224,7 +224,7 @@
     NSString *imgName = [interest stringByAppendingString:@"-bg.png"];
     NSLog(imgName);
 
-    SearchedEventsViewController *svc = [[SearchedEventsViewController alloc] initWithNibName:imgName bundle:nil];
+    SearchedEventsViewController *svc = [[SearchedEventsViewController alloc] initWithNibName:imgName bundle:nil withInterest:interest];
     [self presentViewController:svc animated:YES completion:nil];
 }
 
