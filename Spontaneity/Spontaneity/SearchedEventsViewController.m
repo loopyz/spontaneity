@@ -22,8 +22,13 @@
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(back)];
         self.navigationItem.leftBarButtonItem = backButton;
         
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bars-bg.png"]];
-        [self.view addSubview:imgView];
+        UIGraphicsBeginImageContext(self.view.frame.size);
+        
+        [[UIImage imageNamed:@"bars-bg.png"] drawInRect:self.view.bounds];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     }
     return self;
 }
