@@ -13,6 +13,7 @@
 		0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB2D188A0AB80076D96E /* CreateDetailViewController.m */; };
 		0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB30188A0AE50076D96E /* SearchViewController.m */; };
 		0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB33188A0B0D0076D96E /* EventListViewController.m */; };
+		0B41CD97188A585A00DAB725 /* JoinEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CD96188A585A00DAB725 /* JoinEventViewController.m */; };
 		0B5B7381188A2EE1004B29DF /* create-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7341188A2EE1004B29DF /* create-button.png */; };
 		0B5B7382188A2EE1004B29DF /* create-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7342188A2EE1004B29DF /* create-button@2x.png */; };
 		0B5B7383188A2EE1004B29DF /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7343188A2EE1004B29DF /* facebook.png */; };
@@ -109,6 +110,8 @@
 		0B2FCB30188A0AE50076D96E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		0B2FCB32188A0B0D0076D96E /* EventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListViewController.h; sourceTree = "<group>"; };
 		0B2FCB33188A0B0D0076D96E /* EventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListViewController.m; sourceTree = "<group>"; };
+		0B41CD95188A585A00DAB725 /* JoinEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinEventViewController.h; sourceTree = "<group>"; };
+		0B41CD96188A585A00DAB725 /* JoinEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinEventViewController.m; sourceTree = "<group>"; };
 		0B5B7341188A2EE1004B29DF /* create-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button.png"; sourceTree = "<group>"; };
 		0B5B7342188A2EE1004B29DF /* create-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button@2x.png"; sourceTree = "<group>"; };
 		0B5B7343188A2EE1004B29DF /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				0B2FCB30188A0AE50076D96E /* SearchViewController.m */,
 				0B2FCB32188A0B0D0076D96E /* EventListViewController.h */,
 				0B2FCB33188A0B0D0076D96E /* EventListViewController.m */,
+				0B41CD95188A585A00DAB725 /* JoinEventViewController.h */,
+				0B41CD96188A585A00DAB725 /* JoinEventViewController.m */,
 				0B5B733F188A2EE1004B29DF /* images */,
 				0B7458A1188A08FC00F0EE6E /* Images.xcassets */,
 				0B745896188A08FC00F0EE6E /* Supporting Files */,
@@ -549,6 +554,7 @@
 			files = (
 				0B2FCB28188A0A7C0076D96E /* InterestsViewController.m in Sources */,
 				0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */,
+				0B41CD97188A585A00DAB725 /* JoinEventViewController.m in Sources */,
 				0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */,
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
 				0B2FCB2B188A0A9E0076D96E /* CreateViewController.m in Sources */,
