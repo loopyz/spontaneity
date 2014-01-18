@@ -12,7 +12,7 @@
 #import "PinterestViewController.h"
 #import "AppDelegate.h"
 
-
+#import <FacebookSDK/FacebookSDK.h>
 #import <Firebase/Firebase.h>
 
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
@@ -267,31 +267,38 @@
 - (void)submitNewEvent:(id)sender
 {
     NSLog(@"Submitted a new event!");
-    [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location];
+    NSString *description = [NSString stringWithFormat:@"%ld people needed. Created by Spontaneity", (long)_neededPeople];
+    
+    [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
+        andDescription:description];
 }
 
 - (NSString*)dateToString:(NSDate*)date
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    return [dateFormatter stringFromDate:date];
+    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"MM-dd'T'HH:mm:ssZZZZZ"];
+    return @"2014-01-25T19:00:00-0700";
+//    return [dateFormatter stringFromDate:date];
 }
 
 - (void)createFacebookEvent:(NSString *)name withStartTime:(NSDate*)date
-                andLocation:(NSString *)location
+                andLocation:(NSString *)location andDescription:(NSString *)description
 {
-    // TODO: add needed
-    
+    NSLog([self dateToString:date]);
     // NOTE: privacy type defaults to open
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             name, @"name",
                             [self dateToString:date], @"start_time",
                             location, @"location",
-                            @"Created by Spontaneity", @"description",
+                            description, @"description",
                             nil
-                            
                             ];
+    
+    for(id key in params)
+        NSLog(@"=== %@:%@ ===", key, [params objectForKey:key]);
+    
     /* make the API call */
     [FBRequestConnection startWithGraphPath:@"/me/events"
                                  parameters:params
@@ -310,6 +317,8 @@
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                               } else
                               {
+                                  NSLog(error.description);
+                                  NSLog(error.debugDescription);
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
                           }];
@@ -376,7 +385,8 @@
     // Extract components.
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
     // Set the minute to the nearest 15 minutes.
-    [comps setMinute:((([comps minute] - 8 ) / 15 ) * 15 ) + 15];
+    // rightmost 15 -> 30 to round up cuz we're spontaneous, but not that spontaneous (let's meet up in 2 min!!?!?)
+    [comps setMinute:((([comps minute] - 8 ) / 15 ) * 15 ) + 30];
     // Zero out the seconds.
     [comps setSecond:0];
     // Construct a new date.
@@ -437,6 +447,14 @@
     
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+    
+    // TODO: remove hardcoding
+    _eventName = @"Chocolate Bar";
+    _location = @"Under the Sea";
+    
+    [self loadAndUpdateInterests];
+    
+	// Do any additional setup after loading the view.
     
     //[self loadAndUpdateInterests];
     
