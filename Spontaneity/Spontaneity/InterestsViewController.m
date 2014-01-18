@@ -300,13 +300,13 @@
             [selections addObject:@"exercise"];
             exercise.alpha = 1;
         }
-    } else if (sender == beauty) {
-        if ([selections indexOfObject:@"beauty"] != NSNotFound) {
-            [selections removeObject:@"beauty"];
-            beauty.alpha = .5;
+    } else if (sender == games) {
+        if ([selections indexOfObject:@"games"] != NSNotFound) {
+            [selections removeObject:@"games"];
+            games.alpha = .5;
         } else {
-            [selections addObject:@"beauty"];
-            beauty.alpha = 1;
+            [selections addObject:@"games"];
+            games.alpha = 1;
         }
     } else if (sender == beauty) {
         if ([selections indexOfObject:@"beauty"] != NSNotFound) {
