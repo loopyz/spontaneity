@@ -38,10 +38,10 @@
                                           // also for intermediate states and NOT just when the session open
                                           //[self sessionStateChanged:session state:state error:error];
                                       }];
-    } else {
-        UIButton *loginButton = [self.loginViewController loginButton];
-        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
-    }
+    } //else {
+        //UIButton *loginButton = [self.loginViewController loginButton];
+//        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+    //}
     
     return YES;
 }

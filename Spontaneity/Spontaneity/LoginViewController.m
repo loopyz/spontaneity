@@ -27,18 +27,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)buttonClicked:(id)sender
 {
     // If the session state is any of the two "open" states when the button is clicked
@@ -64,6 +52,33 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 50)];
+    imgView.image = [UIImage imageNamed:@"a_image.png"];
+    
+	// Do any additional setup after loading the view.
+    self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.loginButton setTitle:@"Show View" forState:UIControlStateNormal];
+
+    self.loginButton.frame = CGRectMake((self.view.frame.size.width - 263)/2, 140, 263, 52);
+    [self.loginButton addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage *btnImage = [UIImage imageNamed:@"facebook.png"];
+    [self.loginButton setImage:btnImage forState:UIControlStateNormal];
+    self.loginButton.contentMode = UIViewContentModeScaleToFill;
+    
+    [self.view addSubview:self.loginButton];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
