@@ -4,7 +4,7 @@
 //
 //  Created by Angela Zhang on 1/18/14.
 //
-//
+//  Display details about a selected event and option to join
 
 #import <UIKit/UIKit.h>
 
