@@ -57,6 +57,8 @@
 	// Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorColor = [UIColor clearColor];
     
     // Initialize array that will store events and event keys.
     self.events = [[NSMutableDictionary alloc] init];
