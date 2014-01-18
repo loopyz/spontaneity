@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DCEE140F-D94A-45D1-BB1B-439EE1639F09</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Spontaneity</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>579D4DFB-C5CE-4ABC-A264-63CD04701AFA</key>
+		<string>https://github.com/loopyz/spontaneity.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Spontaneity/Spontaneity.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>579D4DFB-C5CE-4ABC-A264-63CD04701AFA</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/loopyz/spontaneity.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>579D4DFB-C5CE-4ABC-A264-63CD04701AFA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>579D4DFB-C5CE-4ABC-A264-63CD04701AFA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>spontaneity</string>
+		</dict>
+	</array>
+</dict>
+</plist>
