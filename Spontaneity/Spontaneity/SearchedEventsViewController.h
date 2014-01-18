@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchedEventsViewController : UITableViewController
+@interface SearchedEventsViewController : UIViewController
 
 @end
