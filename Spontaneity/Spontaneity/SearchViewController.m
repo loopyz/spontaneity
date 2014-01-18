@@ -87,6 +87,16 @@
         sports.frame = CGRectMake(0, 429, self.view.frame.size.width, 141);
         [self.view addSubview:sports];
         
+        /* Exit button */
+        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [exitButton addTarget:self
+                       action:@selector(exit)
+             forControlEvents:UIControlEventTouchDown];
+        [exitButton setImage:[UIImage imageNamed:@"close-button.png"]
+                    forState: UIControlStateNormal];
+        exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
+        [self.view addSubview:exitButton];
+        
     }
     return self;
 }
@@ -101,6 +111,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)exit
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)openCreateView
