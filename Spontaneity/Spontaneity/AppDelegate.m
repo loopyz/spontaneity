@@ -10,7 +10,6 @@
 #import "CreateViewController.h"
 #import "InterestsViewController.h"
 #import "EventListViewController.h"
-#import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -28,14 +27,11 @@
     EventListViewController *eventListViewController = [[EventListViewController alloc] init];
     self.eventListViewController = eventListViewController;
     
-    // Set loginUIViewController as root view controller
-//    [[self window] setRootViewController:loginViewController];
-    
-    CreateViewController *vc = [[CreateViewController alloc]init];
+    //CreateViewController *vc = [[CreateViewController alloc]init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
     self.navigationController = navigationController;
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:eventListViewController];
+    self.window.rootViewController = navigationController;
     self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     
     [self.window makeKeyAndVisible];
@@ -180,7 +176,7 @@
     [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
     
     // Welcome message
-    [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+    //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
     
     if ([self.loginViewController isViewLoaded])
     {
