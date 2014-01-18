@@ -329,7 +329,6 @@
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString* username = appDelegate.username;
     
-    NSLog(@"Hit finish button!");
     Firebase* usersRef = [[Firebase alloc] initWithUrl:@"https://spontaneity.firebaseio.com/users"];
     Firebase* interestsRef = [[usersRef childByAppendingPath:username] childByAppendingPath:@"interests"];
     

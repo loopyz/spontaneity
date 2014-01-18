@@ -7,7 +7,12 @@
 //  For selecting what interest you want to pick events for
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UITableViewController
+
+@property (nonatomic, strong) NSMutableArray* interests;
+@property (nonatomic, strong) NSDictionary* interestFiles;
+@property (nonatomic, strong) Firebase* firebase;
 
 @end
