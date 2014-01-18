@@ -7,14 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "CreateViewController.h";
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    CreateViewController *vc = [[CreateViewController alloc]init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
