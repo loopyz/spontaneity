@@ -118,8 +118,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.sectionHeaderHeight = 0.0;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.separatorColor = [UIColor blackColor];
+
     
     // Initialize array that will store events and event keys.
     self.interests = [[NSMutableArray alloc] init];
@@ -128,6 +127,9 @@
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
     [self loadAndUpdateInterests];
+    
+    self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,7 +187,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    return 120;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -208,6 +210,7 @@
     UIImage *bgImg =[UIImage imageNamed:[interest stringByAppendingString:@"-cat.png"]];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:0.0]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]]];
+    
     
     return cell;
 }
