@@ -21,10 +21,8 @@
 
 @end
 
-@implementation CreateViewController {
-    bool done;
-    
-}
+@implementation CreateViewController
+
 
 @synthesize timeLabel;
 @synthesize neededLabel;
@@ -40,10 +38,7 @@
         _neededPeople = 5;
         
         locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.distanceFilter = kCLDistanceFilterNone;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        [locationManager startUpdatingLocation];
+        [self startStandardUpdates];
         
         //creates background image
         UIGraphicsBeginImageContext(self.view.frame.size);
@@ -77,9 +72,27 @@
         pinterest.frame = CGRectMake(self.view.bounds.size.width-40, 70, 30, 30);
         [self.view addSubview:pinterest];
         
+        
     }
     return self;
 }
+
+- (void)startStandardUpdates
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == locationManager)
+        locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    
+    // Set a movement threshold for new events.
+    locationManager.distanceFilter = 500; // meters
+    
+    [locationManager startUpdatingLocation];
+}
+
 
 // Loads stored user's interests from Firebase
 - (void)loadAndUpdateInterests {
@@ -438,7 +451,7 @@
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
-    //[self loadAndUpdateInterests];
+    [self loadAndUpdateInterests];
     
     printf("%s", "end of didload");
 }
@@ -449,63 +462,56 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+-(void)refreshActivity
 {
-    NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = [locations lastObject];
-    NSLog(@"lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
+    uint32_t rnd = arc4random_uniform([self.interests count]);
+    NSString* randInterest = [self.interests objectAtIndex:rnd];
+    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",",self.longitude];
+    
+    NSLog(@"%@", url);
+    
+    //doing dat json stuff
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod: @"GET"];
+    
+    NSError *requestError;
+    NSURLResponse *urlResponse = nil;
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+    NSError *jsonParsingError = nil;
+    self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                     options:0 error:&jsonParsingError];
+    
     
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    //NSLog(@"didUpdateToLocation: %@", newLocation);
-    CLLocation *currentLocation = newLocation;
-    
-    if (currentLocation != nil && !done) {
-        done = true;
-        //[locationManager stopUpdatingLocation];
-        
-        NSLog(@"%f %f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
-        
 
-        //randomly generate interest
-        NSString *interest = @"bars";
-        
-        // NOTE: only gets restaurants with menus
-        NSString *requestString = [NSString
-                                   stringWithFormat:@"http://lucy.ws/yelp.php?term=%s&cll=%f%@%f", interest,
-                                   currentLocation.coordinate.latitude, @"%2C+", currentLocation.coordinate.longitude];
-        
-        
-        NSURL *url = [[NSURL alloc] initWithString:requestString];
-        NSLog(@"%@", requestString);
-        
-        [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-            
-            if (error) {
-                NSLog(@"Error %@; %@", error, [error localizedDescription]);
-            } else {
-                NSLog(@"success");
-                NSError *localError = nil;
-                NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-                
-                NSArray *restaurants = parsedObject[@"objects"];
-                
-            }
-        }];
+#pragma mark -
+#pragma mark CLLocationManagerDelegate
+
+-(void)locationManager:(CLLocationManager *)manager
+   didUpdateToLocation:(CLLocation *)newLocation
+          fromLocation:(CLLocation *)oldLocation
+{
+    //generate random interest
+    int numInterests = [interests count];
+    
+    if (numInterests > 0) {
+        self.longitude = newLocation.coordinate.longitude;
+        self.latitude = newLocation.coordinate.latitude;
+        [self refreshActivity];
     }
-    
-    printf("%s", "meow end of locationManager");
 }
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	// Handle error
+    printf("%s", "woof");
+}
+
+
 
 @end

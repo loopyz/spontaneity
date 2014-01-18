@@ -15,4 +15,6 @@
 @property (nonatomic, strong) UIView* exitView;
 @property (nonatomic, strong) Firebase* firebase;
 
+@property (nonatomic) bool done;
+
 @end
