@@ -47,6 +47,9 @@
         /* Set Table Data Source */
         //self.tableView.dataSource = events;//Result of firebase query!
         
+        
+
+        
     }
     return self;
 }
@@ -57,15 +60,17 @@
 	// Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.separatorColor = [UIColor clearColor];
-    
+
     // Initialize array that will store events and event keys.
     self.events = [[NSMutableDictionary alloc] init];
     self.eventKeys = [[NSMutableArray alloc] init];
     
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.separatorColor = [UIColor blackColor];
+
 }
 
 // Loads stored user's events from Firebase

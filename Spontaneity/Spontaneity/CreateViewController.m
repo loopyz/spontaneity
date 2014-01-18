@@ -7,8 +7,14 @@
 //  Event Details Screen
 //
 
+#import "AppDelegate.h"
 #import "CreateViewController.h"
 #import "PinterestViewController.h"
+
+
+#import <Firebase/Firebase.h>
+
+#define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface CreateViewController ()
 
@@ -18,6 +24,8 @@
 
 @synthesize timeLabel;
 @synthesize neededLabel;
+@synthesize interests;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +68,28 @@
         
     }
     return self;
+}
+
+// Loads stored user's interests from Firebase
+- (void)loadAndUpdateInterests {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString* username = appDelegate.username;
+    
+    Firebase* interestsRef = [[[self.firebase childByAppendingPath:@"users"]
+                               childByAppendingPath:username] childByAppendingPath:@"interests"];
+    
+    [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        NSString* interest = snapshot.name;
+        NSLog(@"Interest added: %@", interest);
+        [self.interests addObject:interest];
+    }];
+    
+    [interestsRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"Interest deleted: %@", snapshot.name);
+        
+        [self.interests removeObject:snapshot.name];
+
+    }];
 }
 
 - (void)exit
@@ -344,6 +374,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Initialize array that will store events and event keys.
+    self.interests = [[NSMutableArray alloc] init];
+    
+    // Initialize the root of our Firebase namespace.
+    self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+    
+    [self loadAndUpdateInterests];
+    
 	// Do any additional setup after loading the view.
 }
 

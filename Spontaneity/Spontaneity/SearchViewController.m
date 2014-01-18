@@ -34,6 +34,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+
         self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
         self.exitView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 30, 30, 30)];
         
@@ -48,6 +49,14 @@
         self.navigationItem.titleView = logoView;
         self.navigationItem.rightBarButtonItem = createButton;
         self.navigationItem.leftBarButtonItem = searchButton;
+
+        self.tableView.separatorColor = [UIColor blackColor];
+        //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.view.backgroundColor = [UIColor blackColor];
+        
+        
+
+
         
         /* Some controls */
 //        UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpFrom:)];
@@ -117,7 +126,7 @@
 	// Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.sectionHeaderHeight = 0.0;
+    //self.tableView.sectionHeaderHeight = 0.0;
 
     
     // Initialize array that will store events and event keys.
@@ -126,10 +135,11 @@
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
-    [self loadAndUpdateInterests];
     
-    self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.separatorColor = [UIColor clearColor];
+    
+    [self loadAndUpdateInterests];
 }
 
 - (void)didReceiveMemoryWarning
@@ -177,6 +187,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
     return 1;
 }
 
@@ -208,9 +219,14 @@
     NSLog(@"Updating interest: %@", interest);
     
     UIImage *bgImg =[UIImage imageNamed:[interest stringByAppendingString:@"-cat.png"]];
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:0.0]];
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]]];
+    UIImage *imgNamed = [UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]];
     
+//    cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+//    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]]];
+    
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[imgNamed stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     
     return cell;
 }
@@ -238,6 +254,8 @@
     
     [self.view bringSubviewToFront:self.exitView];
 }
+
+
 
 //- (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
 //    NSLog(@"up swipe!");
