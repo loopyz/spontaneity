@@ -12,7 +12,7 @@
 #import "PinterestViewController.h"
 #import "AppDelegate.h"
 
-
+#import <FacebookSDK/FacebookSDK.h>
 #import <Firebase/Firebase.h>
 
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
@@ -36,6 +36,7 @@
         
         _editTimeClicks = 0;
         _neededPeople = 5;
+        _dateTime = [self dateToNearest15Minutes];
         
         locationManager = [[CLLocationManager alloc] init];
         [self startStandardUpdates];
@@ -51,16 +52,7 @@
         [self addInvitedLabel];
         [self addNeededLabel];
         [self addSubmitButton];
-        
-        /* Exit button */
-        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [exitButton addTarget:self
-                       action:@selector(exit)
-             forControlEvents:UIControlEventTouchDown];
-        [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
-                    forState: UIControlStateNormal];
-        exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
-        [self.view addSubview:exitButton];
+        [self addTitle];        
         
         /* Test Button for Pinterest */
         UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -77,6 +69,7 @@
     return self;
 }
 
+<<<<<<< HEAD
 - (void)startStandardUpdates
 {
     // Create the location manager if this object does not
@@ -94,6 +87,17 @@
 }
 
 
+=======
+- (void)addTitle
+{
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+    titleImageView.frame = CGRectMake(40, 10, 124, 30);
+    [logoView addSubview:titleImageView];
+    self.navigationItem.titleView = logoView;
+}
+
+>>>>>>> 4516d6a1423519a138454a6b753695211548149c
 // Loads stored user's interests from Firebase
 - (void)loadAndUpdateInterests {
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -118,19 +122,18 @@
 
 - (void)exit
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)pinterest
 {
     PinterestViewController *pvc = [[PinterestViewController alloc] init];
-    [self presentViewController:pvc animated:YES completion:nil];
-
+    [self.navigationController pushViewController:pvc animated:YES];
 }
 
 - (void)addBackgroundImage
 {
-    [[UIImage imageNamed:@"clubbing-bg-2.png"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"college-bg.png"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -280,31 +283,43 @@
 - (void)submitNewEvent:(id)sender
 {
     NSLog(@"Submitted a new event!");
-    [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location];
+    NSString *description = [NSString stringWithFormat:@"%ld people needed. Created by Spontaneity", (long)_neededPeople];
+    
+    [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
+        andDescription:description];
 }
 
 - (NSString*)dateToString:(NSDate*)date
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    return [dateFormatter stringFromDate:date];
+    if (!date)
+        NSLog(@"no date!");
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZ'"];
+    return [formatter stringFromDate:date];
+    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+//    [dateFormatter setLocale:enUSPOSIXLocale];
+//    [dateFormatter setDateFormat:@"MM-dd'T'HH:mm:ssZZZZZ"];
+//    return @"2014-01-25T19:00:00-0700";
+//    return [dateFormatter stringFromDate:date];
 }
 
 - (void)createFacebookEvent:(NSString *)name withStartTime:(NSDate*)date
-                andLocation:(NSString *)location
+                andLocation:(NSString *)location andDescription:(NSString *)description
 {
-    // TODO: add needed
-    
     // NOTE: privacy type defaults to open
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             name, @"name",
                             [self dateToString:date], @"start_time",
                             location, @"location",
-                            @"Created by Spontaneity", @"description",
+                            description, @"description",
                             nil
-                            
                             ];
+    
+    for(id key in params)
+        NSLog(@"=== %@:%@ ===", key, [params objectForKey:key]);
+    
     /* make the API call */
     [FBRequestConnection startWithGraphPath:@"/me/events"
                                  parameters:params
@@ -323,6 +338,8 @@
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                               } else
                               {
+                                  NSLog(error.description);
+                                  NSLog(error.debugDescription);
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
                           }];
@@ -389,7 +406,8 @@
     // Extract components.
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
     // Set the minute to the nearest 15 minutes.
-    [comps setMinute:((([comps minute] - 8 ) / 15 ) * 15 ) + 15];
+    // rightmost 15 -> 30 to round up cuz we're spontaneous, but not that spontaneous (let's meet up in 2 min!!?!?)
+    [comps setMinute:((([comps minute] - 8 ) / 15 ) * 15 ) + 30];
     // Zero out the seconds.
     [comps setSecond:0];
     // Construct a new date.
@@ -452,8 +470,13 @@
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
     [self loadAndUpdateInterests];
+    // TODO: remove hardcoding
+    _eventName = @"Chocolate Bar";
+    _location = @"Under the Sea";
     
-    printf("%s", "end of didload");
+    [self loadAndUpdateInterests];
+    
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
