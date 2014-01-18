@@ -20,10 +20,9 @@
 @end
 
 @implementation EventListViewController
-{
-    NSMutableArray* eventKeys;
-    NSMutableDictionary* events;
-}
+
+@synthesize eventKeys;
+@synthesize events;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -326,6 +325,10 @@
     
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     NSLog(@"Selected event: %@", eventKey);
+    NSMutableDictionary *event = self.events[eventKey];
+    for (NSString *key in event) {
+        NSLog(@"%@, %@", key, [event objectForKey:key]);
+    }
     // TODO: Navigate to event detail controller
 }
 
