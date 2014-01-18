@@ -44,9 +44,6 @@
         self.navigationItem.rightBarButtonItem = createButton;
         self.navigationItem.leftBarButtonItem = searchButton;
         
-        /* Set Table Data Source */
-        //self.tableView.dataSource = events;//Result of firebase query!
-        
     }
     return self;
 }
@@ -77,6 +74,7 @@
     
     [eventsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* eventKey = snapshot.value;
+        
         NSLog(@"Event ID added: %@", eventKey);
         [self.eventKeys addObject:eventKey];
         
@@ -128,6 +126,8 @@
              if (!error && result) {
                  event[@"coverPhoto"] = [[result objectForKey:@"cover"] objectForKey:@"source"];
              }
+             
+             event[@"ref"] = [snapshot ref];
              
              // Store event in events array
              [self.events setObject:event forKey:eventKey];
@@ -253,7 +253,7 @@
     
     NSURL *url = [NSURL URLWithString:event[@"coverPhoto"]];
     
-    //TODO: pick more generic cover photo
+    // TODO: pick more generic cover photo
     UIImage *bgImg = url ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"adrenaline-bg.png"];
     UIImage *blurredbg = [bgImg applyDarkEffect];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
@@ -345,6 +345,19 @@
     // TODO: Navigate to event detail controller
 }
 
+// Allow deleting of rows by swipe
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
+    
+    [self.events[eventKey][@"ref"] removeValue];
+    [self.events removeObjectForKey:eventKey];
+    [self.eventKeys removeObject:eventKey];
+    
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self.tableView reloadData];
+}
 
 /*
  // Override to support conditional editing of the table view.
