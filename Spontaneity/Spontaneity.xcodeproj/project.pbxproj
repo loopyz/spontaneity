@@ -25,6 +25,7 @@
 		0B7458AB188A08FC00F0EE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745893188A08FC00F0EE6E /* UIKit.framework */; };
 		0B7458B3188A08FC00F0EE6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B7458B1188A08FC00F0EE6E /* InfoPlist.strings */; };
 		0B7458B5188A08FC00F0EE6E /* SpontaneityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */; };
+		F385BB2B188A14E900E2AC2C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F385BB2A188A14E900E2AC2C /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		0B7458B0188A08FC00F0EE6E /* SpontaneityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpontaneityTests-Info.plist"; sourceTree = "<group>"; };
 		0B7458B2188A08FC00F0EE6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpontaneityTests.m; sourceTree = "<group>"; };
+		F385BB2A188A14E900E2AC2C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */,
+				F385BB2B188A14E900E2AC2C /* FacebookSDK.framework in Frameworks */,
 				0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */,
 				0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */,
 			);
@@ -114,6 +117,7 @@
 		0B74588E188A08FC00F0EE6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F385BB2A188A14E900E2AC2C /* FacebookSDK.framework */,
 				0B74588F188A08FC00F0EE6E /* Foundation.framework */,
 				0B745891188A08FC00F0EE6E /* CoreGraphics.framework */,
 				0B745893188A08FC00F0EE6E /* UIKit.framework */,
@@ -399,6 +403,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/gregory/MHacks/spontaneity/Spontaneity,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
 				INFOPLIST_FILE = "Spontaneity/Spontaneity-Info.plist";
@@ -415,6 +423,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/gregory/MHacks/spontaneity/Spontaneity,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
 				INFOPLIST_FILE = "Spontaneity/Spontaneity-Info.plist";
