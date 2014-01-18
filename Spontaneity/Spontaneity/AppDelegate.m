@@ -174,6 +174,7 @@
 // Show the user the logged-in UI
 - (void)userLoggedIn
 {
+    
     // Set the button title as "Log out"
     UIButton *loginButton = self.loginViewController.loginButton;
     [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
@@ -181,10 +182,17 @@
     // Welcome message
     [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
     
-    [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+    if ([self.loginViewController isViewLoaded])
+    {
+        [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+            InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+            [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
+        }];
+    } else
+    {
         InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
         [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
-    }];
+    }
     
 }
 
