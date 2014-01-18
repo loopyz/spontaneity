@@ -40,7 +40,7 @@
         interests.textAlignment =  NSTextAlignmentCenter;
         interests.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
         interests.backgroundColor = [UIColor clearColor];
-        interests.font = [UIFont fontWithName:@"Helvetica" size:(36)];
+        interests.font = [UIFont fontWithName:@"Helvetica-Oblique" size:(36)];
         [self.view addSubview:interests];
         interests.text = @"Tap Your Interests";
         
