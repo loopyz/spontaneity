@@ -18,6 +18,20 @@
     CreateViewController *vc = [[CreateViewController alloc]init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
+    
+    // Whenever a person opens the app, check for a cached session
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        // If there's one, just open the session silently, without showing the user the login UI
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+                                           allowLoginUI:NO
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          // Handler for session state changes
+                                          // This method will be called EACH time the session state changes,
+                                          // also for intermediate states and NOT just when the session open
+                                          //[self sessionStateChanged:session state:state error:error];
+                                      }];
+    }
+    
     return YES;
 }
 

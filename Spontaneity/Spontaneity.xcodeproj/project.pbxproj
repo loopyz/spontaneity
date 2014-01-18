@@ -81,6 +81,7 @@
 		8D3EA8CC188A2077000C58FD /* Tech@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EA893188A2077000C58FD /* Tech@2x.png */; };
 		8D3EA8CD188A2077000C58FD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EA894188A2077000C58FD /* logo.png */; };
 		8D3EA8D3188A21F7000C58FD /* create-bg-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EA8D2188A21F7000C58FD /* create-bg-2.png */; };
+		F385BB2B188A14E900E2AC2C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F385BB2A188A14E900E2AC2C /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,8 @@
 		8D3EA893188A2077000C58FD /* Tech@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tech@2x.png"; sourceTree = "<group>"; };
 		8D3EA894188A2077000C58FD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		8D3EA8D2188A21F7000C58FD /* create-bg-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-bg-2.png"; sourceTree = "<group>"; };
+
+		F385BB2A188A14E900E2AC2C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */,
+				F385BB2B188A14E900E2AC2C /* FacebookSDK.framework in Frameworks */,
 				0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */,
 				0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */,
 			);
@@ -226,6 +230,7 @@
 		0B74588E188A08FC00F0EE6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F385BB2A188A14E900E2AC2C /* FacebookSDK.framework */,
 				0B74588F188A08FC00F0EE6E /* Foundation.framework */,
 				0B745891188A08FC00F0EE6E /* CoreGraphics.framework */,
 				0B745893188A08FC00F0EE6E /* UIKit.framework */,
@@ -663,6 +668,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/gregory/MHacks/spontaneity/Spontaneity,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
 				INFOPLIST_FILE = "Spontaneity/Spontaneity-Info.plist";
@@ -679,6 +688,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/gregory/MHacks/spontaneity/Spontaneity,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
 				INFOPLIST_FILE = "Spontaneity/Spontaneity-Info.plist";
