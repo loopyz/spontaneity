@@ -28,8 +28,7 @@
     
     HomeViewController *vc = [[HomeViewController alloc]init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0]
-;
+    self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
     
     [self.window makeKeyAndVisible];
     
