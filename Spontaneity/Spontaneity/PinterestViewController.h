@@ -11,4 +11,6 @@
 
 @interface PinterestViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *pin;
+
 @end

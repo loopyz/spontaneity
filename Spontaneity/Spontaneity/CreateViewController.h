@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
 
-@interface CreateViewController : UIViewController
+@interface CreateViewController : UIViewController <CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
+}
 
 @property (nonatomic) NSInteger editTimeClicks;
 @property (nonatomic) NSInteger neededPeople;

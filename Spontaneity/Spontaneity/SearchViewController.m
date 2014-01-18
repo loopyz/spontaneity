@@ -40,7 +40,7 @@
         
         /* Setting up navigation bar items */
         UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-        UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo-gray"]];
+        UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
         titleImageView.frame = CGRectMake(40, 10, 124, 30);
         [logoView addSubview:titleImageView];
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
@@ -150,13 +150,13 @@
 
 - (void)exit
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)openCreateView
 {
     CreateViewController *cvc = [[CreateViewController alloc] init];
-    [self presentViewController:cvc animated:YES completion:nil];
+    [self.navigationController pushViewController:cvc animated:YES];
 }
 
 // Loads stored user's interests from Firebase
@@ -258,7 +258,7 @@
 
 //- (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
 //    NSLog(@"up swipe!");
-//    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 //}
 //
 //- (void)handleSwipeDownFrom:(UIGestureRecognizer*)recognizer {

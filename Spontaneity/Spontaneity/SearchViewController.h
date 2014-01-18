@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
 
-@interface SearchViewController : UITableViewController
+@interface SearchViewController : UITableViewController 
 
 @property (nonatomic, strong) NSMutableArray* interests;
 @property (nonatomic, strong) UIView* exitView;

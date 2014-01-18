@@ -293,7 +293,7 @@
 
 - (void)exit
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 // Loads stored interest events from Firebase

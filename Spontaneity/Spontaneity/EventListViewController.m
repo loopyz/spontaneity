@@ -44,8 +44,6 @@
         self.navigationItem.rightBarButtonItem = createButton;
         self.navigationItem.leftBarButtonItem = searchButton;
         
-        /* Set Table Data Source */
-        //self.tableView.dataSource = events;//Result of firebase query!
     }
     return self;
 }
@@ -179,15 +177,14 @@
 - (void)openCreateView
 {
     CreateViewController *cvc = [[CreateViewController alloc] init];
-    [self presentViewController:cvc animated:YES completion:nil];
+    [self.navigationController pushViewController:cvc animated:YES];
 }
 
 - (void)search
 {
     SearchViewController *svc = [[SearchViewController alloc] init];
     svc.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
-
-    [self presentViewController:svc animated:YES completion:nil];
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 
