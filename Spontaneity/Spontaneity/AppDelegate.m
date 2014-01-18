@@ -15,6 +15,8 @@
 
 @implementation AppDelegate
 
+@synthesize username;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -175,25 +177,32 @@
     
     [[FBRequest requestForMe] startWithCompletionHandler:
      ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
-         if (!error) {
-             NSLog(@"User id %@",[aUser objectForKey:@"id"]);
+         if (error)
+             NSLog(error);
+         else {
+             NSLog(@"User id %@",[aUser objectForKey:@"username"]);
+             self.username = aUser[@"username"];
+         }
+         
+         // Welcome message
+         //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
+         
+         if ([self.loginViewController isViewLoaded])
+         {
+             [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+                 InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+                 [self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+                     [self.eventListViewController loadAndUpdateEvents];
+                 }];
+             }];
+         } else {
+             InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+             [self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+                 [self.eventListViewController loadAndUpdateEvents];
+             }];
          }
      }];
     
-    // Welcome message
-    //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
-    
-    if ([self.loginViewController isViewLoaded])
-    {
-        [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
-            InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
-            [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
-        }];
-    } else
-    {
-        InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
-        [self.eventListViewController presentViewController:interestsViewController animated:YES completion:NULL];
-    }
     
 }
 

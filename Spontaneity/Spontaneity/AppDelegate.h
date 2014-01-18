@@ -18,6 +18,7 @@
 @property (strong, nonatomic) LoginViewController *loginViewController;
 @property (strong, nonatomic) EventListViewController *eventListViewController;
 @property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) NSString *username;
 
 
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;

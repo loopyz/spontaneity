@@ -15,4 +15,6 @@
 @property (nonatomic, strong) NSMutableDictionary* events;
 @property (nonatomic, strong) Firebase* firebase;
 
+- (void)loadAndUpdateEvents;
+
 @end

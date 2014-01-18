@@ -7,6 +7,7 @@
 //  View Controller for Tap Your Interests Selection Screen
 //
 
+#import "AppDelegate.h"
 #import "InterestsViewController.h"
 #import <Firebase/Firebase.h>
 
@@ -325,7 +326,8 @@
 //Finish Button
 - (void)didFinishSelecting
 {
-    NSString* username = @"ivanw100"; // TODO: un-hardcode
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString* username = appDelegate.username;
     
     NSLog(@"Hit finish button!");
     Firebase* usersRef = [[Firebase alloc] initWithUrl:@"https://spontaneity.firebaseio.com/users"];

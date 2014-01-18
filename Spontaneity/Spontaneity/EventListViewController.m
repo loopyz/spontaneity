@@ -9,6 +9,7 @@
 #import <Firebase/Firebase.h>
 #import <FacebookSDK/FacebookSDK.h>
 
+#import "AppDelegate.h"
 #import "EventListViewController.h"
 #import "CreateViewController.h"
 #import "SearchViewController.h"
@@ -63,12 +64,13 @@
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
     
-    [self loadAndUpdateEvents:@"ivanw100"];
+    //[self loadAndUpdateEvents];
 }
 
 // Loads stored user's events from Firebase
-- (void)loadAndUpdateEvents:(NSString *)username {
-    NSLog(@"Username: %@", username);
+- (void)loadAndUpdateEvents {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString* username = appDelegate.username;
     
     Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"] childByAppendingPath:username] childByAppendingPath:@"events"];
     
