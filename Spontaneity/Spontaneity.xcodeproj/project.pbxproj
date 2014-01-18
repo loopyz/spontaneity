@@ -106,6 +106,8 @@
 		0B41CEB8188AC4CC00DAB725 /* baking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CEB6188AC4CC00DAB725 /* baking@2x.png */; };
 		0B41CEBB188AC98800DAB725 /* close-button-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CEB9188AC98800DAB725 /* close-button-2.png */; };
 		0B41CEBC188AC98800DAB725 /* close-button-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CEBA188AC98800DAB725 /* close-button-2@2x.png */; };
+		0B41CF41188AEB5A00DAB725 /* PinterestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CF40188AEB5A00DAB725 /* PinterestViewController.m */; };
+		0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B41CF43188AEF1F00DAB725 /* Pinterest.framework */; };
 		0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B74588F188A08FC00F0EE6E /* Foundation.framework */; };
 		0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745891188A08FC00F0EE6E /* CoreGraphics.framework */; };
 		0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745893188A08FC00F0EE6E /* UIKit.framework */; };
@@ -249,6 +251,10 @@
 		0B41CEB6188AC4CC00DAB725 /* baking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baking@2x.png"; sourceTree = "<group>"; };
 		0B41CEB9188AC98800DAB725 /* close-button-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button-2.png"; sourceTree = "<group>"; };
 		0B41CEBA188AC98800DAB725 /* close-button-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button-2@2x.png"; sourceTree = "<group>"; };
+		0B41CF3F188AEB5A00DAB725 /* PinterestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestViewController.h; sourceTree = "<group>"; };
+		0B41CF40188AEB5A00DAB725 /* PinterestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestViewController.m; sourceTree = "<group>"; };
+		0B41CF43188AEF1F00DAB725 /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
+		0B41CF45188AEF1F00DAB725 /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
 		0B74588C188A08FC00F0EE6E /* Spontaneity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spontaneity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B74588F188A08FC00F0EE6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B745891188A08FC00F0EE6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -285,6 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */,
 				F3DBDA7E188A5D600068A17D /* SystemConfiguration.framework in Frameworks */,
 				F3DBDA7C188A5D590068A17D /* Security.framework in Frameworks */,
 				F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */,
@@ -446,6 +453,24 @@
 			path = "circle-interests";
 			sourceTree = "<group>";
 		};
+		0B41CF42188AEF1F00DAB725 /* Pinterest.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				0B41CF43188AEF1F00DAB725 /* Pinterest.framework */,
+				0B41CF44188AEF1F00DAB725 /* Resources */,
+			);
+			name = Pinterest.embeddedframework;
+			path = ../../../Downloads/PinItSDKiOS/Pinterest.embeddedframework;
+			sourceTree = "<group>";
+		};
+		0B41CF44188AEF1F00DAB725 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B41CF45188AEF1F00DAB725 /* PinterestSDKResources.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0B745883188A08FC00F0EE6E = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +493,7 @@
 		0B74588E188A08FC00F0EE6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B41CF42188AEF1F00DAB725 /* Pinterest.embeddedframework */,
 				F3DBDA7D188A5D600068A17D /* SystemConfiguration.framework */,
 				F3DBDA7B188A5D590068A17D /* Security.framework */,
 				F3DBDA79188A5D520068A17D /* CFNetwork.framework */,
@@ -498,6 +524,8 @@
 				0B2FCB30188A0AE50076D96E /* SearchViewController.m */,
 				0B41CDEF188A725F00DAB725 /* SearchedEventsViewController.h */,
 				0B41CDF0188A725F00DAB725 /* SearchedEventsViewController.m */,
+				0B41CF3F188AEB5A00DAB725 /* PinterestViewController.h */,
+				0B41CF40188AEB5A00DAB725 /* PinterestViewController.m */,
 				0B2FCB32188A0B0D0076D96E /* EventListViewController.h */,
 				0B2FCB33188A0B0D0076D96E /* EventListViewController.m */,
 				0B41CD95188A585A00DAB725 /* JoinEventViewController.h */,
@@ -735,6 +763,7 @@
 			files = (
 				0B2FCB28188A0A7C0076D96E /* InterestsViewController.m in Sources */,
 				0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */,
+				0B41CF41188AEB5A00DAB725 /* PinterestViewController.m in Sources */,
 				0B41CD97188A585A00DAB725 /* JoinEventViewController.m in Sources */,
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
 				0B2FCB2B188A0A9E0076D96E /* CreateViewController.m in Sources */,
@@ -870,6 +899,7 @@
 					/Users/Angela/Documents/FacebookSDK,
 					/Users/gregory/Documents/FacebookSDK,
 					/Users/gregory/MHacks,
+					/Users/Angela/Downloads/PinItSDKiOS/Pinterest.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
@@ -895,6 +925,7 @@
 					/Users/Angela/Documents/FacebookSDK,
 					/Users/gregory/Documents/FacebookSDK,
 					/Users/gregory/MHacks,
+					/Users/Angela/Downloads/PinItSDKiOS/Pinterest.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
