@@ -193,9 +193,6 @@
              self.username = aUser[@"id"];
          }
          
-         // Welcome message
-         //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
-         
          if ([self.loginViewController isViewLoaded])
          {
              [self.loginViewController dismissViewControllerAnimated:YES completion:^() {

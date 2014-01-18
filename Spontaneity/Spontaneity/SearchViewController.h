@@ -12,7 +12,6 @@
 @interface SearchViewController : UITableViewController 
 
 @property (nonatomic, strong) NSMutableArray* interests;
-@property (nonatomic, strong) UIView* exitView;
 @property (nonatomic, strong) Firebase* firebase;
 
 @end

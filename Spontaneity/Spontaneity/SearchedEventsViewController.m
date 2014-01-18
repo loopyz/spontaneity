@@ -22,7 +22,6 @@
 @synthesize eventKeys;
 @synthesize events;
 @synthesize interest;
-@synthesize exitView;
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -42,24 +41,6 @@
         UIGraphicsEndImageContext();
         
         self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-        self.exitView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 30, 30, 30)];
-        
-        /* Horizontal Divider Bar */ /*
-        UIImageView *barImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"horizontal-separator@2x.png"]];
-        barImgView.frame = CGRectMake(40, 10, 124, 30);
-        [self.view addSubview:barImgView];*/
-        
-        /* Exit button */
-        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [exitButton addTarget:self
-                     action:@selector(exit)
-           forControlEvents:UIControlEventTouchDown];
-        [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
-                  forState: UIControlStateNormal];
-        exitButton.frame = CGRectMake(0, 0, 30, 30);
-        [self.exitView addSubview:exitButton];
-        [self.view addSubview:self.exitView];
-        
     }
     return self;
 }
@@ -208,14 +189,6 @@
     [self setupLabel:attendingLabel forCell:cell withText:@"attending      needed" withSize:10];
     
     return cell;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGRect frame = [self.exitView frame];
-    frame.origin.y = scrollView.contentOffset.y + 30;
-    self.exitView.frame = frame;
-    
-    [self.view bringSubviewToFront:self.exitView];
 }
 
 //- (void)populateCell:(int) margin
