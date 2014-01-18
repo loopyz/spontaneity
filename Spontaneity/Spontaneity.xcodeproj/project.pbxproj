@@ -87,6 +87,7 @@
 		8D3EAA14188A2D64000C58FD /* clubbing-bg-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA13188A2D64000C58FD /* clubbing-bg-2.png */; };
 		8D3EAA17188A353A000C58FD /* submit-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA15188A353A000C58FD /* submit-button.png */; };
 		8D3EAA18188A353A000C58FD /* submit-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA16188A353A000C58FD /* submit-button@2x.png */; };
+		8D3EAA1B188A38CB000C58FD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3EAA1A188A38CB000C58FD /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,8 @@
 		8D3EAA13188A2D64000C58FD /* clubbing-bg-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clubbing-bg-2.png"; sourceTree = "<group>"; };
 		8D3EAA15188A353A000C58FD /* submit-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit-button.png"; sourceTree = "<group>"; };
 		8D3EAA16188A353A000C58FD /* submit-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit-button@2x.png"; sourceTree = "<group>"; };
+		8D3EAA19188A38CB000C58FD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		8D3EAA1A188A38CB000C58FD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,8 @@
 				0B2FCB33188A0B0D0076D96E /* EventListViewController.m */,
 				0B7458A1188A08FC00F0EE6E /* Images.xcassets */,
 				0B745896188A08FC00F0EE6E /* Supporting Files */,
+				8D3EAA19188A38CB000C58FD /* HomeViewController.h */,
+				8D3EAA1A188A38CB000C58FD /* HomeViewController.m */,
 			);
 			path = Spontaneity;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */,
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
 				0B2FCB2B188A0A9E0076D96E /* CreateViewController.m in Sources */,
+				8D3EAA1B188A38CB000C58FD /* HomeViewController.m in Sources */,
 				0B74589C188A08FC00F0EE6E /* main.m in Sources */,
 				0B2FCB25188A0A450076D96E /* LoginViewController.m in Sources */,
 				0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */,

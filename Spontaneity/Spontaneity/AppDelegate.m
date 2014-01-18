@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 //#import "CreateViewController.h"
-#import "CreateDetailViewController.h"
+#import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -20,19 +20,18 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Create a LoginUIViewController instance where we will put the login button
-    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-    self.loginViewController = loginViewController;
+//    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//    self.loginViewController = loginViewController;
     
     // Set loginUIViewController as root view controller
-    [[self window] setRootViewController:loginViewController];
+//    [[self window] setRootViewController:loginViewController];
     
-    CreateDetailViewController *vc = [[CreateDetailViewController alloc]init];
+    HomeViewController *vc = [[HomeViewController alloc]init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.backgroundColor = [UIColor whiteColor];
-//    CreateViewController *vc = [[CreateViewController alloc]init];
-//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    //self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
-    //[self.window makeKeyAndVisible];
+    self.window.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0]
+;
+    
+    [self.window makeKeyAndVisible];
     
     // Whenever a person opens the app, check for a cached session
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
