@@ -20,10 +20,9 @@
 @end
 
 @implementation EventListViewController
-{
-    NSMutableArray* eventKeys;
-    NSMutableDictionary* events;
-}
+
+@synthesize eventKeys;
+@synthesize events;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,20 +77,47 @@
         NSLog(@"Event ID added: %@", eventKey);
         [self.eventKeys addObject:eventKey];
         
+        __block NSMutableDictionary* event = [[NSMutableDictionary alloc] init];
+        
         // Retrieve event from Facebook
-        [FBRequestConnection startWithGraphPath:[@"/" stringByAppendingString:eventKey]
-                                     parameters:nil
-                                     HTTPMethod:@"GET"
-                              completionHandler:^(
-                                                  FBRequestConnection *connection,
-                                                  id result,
-                                                  NSError *error
-                                                  ) {
-                                  
-                                  // Store event in events array
-                                  [self.events setObject:result forKey:eventKey];
-                                  [self.tableView reloadData];
-                              }];
+        FBRequestConnection *connection = [[FBRequestConnection alloc] init];
+        
+        // First request gets event info
+        FBRequest *request1 =
+        [FBRequest requestWithGraphPath:[@"/" stringByAppendingString:eventKey]
+                             parameters:nil
+                             HTTPMethod:@"GET"];
+        [connection addRequest:request1
+             completionHandler:
+         ^(FBRequestConnection *connection, id result, NSError *error) {
+             if (!error && result) {
+                 event = result;
+             }
+         }];
+        
+        // Second request retrieves the status posted
+        NSDictionary* request2Params = [[NSDictionary alloc] initWithObjectsAndKeys: @"1", @"summary", @"0", @"limit", nil];
+        
+        FBRequest *request2 =
+        [FBRequest requestWithGraphPath: [[@"/" stringByAppendingString:eventKey] stringByAppendingString:@"/attending"]
+                            parameters:request2Params
+                            HTTPMethod: @"GET"];
+        
+        [connection addRequest:request2
+             completionHandler:
+         ^(FBRequestConnection *connection, id result, NSError *error) {
+             if (!error && result) {
+                 event[@"attendees"] = [[[result objectForKey:@"summary"] objectForKey:@"count"] stringValue];
+             }
+             
+             // Store event in events array
+             [self.events setObject:event forKey:eventKey];
+             [self.tableView reloadData];
+         }];
+        
+        [connection start];
+        
+        // TODO: retrieve cover photo: ?fields=cover -- "cover" "source"
     }];
     
     // TODO: implement changed
@@ -155,19 +181,25 @@
     return [self.events count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Updating cell");
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
-    cell.backgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
-    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
+    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     
@@ -175,19 +207,130 @@
     NSMutableDictionary* event = self.events[eventKey];
     NSLog(@"Updating event: %@", event[@"name"]);
     
-    cell.textLabel.text = event[@"name"];
-    [[cell textLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+    // Event title
+    UILabel *ttitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 320, 40)];
+    int size = 22;
+    int length = [event[@"name"] length];
+//    NSLog(@"Length is %d", length);
+    if (length > 28)
+    {
+//        NSLog(@"Old size is %d", size);
+        size = size*28/length;
+//        NSLog(@"New size is %d", size);
+    }
     
-    [[cell detailTextLabel] setText:event[@"description"]];
-    [[cell detailTextLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+    ttitle.font = [UIFont systemFontOfSize:size];
+    ttitle.textColor = [UIColor whiteColor];
+    ttitle.textAlignment = NSTextAlignmentLeft;
+    [ttitle setText:event[@"name"]];
+    [cell.contentView addSubview:ttitle];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSString *input = event[@"start_time"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"]; //iso 8601 format
+    NSDate *output = [dateFormat dateFromString:input];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"h:mm a"];
+    NSString *time = [formatter stringFromDate:output];
+    [formatter setDateFormat:@"M/d/yy"];
+    NSString *date = [formatter stringFromDate:output];
+    
+    // Date label
+    if ([date length]) {
+        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 320, 40)];
+        dateLabel.font = [UIFont systemFontOfSize:12];
+        dateLabel.textColor = [UIColor whiteColor];
+        dateLabel.textAlignment = NSTextAlignmentLeft;
+        [dateLabel setText:[@"Date: " stringByAppendingString:date]];
+        [cell.contentView addSubview:dateLabel];
+    }
+    
+    // Time label
+    if ([time length]) {
+        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 42, 320, 40)];
+        timeLabel.font = [UIFont systemFontOfSize:12];
+        timeLabel.textColor = [UIColor whiteColor];
+        timeLabel.textAlignment = NSTextAlignmentLeft;
+        [timeLabel setText:[@"Time: " stringByAppendingString:time]];
+        [cell.contentView addSubview:timeLabel];
+    }
+    
+    // Address 1 label
+    NSMutableDictionary *venue = event[@"venue"];
+    NSString *street = venue[@"street"];
+    NSString *lowerLine = [NSString stringWithFormat:@"%@, %@ %@", venue[@"city"], venue[@"state"], venue[@"zip"]];
+    if (!venue[@"city"] || !venue[@"state"] || !venue[@"zip"])
+        lowerLine = @"";
+    
+    //if (!street)
+    //    street = @"";
+    
+    if ([street length]) {
+        UILabel *addrUpperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 68, 320, 40)];
+        addrUpperLabel.font = [UIFont systemFontOfSize:12];
+        addrUpperLabel.textColor = [UIColor whiteColor];
+        addrUpperLabel.textAlignment = NSTextAlignmentLeft;
+        [addrUpperLabel setText:street];
+        [cell.contentView addSubview:addrUpperLabel];
+    }
+    
+    // Address 2 label
+    if ([lowerLine length]) {
+        UILabel *addrLowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 80, 320, 40)];
+        addrLowerLabel.font = [UIFont systemFontOfSize:12];
+        addrLowerLabel.textColor = [UIColor whiteColor];
+        addrLowerLabel.textAlignment = NSTextAlignmentLeft;
+        [addrLowerLabel setText:lowerLine];
+        [cell.contentView addSubview:addrLowerLabel];
+    }
+    
+    // Number attending label
+    NSString *attendees = event[@"attendees"];
+    
+    UILabel *numAttendingLabel = [[UILabel alloc] initWithFrame:CGRectMake(145, 50, 100, 40)];
+    numAttendingLabel.font = [UIFont systemFontOfSize:28];
+    numAttendingLabel.textColor = [UIColor whiteColor];
+    numAttendingLabel.textAlignment = NSTextAlignmentRight;
+    [numAttendingLabel setText:attendees];
+    [cell.contentView addSubview:numAttendingLabel];
+    
+    UILabel *numAttendingBar = [[UILabel alloc] initWithFrame:CGRectMake(250, 50, 20, 40)];
+    numAttendingBar.font = [UIFont systemFontOfSize:28];
+    numAttendingBar.textColor = [UIColor whiteColor];
+    numAttendingBar.textAlignment = NSTextAlignmentLeft;
+    [numAttendingBar setText:@"|"];
+    [cell.contentView addSubview:numAttendingBar];
+    
+    UILabel *numNeededLabel = [[UILabel alloc] initWithFrame:CGRectMake(260, 50, 100, 40)];
+    numNeededLabel.font = [UIFont systemFontOfSize:28];
+    numNeededLabel.textColor = [UIColor whiteColor];
+    numNeededLabel.textAlignment = NSTextAlignmentLeft;
+    [numNeededLabel setText:@"10"]; // TODO: un-hardcode later
+    [cell.contentView addSubview:numNeededLabel];
+    
+    // Attending label
+    UILabel *attendingLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 120, 40)];
+    attendingLabel.font = [UIFont systemFontOfSize:10];
+    attendingLabel.textColor = [UIColor whiteColor];
+    attendingLabel.textAlignment = NSTextAlignmentLeft;
+    [attendingLabel setText:@"attending      needed"];
+    [cell.contentView addSubview:attendingLabel];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row >= [self.eventKeys count])
+        return;
+    
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     NSLog(@"Selected event: %@", eventKey);
+    NSMutableDictionary *event = self.events[eventKey];
+    for (NSString *key in event) {
+        NSLog(@"%@, %@", key, [event objectForKey:key]);
+    }
     // TODO: Navigate to event detail controller
 }
 
