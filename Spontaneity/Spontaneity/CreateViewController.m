@@ -100,8 +100,8 @@
     timeLabel.textColor = [UIColor whiteColor];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"HH:mm a"];
-    NSString *newTime = [timeFormatter stringFromDate:[NSDate date]];
+    [timeFormatter setDateFormat:@"hh:mm a"];
+    NSString *newTime = [timeFormatter stringFromDate:[self dateToNearest15Minutes]];
     
     timeLabel.text = [@"Time: " stringByAppendingString:newTime];
     
@@ -214,7 +214,7 @@
                    action:@selector(subTimeClicks)
          forControlEvents:UIControlEventTouchDown];
     
-    downButton.frame = CGRectMake(x, y+53, 33.62, 17.6);
+    downButton.frame = CGRectMake(x, y+63, 33.62, 17.6);
     [downButton setBackgroundImage:createDownButtonImage forState:UIControlStateNormal];
     
     
@@ -241,7 +241,7 @@
                    action:@selector(subPeopleClicks)
          forControlEvents:UIControlEventTouchDown];
     
-    downButton.frame = CGRectMake(x, y+53, 33.62, 17.6);
+    downButton.frame = CGRectMake(x, y+63, 33.62, 17.6);
     [downButton setBackgroundImage:createDownButtonImage forState:UIControlStateNormal];
     
     
@@ -249,18 +249,31 @@
     [self.view addSubview:downButton];
 }
 
+- (NSDate *)dateToNearest15Minutes {
+    // Set up flags.
+    unsigned unitFlags = NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit;
+    // Extract components.
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
+    // Set the minute to the nearest 15 minutes.
+    [comps setMinute:((([comps minute] - 8 ) / 15 ) * 15 ) + 15];
+    // Zero out the seconds.
+    [comps setSecond:0];
+    // Construct a new date.
+    return [[NSCalendar currentCalendar] dateFromComponents:comps];
+}
+
 - (void)editTime
 {
     
     NSDateComponents *changeComponent = [[NSDateComponents alloc] init];
-    changeComponent.second = 60 * 60 * _editTimeClicks;
+    changeComponent.second = 60 * 15 * _editTimeClicks;
     
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
-    NSDate *newDate = [theCalendar dateByAddingComponents:changeComponent toDate:[NSDate date] options:0];
+    NSDate *newDate = [theCalendar dateByAddingComponents:changeComponent toDate:[self dateToNearest15Minutes] options:0];
     
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"HH:mm a"];
+    [timeFormatter setDateFormat:@"hh:mm a"];
     NSString *newTime = [timeFormatter stringFromDate:newDate];
     
     timeLabel.text = [@"Time: " stringByAppendingString:newTime];
