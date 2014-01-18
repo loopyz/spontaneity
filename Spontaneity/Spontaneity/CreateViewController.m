@@ -8,6 +8,7 @@
 //
 
 #import "CreateViewController.h"
+#import "PinterestViewController.h"
 
 @interface CreateViewController ()
 
@@ -47,6 +48,16 @@
         exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
         [self.view addSubview:exitButton];
         
+        /* Test Button for Pinterest */
+        UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
+        [pinterest addTarget:self
+                       action:@selector(pinterest)
+             forControlEvents:UIControlEventTouchDown];
+        [pinterest setImage:[UIImage imageNamed:@"close-button-2.png"]
+                    forState: UIControlStateNormal];
+        pinterest.frame = CGRectMake(self.view.bounds.size.width-40, 70, 30, 30);
+        [self.view addSubview:pinterest];
+        
     }
     return self;
 }
@@ -54,6 +65,13 @@
 - (void)exit
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)pinterest
+{
+    PinterestViewController *pvc = [[PinterestViewController alloc] init];
+    [self presentViewController:pvc animated:YES completion:nil];
+
 }
 
 - (void)addBackgroundImage
