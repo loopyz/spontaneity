@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CreateViewController.h"
+#import "InterestsViewController.h"
 
 @implementation AppDelegate
 
@@ -20,7 +21,7 @@
     self.loginViewController = loginViewController;
     
     // Set loginUIViewController as root view controller
-    [[self window] setRootViewController:loginViewController];
+    [[self window] setRootViewController:[[InterestsViewController alloc] init]];
     
 //    CreateViewController *vc = [[CreateViewController alloc]init];
 //    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
