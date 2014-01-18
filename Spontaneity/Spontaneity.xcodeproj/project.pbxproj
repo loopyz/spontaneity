@@ -13,7 +13,6 @@
 		0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB2D188A0AB80076D96E /* CreateDetailViewController.m */; };
 		0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB30188A0AE50076D96E /* SearchViewController.m */; };
 		0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB33188A0B0D0076D96E /* EventListViewController.m */; };
-		0B41CD94188A466D00DAB725 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CD93188A466D00DAB725 /* HomeViewController.m */; };
 		0B5B7381188A2EE1004B29DF /* create-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7341188A2EE1004B29DF /* create-button.png */; };
 		0B5B7382188A2EE1004B29DF /* create-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7342188A2EE1004B29DF /* create-button@2x.png */; };
 		0B5B7383188A2EE1004B29DF /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7343188A2EE1004B29DF /* facebook.png */; };
@@ -104,8 +103,6 @@
 		0B2FCB30188A0AE50076D96E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		0B2FCB32188A0B0D0076D96E /* EventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventListViewController.h; sourceTree = "<group>"; };
 		0B2FCB33188A0B0D0076D96E /* EventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListViewController.m; sourceTree = "<group>"; };
-		0B41CD92188A466D00DAB725 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		0B41CD93188A466D00DAB725 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		0B5B7341188A2EE1004B29DF /* create-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button.png"; sourceTree = "<group>"; };
 		0B5B7342188A2EE1004B29DF /* create-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button@2x.png"; sourceTree = "<group>"; };
 		0B5B7343188A2EE1004B29DF /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
@@ -331,8 +328,6 @@
 				0B74589F188A08FC00F0EE6E /* AppDelegate.m */,
 				0B2FCB23188A0A450076D96E /* LoginViewController.h */,
 				0B2FCB24188A0A450076D96E /* LoginViewController.m */,
-				0B41CD92188A466D00DAB725 /* HomeViewController.h */,
-				0B41CD93188A466D00DAB725 /* HomeViewController.m */,
 				0B2FCB26188A0A7C0076D96E /* InterestsViewController.h */,
 				0B2FCB27188A0A7C0076D96E /* InterestsViewController.m */,
 				0B2FCB29188A0A9E0076D96E /* CreateViewController.h */,
@@ -533,7 +528,6 @@
 				0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */,
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
 				0B2FCB2B188A0A9E0076D96E /* CreateViewController.m in Sources */,
-				0B41CD94188A466D00DAB725 /* HomeViewController.m in Sources */,
 				0B74589C188A08FC00F0EE6E /* main.m in Sources */,
 				0B2FCB25188A0A450076D96E /* LoginViewController.m in Sources */,
 				0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */,
