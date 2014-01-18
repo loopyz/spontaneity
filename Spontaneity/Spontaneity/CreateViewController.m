@@ -36,8 +36,24 @@
         [self addInvitedLabel];
         [self addNeededLabel];
         [self addSubmitButton];
+        
+        /* Exit button */
+        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [exitButton addTarget:self
+                       action:@selector(exit)
+             forControlEvents:UIControlEventTouchDown];
+        [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
+                    forState: UIControlStateNormal];
+        exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
+        [self.view addSubview:exitButton];
+        
     }
     return self;
+}
+
+- (void)exit
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addBackgroundImage
