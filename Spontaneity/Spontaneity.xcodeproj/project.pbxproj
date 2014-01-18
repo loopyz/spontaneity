@@ -84,6 +84,9 @@
 		8D3EAA0E188A2584000C58FD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3EAA0D188A2584000C58FD /* FacebookSDK.framework */; };
 		8D3EAA11188A26A7000C58FD /* create-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA0F188A26A7000C58FD /* create-button.png */; };
 		8D3EAA12188A26A7000C58FD /* create-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA10188A26A7000C58FD /* create-button@2x.png */; };
+		8D3EAA14188A2D64000C58FD /* clubbing-bg-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA13188A2D64000C58FD /* clubbing-bg-2.png */; };
+		8D3EAA17188A353A000C58FD /* submit-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA15188A353A000C58FD /* submit-button.png */; };
+		8D3EAA18188A353A000C58FD /* submit-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3EAA16188A353A000C58FD /* submit-button@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +187,9 @@
 		8D3EAA0D188A2584000C58FD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		8D3EAA0F188A26A7000C58FD /* create-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "create-button.png"; path = "../../../../images/assets/create-button.png"; sourceTree = "<group>"; };
 		8D3EAA10188A26A7000C58FD /* create-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "create-button@2x.png"; path = "../../../../images/assets/create-button@2x.png"; sourceTree = "<group>"; };
+		8D3EAA13188A2D64000C58FD /* clubbing-bg-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clubbing-bg-2.png"; sourceTree = "<group>"; };
+		8D3EAA15188A353A000C58FD /* submit-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit-button.png"; sourceTree = "<group>"; };
+		8D3EAA16188A353A000C58FD /* submit-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit-button@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +316,8 @@
 		8D3EA858188A2077000C58FD /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				8D3EAA15188A353A000C58FD /* submit-button.png */,
+				8D3EAA16188A353A000C58FD /* submit-button@2x.png */,
 				8D3EA859188A2077000C58FD /* facebook.png */,
 				8D3EA85A188A2077000C58FD /* facebook@2x.png */,
 				8D3EA85B188A2077000C58FD /* Finish-Button.png */,
@@ -338,6 +346,7 @@
 		8D3EA86C188A2077000C58FD /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				8D3EAA13188A2D64000C58FD /* clubbing-bg-2.png */,
 				8D3EA8D2188A21F7000C58FD /* create-bg-2.png */,
 				8D3EA86D188A2077000C58FD /* adrenaline-bg.png */,
 				8D3EA86E188A2077000C58FD /* bars-bg.png */,
@@ -489,6 +498,7 @@
 				8D3EA8B4188A2077000C58FD /* bar@2x.png in Resources */,
 				8D3EA899188A2077000C58FD /* horizontal-separator.png in Resources */,
 				8D3EA8AF188A2077000C58FD /* exercise-bg.png in Resources */,
+				8D3EAA14188A2D64000C58FD /* clubbing-bg-2.png in Resources */,
 				8D3EA8BE188A2077000C58FD /* bars@2x.png in Resources */,
 				8D3EA8C1188A2077000C58FD /* clubbing.png in Resources */,
 				8D3EA8AA188A2077000C58FD /* beauty-bg.png in Resources */,
@@ -506,10 +516,12 @@
 				8D3EA8A8188A2077000C58FD /* adrenaline-bg.png in Resources */,
 				8D3EA8B5188A2077000C58FD /* clubbing.png in Resources */,
 				8D3EA89F188A2077000C58FD /* person-gray.png in Resources */,
+				8D3EAA18188A353A000C58FD /* submit-button@2x.png in Resources */,
 				8D3EA8C0188A2077000C58FD /* beauty@2x.png in Resources */,
 				8D3EA8CA188A2077000C58FD /* sports@2x.png in Resources */,
 				8D3EA8CC188A2077000C58FD /* Tech@2x.png in Resources */,
 				8D3EA8C6188A2077000C58FD /* exercise@2x.png in Resources */,
+				8D3EAA17188A353A000C58FD /* submit-button.png in Resources */,
 				8D3EAA11188A26A7000C58FD /* create-button.png in Resources */,
 				8D3EA8D3188A21F7000C58FD /* create-bg-2.png in Resources */,
 				8D3EA8B2188A2077000C58FD /* technology-bg.png in Resources */,

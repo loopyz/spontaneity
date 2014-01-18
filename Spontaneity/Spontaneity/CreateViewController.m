@@ -19,7 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [self.view setBackgroundColor:[UIColor grayColor]];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"create-bg-2.png"]]];
 
     }

@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "CreateViewController.h"
+//#import "CreateViewController.h"
+#import "CreateDetailViewController.h"
 
 @implementation AppDelegate
 
@@ -22,7 +23,7 @@
     // Set loginUIViewController as root view controller
     //[[self window] setRootViewController:loginViewController];
     
-    CreateViewController *vc = [[CreateViewController alloc]init];
+    CreateDetailViewController *vc = [[CreateDetailViewController alloc]init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
