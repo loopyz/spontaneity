@@ -121,6 +121,10 @@
 		F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA79188A5D520068A17D /* CFNetwork.framework */; };
 		F3DBDA7C188A5D590068A17D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA7B188A5D590068A17D /* Security.framework */; };
 		F3DBDA7E188A5D600068A17D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA7D188A5D600068A17D /* SystemConfiguration.framework */; };
+		F3DBDA81188AD33F0068A17D /* close-button-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA7F188AD33F0068A17D /* close-button-2.png */; };
+		F3DBDA82188AD33F0068A17D /* close-button-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA80188AD33F0068A17D /* close-button-2@2x.png */; };
+		F3DBDA85188AD35D0068A17D /* baking.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA83188AD35D0068A17D /* baking.png */; };
+		F3DBDA86188AD35D0068A17D /* baking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA84188AD35D0068A17D /* baking@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +263,10 @@
 		F3DBDA79188A5D520068A17D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F3DBDA7B188A5D590068A17D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F3DBDA7D188A5D600068A17D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F3DBDA7F188AD33F0068A17D /* close-button-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button-2.png"; sourceTree = "<group>"; };
+		F3DBDA80188AD33F0068A17D /* close-button-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button-2@2x.png"; sourceTree = "<group>"; };
+		F3DBDA83188AD35D0068A17D /* baking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baking.png; sourceTree = "<group>"; };
+		F3DBDA84188AD35D0068A17D /* baking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baking@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +315,8 @@
 		0B41CE01188A97F300DAB725 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				F3DBDA7F188AD33F0068A17D /* close-button-2.png */,
+				F3DBDA80188AD33F0068A17D /* close-button-2@2x.png */,
 				0B41CE02188A97F300DAB725 /* app-icon.png */,
 				0B41CE03188A97F300DAB725 /* app-icon@2x.png */,
 				0B41CE04188A97F300DAB725 /* checkmark-interest.png */,
@@ -397,6 +407,8 @@
 		0B41CE49188A97F300DAB725 /* circle-interests */ = {
 			isa = PBXGroup;
 			children = (
+				F3DBDA83188AD35D0068A17D /* baking.png */,
+				F3DBDA84188AD35D0068A17D /* baking@2x.png */,
 				0B41CE4A188A97F300DAB725 /* adrenaline.png */,
 				0B41CE4B188A97F300DAB725 /* adrenaline@2x.png */,
 				0B41CE4C188A97F300DAB725 /* bars.png */,
@@ -599,6 +611,7 @@
 				0B41CE65188A97F300DAB725 /* down-arrow.png in Resources */,
 				0B41CE60188A97F300DAB725 /* checkmark-interest@2x.png in Resources */,
 				0B41CE6B188A97F300DAB725 /* horizontal-separator.png in Resources */,
+				F3DBDA85188AD35D0068A17D /* baking.png in Resources */,
 				0B41CE71188A97F300DAB725 /* person-gray.png in Resources */,
 				0B41CE9D188A97F300DAB725 /* sports-cat.png in Resources */,
 				0B41CE83188A97F300DAB725 /* beauty-bg.png in Resources */,
@@ -637,9 +650,11 @@
 				0B41CE72188A97F300DAB725 /* person-gray@2x.png in Resources */,
 				0B41CE86188A97F300DAB725 /* create-bg-2.png in Resources */,
 				0B7458A2188A08FC00F0EE6E /* Images.xcassets in Resources */,
+				F3DBDA86188AD35D0068A17D /* baking@2x.png in Resources */,
 				0B41CE78188A97F300DAB725 /* tap-interests.png in Resources */,
 				0B41CEA8188A97F300DAB725 /* clubbing.png in Resources */,
 				0B41CE76188A97F300DAB725 /* submit-button.png in Resources */,
+				F3DBDA82188AD33F0068A17D /* close-button-2@2x.png in Resources */,
 				0B41CE87188A97F300DAB725 /* dining-bg.png in Resources */,
 				0B41CE64188A97F300DAB725 /* create-button@2x.png in Resources */,
 				0B41CE77188A97F300DAB725 /* submit-button@2x.png in Resources */,
@@ -671,6 +686,7 @@
 				0B41CE8F188A97F300DAB725 /* bar-cat@2x.png in Resources */,
 				0B41CE74188A97F300DAB725 /* Slice 1.png in Resources */,
 				0B41CE7A188A97F300DAB725 /* up-arrow.png in Resources */,
+				F3DBDA81188AD33F0068A17D /* close-button-2.png in Resources */,
 				0B41CE9E188A97F300DAB725 /* sports-cat@2x.png in Resources */,
 				0B41CE69188A97F300DAB725 /* Finish-Button.png in Resources */,
 				0B41CEAF188A97F300DAB725 /* games@2x.png in Resources */,

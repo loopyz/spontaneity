@@ -8,6 +8,7 @@
 //
 
 #import "InterestsViewController.h"
+#import <Firebase/Firebase.h>
 
 @interface InterestsViewController ()
 
@@ -244,6 +245,7 @@
 - (void)interestSelected:(id)sender
 {
     UIImage *checkMark = [UIImage imageNamed:@"checkmark-interest.png"];
+    
     if (sender == dining) {
         if ([selections indexOfObject:@"dining"] != NSNotFound) {
             [selections removeObject:@"dining"];
@@ -323,11 +325,21 @@
 //Finish Button
 - (void)didFinishSelecting
 {
-    NSLog(@"Hit finish button!");
-    [self dismissViewControllerAnimated:YES completion:^() {
-        // TODO: store selections in Firebase
-    }];
+    NSString* username = @"ivanw100"; // TODO: un-hardcode
     
+    NSLog(@"Hit finish button!");
+    Firebase* usersRef = [[Firebase alloc] initWithUrl:@"https://spontaneity.firebaseio.com/users"];
+    Firebase* interestsRef = [[usersRef childByAppendingPath:username] childByAppendingPath:@"interests"];
+    
+    NSMutableDictionary *newInterests = [[NSMutableDictionary alloc] init];
+    for (NSString *s in selections)
+        newInterests[s] = @true;
+                                         
+    [interestsRef setValue:newInterests];
+    
+    [self dismissViewControllerAnimated:YES completion:^() {
+
+    }];
 }
 
 @end
