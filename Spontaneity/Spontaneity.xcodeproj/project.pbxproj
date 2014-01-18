@@ -129,6 +129,7 @@
 		F3DBDA82188AD33F0068A17D /* close-button-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA80188AD33F0068A17D /* close-button-2@2x.png */; };
 		F3DBDA85188AD35D0068A17D /* baking.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA83188AD35D0068A17D /* baking.png */; };
 		F3DBDA86188AD35D0068A17D /* baking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDA84188AD35D0068A17D /* baking@2x.png */; };
+		F3DBDA89188AE1C20068A17D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DBDA88188AE1C20068A17D /* UIImage+ImageEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +276,8 @@
 		F3DBDA80188AD33F0068A17D /* close-button-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button-2@2x.png"; sourceTree = "<group>"; };
 		F3DBDA83188AD35D0068A17D /* baking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baking.png; sourceTree = "<group>"; };
 		F3DBDA84188AD35D0068A17D /* baking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baking@2x.png"; sourceTree = "<group>"; };
+		F3DBDA87188AE1C20068A17D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		F3DBDA88188AE1C20068A17D /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,6 +502,8 @@
 				0B2FCB33188A0B0D0076D96E /* EventListViewController.m */,
 				0B41CD95188A585A00DAB725 /* JoinEventViewController.h */,
 				0B41CD96188A585A00DAB725 /* JoinEventViewController.m */,
+				F3DBDA87188AE1C20068A17D /* UIImage+ImageEffects.h */,
+				F3DBDA88188AE1C20068A17D /* UIImage+ImageEffects.m */,
 				0B41CE00188A97F300DAB725 /* images */,
 				0B7458A1188A08FC00F0EE6E /* Images.xcassets */,
 				0B745896188A08FC00F0EE6E /* Supporting Files */,
@@ -734,6 +739,7 @@
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
 				0B2FCB2B188A0A9E0076D96E /* CreateViewController.m in Sources */,
 				0B41CDF1188A725F00DAB725 /* SearchedEventsViewController.m in Sources */,
+				F3DBDA89188AE1C20068A17D /* UIImage+ImageEffects.m in Sources */,
 				0B74589C188A08FC00F0EE6E /* main.m in Sources */,
 				0B2FCB25188A0A450076D96E /* LoginViewController.m in Sources */,
 				0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */,
