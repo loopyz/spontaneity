@@ -283,8 +283,9 @@
 //Finish Button
 - (void)didFinishSelecting
 {
-    NSLog(@"Hit finish button!");
-    
+    [self dismissViewControllerAnimated:YES completion:^() {
+        // TODO: store selections in Firebase
+    }];
 }
 
 @end
