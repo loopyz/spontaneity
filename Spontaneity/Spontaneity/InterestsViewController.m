@@ -43,10 +43,10 @@
         //1st Row
         dining = [UIButton buttonWithType:UIButtonTypeCustom];
         [dining addTarget:self
-                     action:@selector(interestSelected:)
-           forControlEvents:UIControlEventTouchDown];
+                   action:@selector(interestSelected:)
+         forControlEvents:UIControlEventTouchDown];
         [dining setImage:[UIImage imageNamed:@"dining.png"]
-                  forState: UIControlStateNormal];
+                forState: UIControlStateNormal];
         dining.frame = CGRectMake(5, 100, 100, 100);
         [self.view addSubview:dining];
         UILabel *diningLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 160, 100, 100.0) ];
@@ -59,10 +59,10 @@
         
         bars = [UIButton buttonWithType:UIButtonTypeCustom];
         [bars addTarget:self
-                   action:@selector(interestSelected:)
-         forControlEvents:UIControlEventTouchDown];
+                 action:@selector(interestSelected:)
+       forControlEvents:UIControlEventTouchDown];
         [bars setImage:[UIImage imageNamed:@"bars.png"]
-                forState: UIControlStateNormal];
+              forState: UIControlStateNormal];
         bars.frame = CGRectMake(110, 100, 100, 100);
         [self.view addSubview:bars];
         UILabel *barLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 160, 100, 100.0) ];
@@ -73,13 +73,13 @@
         [self.view addSubview:barLabel];
         barLabel.text = @"bars";
         
-    
+        
         clubbing = [UIButton buttonWithType:UIButtonTypeCustom];
         [clubbing addTarget:self
-                 action:@selector(interestSelected:)
-       forControlEvents:UIControlEventTouchDown];
+                     action:@selector(interestSelected:)
+           forControlEvents:UIControlEventTouchDown];
         [clubbing setImage:[UIImage imageNamed:@"clubbing.png"]
-              forState: UIControlStateNormal];
+                  forState: UIControlStateNormal];
         clubbing.frame = CGRectMake(215, 100, 100, 100);
         [self.view addSubview:clubbing];
         UILabel *clubbingLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 160, 100, 100.0) ];
@@ -93,10 +93,10 @@
         //2nd Row
         sports = [UIButton buttonWithType:UIButtonTypeCustom];
         [sports addTarget:self
-                     action:@selector(interestSelected:)
-           forControlEvents:UIControlEventTouchDown];
+                   action:@selector(interestSelected:)
+         forControlEvents:UIControlEventTouchDown];
         [sports setImage:[UIImage imageNamed:@"sports.png"]
-                  forState: UIControlStateNormal];
+                forState: UIControlStateNormal];
         sports.frame = CGRectMake(5, 230, 100, 100);
         [self.view addSubview:sports];
         UILabel *sportsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 290, 100, 100.0) ];
@@ -109,10 +109,10 @@
         
         adrenaline = [UIButton buttonWithType:UIButtonTypeCustom];
         [adrenaline addTarget:self
-                   action:@selector(interestSelected:)
-         forControlEvents:UIControlEventTouchDown];
+                       action:@selector(interestSelected:)
+             forControlEvents:UIControlEventTouchDown];
         [adrenaline setImage:[UIImage imageNamed:@"adrenaline.png"]
-                forState: UIControlStateNormal];
+                    forState: UIControlStateNormal];
         adrenaline.frame = CGRectMake(110, 230, 100, 100);
         [self.view addSubview:adrenaline];
         UILabel *adrLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 290, 100, 100.0) ];
@@ -125,10 +125,10 @@
         
         tech = [UIButton buttonWithType:UIButtonTypeCustom];
         [tech addTarget:self
-                       action:@selector(interestSelected:)
-             forControlEvents:UIControlEventTouchDown];
+                 action:@selector(interestSelected:)
+       forControlEvents:UIControlEventTouchDown];
         [tech setImage:[UIImage imageNamed:@"Tech.png"]
-                    forState: UIControlStateNormal];
+              forState: UIControlStateNormal];
         tech.frame = CGRectMake(215, 230, 100, 100);
         [self.view addSubview:tech];
         UILabel *techLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 290, 100, 100.0) ];
@@ -142,10 +142,10 @@
         //3rd row
         exercise = [UIButton buttonWithType:UIButtonTypeCustom];
         [exercise addTarget:self
-                  action:@selector(interestSelected:)
-        forControlEvents:UIControlEventTouchDown];
+                     action:@selector(interestSelected:)
+           forControlEvents:UIControlEventTouchDown];
         [exercise setImage:[UIImage imageNamed:@"exercise.png"]
-               forState: UIControlStateNormal];
+                  forState: UIControlStateNormal];
         exercise.frame = CGRectMake(5, 360, 100, 100);
         [self.view addSubview:exercise];
         
@@ -159,10 +159,10 @@
         
         games = [UIButton buttonWithType:UIButtonTypeCustom];
         [games addTarget:self
-                   action:@selector(interestSelected:)
-         forControlEvents:UIControlEventTouchDown];
+                  action:@selector(interestSelected:)
+        forControlEvents:UIControlEventTouchDown];
         [games setImage:[UIImage imageNamed:@"games.png"]
-                forState: UIControlStateNormal];
+               forState: UIControlStateNormal];
         games.frame = CGRectMake(110, 360, 100, 100);
         [self.view addSubview:games];
         
@@ -199,10 +199,10 @@
                    action:@selector(didFinishSelecting)
          forControlEvents:UIControlEventTouchDown];
         [finish setImage:[UIImage imageNamed:@"Finish-Button.png"]
-                  forState: UIControlStateNormal];
+                forState: UIControlStateNormal];
         finish.frame = CGRectMake(30, 500, 260.0, 50.0);
         [self.view addSubview:finish];
-    
+        
     }
     return self;
 }
