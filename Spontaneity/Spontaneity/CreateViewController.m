@@ -56,16 +56,7 @@
         [self addInvitedLabel];
         [self addNeededLabel];
         [self addSubmitButton];
-        
-        /* Exit button */
-        UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [exitButton addTarget:self
-                       action:@selector(exit)
-             forControlEvents:UIControlEventTouchDown];
-        [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
-                    forState: UIControlStateNormal];
-        exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
-        [self.view addSubview:exitButton];
+        [self addTitle];        
         
         /* Test Button for Pinterest */
         UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,6 +70,15 @@
         
     }
     return self;
+}
+
+- (void)addTitle
+{
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+    titleImageView.frame = CGRectMake(40, 10, 124, 30);
+    [logoView addSubview:titleImageView];
+    self.navigationItem.titleView = logoView;
 }
 
 // Loads stored user's interests from Firebase
@@ -111,13 +111,12 @@
 - (void)pinterest
 {
     PinterestViewController *pvc = [[PinterestViewController alloc] init];
-    [self presentViewController:pvc animated:YES completion:nil];
-
+    [self.navigationController pushViewController:pvc animated:YES];
 }
 
 - (void)addBackgroundImage
 {
-    [[UIImage imageNamed:@"clubbing-bg-2.png"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"college-bg.png"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

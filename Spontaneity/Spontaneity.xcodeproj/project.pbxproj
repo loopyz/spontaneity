@@ -140,7 +140,6 @@
 		F3DBDABF188AF28E0068A17D /* sports-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAAA188AF28E0068A17D /* sports-bg@2x.png */; };
 		F3DBDAC0188AF28E0068A17D /* technology-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAAB188AF28E0068A17D /* technology-bg.png */; };
 		F3DBDAC1188AF28E0068A17D /* technology-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAAC188AF28E0068A17D /* technology-bg@2x.png */; };
-		F3DBDAC3188AF7C60068A17D /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDAC2188AF7C60068A17D /* Pinterest.framework */; };
 		F3DBDAC5188AFC820068A17D /* red-search.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAC4188AFC820068A17D /* red-search.png */; };
 		F3DBDAC7188AFD010068A17D /* red-search-small.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAC6188AFD010068A17D /* red-search-small.png */; };
 /* End PBXBuildFile section */
@@ -314,7 +313,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */,
-				F3DBDAC3188AF7C60068A17D /* Pinterest.framework in Frameworks */,
 				F3DBDA7E188A5D600068A17D /* SystemConfiguration.framework in Frameworks */,
 				F3DBDA7C188A5D590068A17D /* Security.framework in Frameworks */,
 				F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */,
@@ -938,13 +936,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gregory/MHacks/spontaneity/Spontaneity,
 					/Users/Angela/Documents/spontaneity/Spontaneity,
 					/Users/Angela/Documents/FacebookSDK,
-					/Users/gregory/Documents/FacebookSDK,
-					/Users/gregory/MHacks,
 					/Users/Angela/Downloads/PinItSDKiOS/Pinterest.embeddedframework,
-					/Users/gregory/MHacks/PinItSDKiOS/Pinterest.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
@@ -965,13 +959,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/gregory/MHacks/spontaneity/Spontaneity,
 					/Users/Angela/Documents/spontaneity/Spontaneity,
 					/Users/Angela/Documents/FacebookSDK,
-					/Users/gregory/Documents/FacebookSDK,
-					/Users/gregory/MHacks,
 					/Users/Angela/Downloads/PinItSDKiOS/Pinterest.embeddedframework,
-					/Users/gregory/MHacks/PinItSDKiOS/Pinterest.embeddedframework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
