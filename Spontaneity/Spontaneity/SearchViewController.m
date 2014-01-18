@@ -28,13 +28,14 @@
 }
 
 @synthesize interests;
-@synthesize interestFiles;
+@synthesize exitView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
+        self.exitView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-40, 30, 30, 30)];
         
         /* Setting up navigation bar items */
         UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
@@ -102,8 +103,9 @@
              forControlEvents:UIControlEventTouchDown];
         [exitButton setImage:[UIImage imageNamed:@"close-button-2.png"]
                     forState: UIControlStateNormal];
-        exitButton.frame = CGRectMake(self.view.bounds.size.width-40, 30, 30, 30);
-        [self.view addSubview:exitButton];
+        exitButton.frame = CGRectMake(0, 0, 30, 30);
+        [self.exitView addSubview:exitButton];
+        [self.view addSubview:self.exitView];
         
     }
     return self;
@@ -205,7 +207,7 @@
     
     UIImage *bgImg =[UIImage imageNamed:[interest stringByAppendingString:@"-cat.png"]];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:0.0]];
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:0.0]];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]]];
     
     return cell;
 }
@@ -219,31 +221,28 @@
     NSString* interest = [self.interests objectAtIndex:indexPath.row];
     NSLog(@"Selected interest: %@", interest);
     
-    NSString *imgName = @"bars-bg-2.png";
-    if ([interest isEqual: @"clubbing"]) {
-        imgName = @"clubbing-bg-2.png";
-    } else if ([interest isEqual: @"bars"]) {
-        imgName = @"bars-bg.png";
-    } else if ([interest isEqual: @"exercise"]) {
-        imgName = @"create-bg-2.png";
-    }
+    NSString *imgName = [interest stringByAppendingString:@"-bg.png"];
+    NSLog(imgName);
+
     SearchedEventsViewController *svc = [[SearchedEventsViewController alloc] initWithNibName:imgName bundle:nil];
     [self presentViewController:svc animated:YES completion:nil];
 }
 
-- (void)interestSelected:(id)sender
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGRect frame = [self.exitView frame];
+    frame.origin.y = scrollView.contentOffset.y + 30;
+    self.exitView.frame = frame;
     
+    [self.view bringSubviewToFront:self.exitView];
 }
 
-- (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
-    NSLog(@"up swipe!");
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)handleSwipeDownFrom:(UIGestureRecognizer*)recognizer {
-    NSLog(@"down swipe!");
-    //TODO: load other interest thingies
-}
+//- (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
+//    NSLog(@"up swipe!");
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
+//
+//- (void)handleSwipeDownFrom:(UIGestureRecognizer*)recognizer {
+//    NSLog(@"down swipe!");
+//}
 
 @end
