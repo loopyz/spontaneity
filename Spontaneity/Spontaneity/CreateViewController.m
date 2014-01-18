@@ -43,7 +43,7 @@
                action:@selector(aMethod:)
      forControlEvents:UIControlEventTouchDown];
 
-    button.frame = CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 250.0, 250.0);
+    button.frame = CGRectMake(self.view.frame.size.width/2 - 250/2, self.view.frame.size.height/2 - 250/2, 250.0, 250.0);
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
 

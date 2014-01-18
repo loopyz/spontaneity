@@ -16,14 +16,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Create a LoginUIViewController instance where we will put the login button
-    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-    self.loginViewController = loginViewController;
+//    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//    self.loginViewController = loginViewController;
     
     // Set loginUIViewController as root view controller
-    [[self window] setRootViewController:loginViewController];
+    //[[self window] setRootViewController:loginViewController];
     
-//    CreateViewController *vc = [[CreateViewController alloc]init];
-//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    CreateViewController *vc = [[CreateViewController alloc]init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
