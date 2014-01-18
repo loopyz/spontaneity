@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UITableViewController
+@property (nonatomic,strong) NSArray *arrItems;
+
 
 @end
