@@ -19,6 +19,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+        UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo-gray"]];
+        titleImageView.frame = CGRectMake(40, 10, 124, 30);
+        [logoView addSubview:titleImageView];
+        
+        self.navigationItem.titleView = logoView;
     }
     return self;
 }
