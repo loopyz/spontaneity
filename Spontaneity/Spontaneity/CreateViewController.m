@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "CreateViewController.h"
 #import "PinterestViewController.h"
+#import "AppDelegate.h"
 
 
 #import <Firebase/Firebase.h>
@@ -255,9 +256,55 @@
 
 - (void)submitNewEvent:(id)sender
 {
-    //TODO: implement
     NSLog(@"Submitted a new event!");
+    [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location];
 }
+
+- (NSString*)dateToString:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    return [dateFormatter stringFromDate:date];
+}
+
+- (void)createFacebookEvent:(NSString *)name withStartTime:(NSDate*)date
+                andLocation:(NSString *)location
+{
+    // TODO: add needed
+    
+    // NOTE: privacy type defaults to open
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            name, @"name",
+                            [self dateToString:date], @"start_time",
+                            location, @"location",
+                            @"Created by Spontaneity", @"description",
+                            nil
+                            
+                            ];
+    /* make the API call */
+    [FBRequestConnection startWithGraphPath:@"/me/events"
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              /* handle the result */
+                              AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                              if (!error && result)
+                              {
+                                  // TODO: add to Firebase
+                                  
+                                  [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
+                              } else
+                              {
+                                  [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
+                              }
+                          }];
+}
+
 
 - (void)addTimeArrowButtons:(int)x y:(int)y
 {
@@ -335,6 +382,7 @@
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     NSDate *newDate = [theCalendar dateByAddingComponents:changeComponent toDate:[self dateToNearest15Minutes] options:0];
     
+    _dateTime = newDate;
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"hh:mm a"];
