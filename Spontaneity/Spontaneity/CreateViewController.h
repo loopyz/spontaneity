@@ -24,6 +24,4 @@
 @property (strong, nonatomic) NSDate *dateTime;
 @property (strong, nonatomic) NSString *location;
 
-@property (nonatomic, strong) Firebase* firebase;
-
 @end

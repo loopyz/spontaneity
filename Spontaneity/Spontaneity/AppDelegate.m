@@ -6,6 +6,8 @@
 //
 //
 
+#define FORCE_LOGOUT false
+
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "AppDelegate.h"
@@ -37,8 +39,11 @@
     
     [self.window makeKeyAndVisible];
     
+    if (FORCE_LOGOUT)
+        [self logout];
+    
     // Whenever a person opens the app, check for a cached session
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+    if (!FORCE_LOGOUT && FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         // If there's one, just open the session silently, without showing the user the login UI
         [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
                                            allowLoginUI:NO
@@ -51,7 +56,6 @@
     } else {
         //UIButton *loginButton = [self.loginViewController loginButton];
         //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
-        NSLog(@"Facebook open!");
         [eventListViewController presentViewController:loginViewController animated:YES completion:NULL];
     }
     
@@ -96,6 +100,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)logout
+{
+    // Clear this token
+    [FBSession.activeSession closeAndClearTokenInformation];
+    // Show the user the logged-out UI
+    [self userLoggedOut];
 }
 
 // This method will handle ALL the session state changes in the app
@@ -149,10 +161,7 @@
                 [self showMessage:alertText withTitle:alertTitle];
             }
         }
-        // Clear this token
-        [FBSession.activeSession closeAndClearTokenInformation];
-        // Show the user the logged-out UI
-        [self userLoggedOut];
+        [self logout];
     }
 }
 
@@ -196,10 +205,10 @@
                  }];
              }];
          } else {
-             InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
-             [self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+             //InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+             //[self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
                  [self.eventListViewController loadAndUpdateEvents];
-             }];
+             //}];
          }
      }];
     
