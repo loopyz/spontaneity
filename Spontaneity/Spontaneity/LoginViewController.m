@@ -41,7 +41,7 @@
     } else {
         // Open a session showing the user the login UI
         // You must ALWAYS ask for basic_info permissions when opening a session
-        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"create_event"]
                                            allowLoginUI:YES
                                       completionHandler:
          ^(FBSession *session, FBSessionState state, NSError *error) {

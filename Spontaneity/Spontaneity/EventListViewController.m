@@ -38,7 +38,7 @@
         titleImageView.frame = CGRectMake(25, 10, 124, 30);
         [logoView addSubview:titleImageView];
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
-        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search.png"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
+        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search-small.png"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
         
         self.navigationItem.titleView = logoView;
         self.navigationItem.rightBarButtonItem = createButton;
@@ -46,6 +46,9 @@
         
         /* Set Table Data Source */
         //self.tableView.dataSource = events;//Result of firebase query!
+        
+        
+
         
     }
     return self;
@@ -57,13 +60,17 @@
 	// Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+
     // Initialize array that will store events and event keys.
     self.events = [[NSMutableDictionary alloc] init];
     self.eventKeys = [[NSMutableArray alloc] init];
     
     // Initialize the root of our Firebase namespace.
     self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.separatorColor = [UIColor blackColor];
+
 }
 
 // Loads stored user's events from Firebase

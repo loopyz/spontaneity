@@ -14,5 +14,13 @@
 @property (nonatomic) NSInteger neededPeople;
 @property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) UILabel *neededLabel;
+@property (nonatomic, strong) NSMutableArray* interests;
+@property (nonatomic, strong) Firebase* firebase;
+
+
+
+@property (strong, nonatomic) NSString *eventName;
+@property (strong, nonatomic) NSDate *dateTime;
+@property (strong, nonatomic) NSString *location;
 
 @end

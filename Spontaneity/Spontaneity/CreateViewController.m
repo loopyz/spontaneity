@@ -7,8 +7,15 @@
 //  Event Details Screen
 //
 
+#import "AppDelegate.h"
 #import "CreateViewController.h"
 #import "PinterestViewController.h"
+#import "AppDelegate.h"
+
+
+#import <Firebase/Firebase.h>
+
+#define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface CreateViewController ()
 
@@ -18,6 +25,8 @@
 
 @synthesize timeLabel;
 @synthesize neededLabel;
+@synthesize interests;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +69,28 @@
         
     }
     return self;
+}
+
+// Loads stored user's interests from Firebase
+- (void)loadAndUpdateInterests {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString* username = appDelegate.username;
+    
+    Firebase* interestsRef = [[[self.firebase childByAppendingPath:@"users"]
+                               childByAppendingPath:username] childByAppendingPath:@"interests"];
+    
+    [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        NSString* interest = snapshot.name;
+        NSLog(@"Interest added: %@", interest);
+        [self.interests addObject:interest];
+    }];
+    
+    [interestsRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"Interest deleted: %@", snapshot.name);
+        
+        [self.interests removeObject:snapshot.name];
+
+    }];
 }
 
 - (void)exit
@@ -225,9 +256,55 @@
 
 - (void)submitNewEvent:(id)sender
 {
-    //TODO: implement
     NSLog(@"Submitted a new event!");
+    [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location];
 }
+
+- (NSString*)dateToString:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    return [dateFormatter stringFromDate:date];
+}
+
+- (void)createFacebookEvent:(NSString *)name withStartTime:(NSDate*)date
+                andLocation:(NSString *)location
+{
+    // TODO: add needed
+    
+    // NOTE: privacy type defaults to open
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            name, @"name",
+                            [self dateToString:date], @"start_time",
+                            location, @"location",
+                            @"Created by Spontaneity", @"description",
+                            nil
+                            
+                            ];
+    /* make the API call */
+    [FBRequestConnection startWithGraphPath:@"/me/events"
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              /* handle the result */
+                              AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                              if (!error && result)
+                              {
+                                  // TODO: add to Firebase
+                                  
+                                  [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
+                              } else
+                              {
+                                  [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
+                              }
+                          }];
+}
+
 
 - (void)addTimeArrowButtons:(int)x y:(int)y
 {
@@ -305,6 +382,7 @@
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     NSDate *newDate = [theCalendar dateByAddingComponents:changeComponent toDate:[self dateToNearest15Minutes] options:0];
     
+    _dateTime = newDate;
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"hh:mm a"];
@@ -344,6 +422,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Initialize array that will store events and event keys.
+    self.interests = [[NSMutableArray alloc] init];
+    
+    // Initialize the root of our Firebase namespace.
+    self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+    
+    [self loadAndUpdateInterests];
+    
 	// Do any additional setup after loading the view.
 }
 
