@@ -11,6 +11,10 @@
 #import "PinterestViewController.h"
 #import "AppDelegate.h"
 
+#import <Firebase/Firebase.h>
+
+#define firebaseURL @"https://spontaneity.firebaseio.com/"
+
 @interface CreateViewController ()
 
 @end
@@ -393,6 +397,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Initialize the root of our Firebase namespace.
+    self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
 }
 
 - (void)didReceiveMemoryWarning

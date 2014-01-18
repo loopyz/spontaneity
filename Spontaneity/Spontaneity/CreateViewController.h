@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 
 @interface CreateViewController : UIViewController
 
@@ -18,5 +19,7 @@
 @property (strong, nonatomic) NSString *eventName;
 @property (strong, nonatomic) NSDate *dateTime;
 @property (strong, nonatomic) NSString *location;
+
+@property (nonatomic, strong) Firebase* firebase;
 
 @end
