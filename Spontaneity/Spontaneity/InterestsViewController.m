@@ -68,6 +68,7 @@
         diningLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:diningLabel];
         diningLabel.text = @"dining";
+        dining.alpha = .5;
         
         bars = [UIButton buttonWithType:UIButtonTypeCustom];
         [bars addTarget:self
@@ -84,6 +85,7 @@
         barLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:barLabel];
         barLabel.text = @"bars";
+        bars.alpha = .5;
         
         
         clubbing = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -101,6 +103,7 @@
         clubbingLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:clubbingLabel];
         clubbingLabel.text = @"clubbing";
+        clubbing.alpha = .5;
         
         //2nd Row
         sports = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -118,6 +121,7 @@
         sportsLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:sportsLabel];
         sportsLabel.text = @"sports";
+        sports.alpha = .5;
         
         adrenaline = [UIButton buttonWithType:UIButtonTypeCustom];
         [adrenaline addTarget:self
@@ -134,6 +138,7 @@
         adrLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:adrLabel];
         adrLabel.text = @"adrenaline";
+        adrenaline.alpha = .5;
         
         baking = [UIButton buttonWithType:UIButtonTypeCustom];
         [baking addTarget:self
@@ -150,6 +155,7 @@
         bakingLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:bakingLabel];
         bakingLabel.text = @"baking";
+        baking.alpha = .5;
         
         //3rd row
         exercise = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -168,6 +174,7 @@
         exLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:exLabel];
         exLabel.text = @"exercise";
+        exercise.alpha = .5;
         
         games = [UIButton buttonWithType:UIButtonTypeCustom];
         [games addTarget:self
@@ -185,6 +192,7 @@
         gamesLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:gamesLabel];
         gamesLabel.text = @"video games";
+        games.alpha = .5;
         
         
         beauty = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -203,6 +211,7 @@
         beautyLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:beautyLabel];
         beautyLabel.text = @"beauty";
+        beauty.alpha = .5;
         
         
         //Finish button
@@ -238,56 +247,74 @@
     if (sender == dining) {
         if ([selections indexOfObject:@"dining"] != NSNotFound) {
             [selections removeObject:@"dining"];
+            dining.alpha = .5;
         } else {
             [selections addObject:@"dining"];
+            dining.alpha = 1;
         }
     } else if (sender == bars) {
         if ([selections indexOfObject:@"bars"] != NSNotFound) {
             [selections removeObject:@"bars"];
+            bars.alpha = .5;
         } else {
             [selections addObject:@"bars"];
+            bars.alpha = 1;
         }
     }else if (sender == clubbing) {
         if ([selections indexOfObject:@"clubbing"] != NSNotFound) {
             [selections removeObject:@"clubbing"];
+            clubbing.alpha = .5;
         } else {
             [selections addObject:@"clubbing"];
+            clubbing.alpha = 1;
         }
     } else if (sender == sports) {
         if ([selections indexOfObject:@"sports"] != NSNotFound) {
             [selections removeObject:@"sports"];
+            sports.alpha = .5;
         } else {
             [selections addObject:@"sports"];
+            sports.alpha = 1;
         }
     } else if (sender == adrenaline) {
         if ([selections indexOfObject:@"adrenaline"] != NSNotFound) {
             [selections removeObject:@"adrenaline"];
+            adrenaline.alpha = .5;
         } else {
             [selections addObject:@"adrenaline"];
+            adrenaline.alpha = 1;
         }
     } else if (sender == baking) {
         if ([selections indexOfObject:@"baking"] != NSNotFound) {
             [selections removeObject:@"baking"];
+            baking.alpha = .5;
         } else {
             [selections addObject:@"baking"];
+            baking.alpha = 1;
         }
     } else if (sender == exercise) {
         if ([selections indexOfObject:@"exercise"] != NSNotFound) {
             [selections removeObject:@"exercise"];
+            exercise.alpha = .5;
         } else {
             [selections addObject:@"exercise"];
+            exercise.alpha = 1;
         }
     } else if (sender == beauty) {
         if ([selections indexOfObject:@"beauty"] != NSNotFound) {
             [selections removeObject:@"beauty"];
+            beauty.alpha = .5;
         } else {
             [selections addObject:@"beauty"];
+            beauty.alpha = 1;
         }
     } else if (sender == beauty) {
         if ([selections indexOfObject:@"beauty"] != NSNotFound) {
             [selections removeObject:@"beauty"];
+            beauty.alpha = .5;
         } else {
             [selections addObject:@"beauty"];
+            beauty.alpha = 1;
         }
     }
 }
