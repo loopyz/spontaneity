@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "CreateViewController.h";
+#import "CreateViewController.h"
+#import "InterestsViewController.h"
 
 @implementation AppDelegate
 
@@ -15,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    CreateViewController *vc = [[CreateViewController alloc]init];
+    InterestsViewController *vc = [[InterestsViewController alloc]init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
     
