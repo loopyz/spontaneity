@@ -12,6 +12,7 @@
 #import "EventListViewController.h"
 #import "CreateViewController.h"
 #import "SearchViewController.h"
+#import "UIImage+ImageEffects.h"
 
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
 
@@ -198,8 +199,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
-    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
+    //blurred images yayyy
+    UIImage *bg = [[UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0];
+    UIImage *blurredbg = [bg applyDarkEffect];
+    
+//    cell.backgroundView = [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
+//    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
+    
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:blurredbg];
+    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage: blurredbg];
     
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     
