@@ -32,6 +32,15 @@
         self.navigationItem.leftBarButtonItem = backButton;
         self.navigationItem.rightBarButtonItem = refreshButton;
         
+        /* Background Image */
+        UIGraphicsBeginImageContext(self.view.frame.size);
+        
+        [[UIImage imageNamed:@"baking-bg.png"] drawInRect:self.view.bounds];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+        
     }
     return self;
 }
@@ -84,6 +93,8 @@
     NSDictionary *richPin = [NSJSONSerialization JSONObjectWithData:response2 options:0 error:&jsonParsingError];
     
     pin = richPin;
+    
+    /* Change bg image! */
 }
 
 @end
