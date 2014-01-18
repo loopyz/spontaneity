@@ -38,6 +38,7 @@
         
         _editTimeClicks = 0;
         _neededPeople = 5;
+        _dateTime = [self dateToNearest15Minutes];
         
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
@@ -275,18 +276,23 @@
 
 - (NSString*)dateToString:(NSDate*)date
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:enUSPOSIXLocale];
-    [dateFormatter setDateFormat:@"MM-dd'T'HH:mm:ssZZZZZ"];
-    return @"2014-01-25T19:00:00-0700";
+    if (!date)
+        NSLog(@"no date!");
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZ'"];
+    return [formatter stringFromDate:date];
+    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+//    [dateFormatter setLocale:enUSPOSIXLocale];
+//    [dateFormatter setDateFormat:@"MM-dd'T'HH:mm:ssZZZZZ"];
+//    return @"2014-01-25T19:00:00-0700";
 //    return [dateFormatter stringFromDate:date];
 }
 
 - (void)createFacebookEvent:(NSString *)name withStartTime:(NSDate*)date
                 andLocation:(NSString *)location andDescription:(NSString *)description
 {
-    NSLog([self dateToString:date]);
     // NOTE: privacy type defaults to open
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             name, @"name",
