@@ -43,7 +43,7 @@
         titleImageView.frame = CGRectMake(40, 10, 124, 30);
         [logoView addSubview:titleImageView];
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
-        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search@2x.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
         
         self.navigationItem.titleView = logoView;
         self.navigationItem.rightBarButtonItem = createButton;
