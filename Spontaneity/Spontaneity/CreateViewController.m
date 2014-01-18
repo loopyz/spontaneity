@@ -19,6 +19,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self.view setBackgroundColor:[UIColor grayColor]];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"create-bg-2.png"]]];
+
     }
     return self;
 }
@@ -27,8 +30,10 @@
 {
     [super viewDidLoad];
     [self addButton];
+
 	// Do any additional setup after loading the view.
 }
+
 
 - (void)addButton
 {
