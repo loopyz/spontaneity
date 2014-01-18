@@ -7,6 +7,7 @@
 //  For listing events you've found so you can join them
 
 #import "EventListViewController.h"
+#import <Firebase/Firebase.h>
 
 @interface EventListViewController ()
 
@@ -33,6 +34,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,7 +10,7 @@
 #import "CreateViewController.h"
 #import "InterestsViewController.h"
 #import "EventListViewController.h"
-#import "HomeViewController.h"
+//#import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -175,6 +175,13 @@
     // Set the button title as "Log out"
     UIButton *loginButton = self.loginViewController.loginButton;
     [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
+    
+    [[FBRequest requestForMe] startWithCompletionHandler:
+     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
+         if (!error) {
+             NSLog(@"User id %@",[aUser objectForKey:@"id"]);
+         }
+     }];
     
     // Welcome message
     //[self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
