@@ -32,3 +32,5 @@ DerivedData
 # CocoaPods
 Pods
 
+.DS_Store
+project.pbxproj
