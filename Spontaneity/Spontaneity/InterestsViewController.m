@@ -36,9 +36,13 @@
         self.view.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
         
         //Tap Interests View
-        UIImageView *interests = [[UIImageView alloc] initWithFrame:CGRectMake(10, 40, 295, 45)];
-        interests.image = [UIImage imageNamed:@"tap-interests.png"];
+        UILabel *interests = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, self.view.frame.size.width, 45)];
+        interests.textAlignment =  NSTextAlignmentCenter;
+        interests.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
+        interests.backgroundColor = [UIColor clearColor];
+        interests.font = [UIFont fontWithName:@"Helvetica" size:(36)];
         [self.view addSubview:interests];
+        interests.text = @"Tap Your Interests";
         
         //1st Row
         dining = [UIButton buttonWithType:UIButtonTypeCustom];
