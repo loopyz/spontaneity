@@ -13,6 +13,7 @@
 #import "EventListViewController.h"
 #import "CreateViewController.h"
 #import "SearchViewController.h"
+#import "UIImage+ImageEffects.h"
 
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
 
@@ -185,6 +186,7 @@
     [self presentViewController:svc animated:YES completion:nil];
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -237,6 +239,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    //blurred images yayyy
+//    UIImage *bg = [[UIImage imageNamed:@"adrenaline-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0];
+//    UIImage *blurredbg = [bg applyDarkEffect];
+    
+    
+//    cell.backgroundView = [[UIImageView alloc] initWithImage:blurredbg];
+//    cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage: blurredbg];
+    
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     
     // Update cell name and description
@@ -244,9 +254,12 @@
     NSLog(@"Updating event: %@", event[@"name"]);
     
     NSURL *url = [NSURL URLWithString:event[@"coverPhoto"]];
+    
+    //TODO: pick more generic cover photo
     UIImage *bgImg = url ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"adrenaline-bg.png"];
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    UIImage *blurredbg = [bgImg applyDarkEffect];
+    cell.backgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     
     // Event title
     UILabel *ttitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 320, 40)];
