@@ -4,10 +4,11 @@
 //
 //  Created by Angela Zhang on 1/17/14.
 //
-//  For listing events you've found so you can join them
+//  List of events you're attending
 
 #import "EventListViewController.h"
 #import "CreateViewController.h"
+#import "SearchViewController.h"
 
 @interface EventListViewController ()
 
@@ -22,6 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.view.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
         
         /* Setting up navigation bar items */
         UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
@@ -62,7 +64,8 @@
 
 - (void)search
 {
-    NSLog(@"Search!");
+    SearchViewController *svc = [[SearchViewController alloc] init];
+    [self presentViewController:svc animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

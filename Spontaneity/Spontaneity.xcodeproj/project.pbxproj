@@ -14,6 +14,17 @@
 		0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB30188A0AE50076D96E /* SearchViewController.m */; };
 		0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FCB33188A0B0D0076D96E /* EventListViewController.m */; };
 		0B41CD97188A585A00DAB725 /* JoinEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CD96188A585A00DAB725 /* JoinEventViewController.m */; };
+		0B41CDDD188A683C00DAB725 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDDB188A683C00DAB725 /* app-icon.png */; };
+		0B41CDDE188A683C00DAB725 /* app-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDDC188A683C00DAB725 /* app-icon@2x.png */; };
+		0B41CDE7188A68CC00DAB725 /* bar-cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDDF188A68CC00DAB725 /* bar-cat.png */; };
+		0B41CDE8188A68CC00DAB725 /* bar-cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE0188A68CC00DAB725 /* bar-cat@2x.png */; };
+		0B41CDE9188A68CC00DAB725 /* clubbing-cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE1188A68CC00DAB725 /* clubbing-cat.png */; };
+		0B41CDEA188A68CC00DAB725 /* clubbing-cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE2188A68CC00DAB725 /* clubbing-cat@2x.png */; };
+		0B41CDEB188A68CC00DAB725 /* exercise-cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE3188A68CC00DAB725 /* exercise-cat.png */; };
+		0B41CDEC188A68CC00DAB725 /* exercise-cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE4188A68CC00DAB725 /* exercise-cat@2x.png */; };
+		0B41CDED188A68CC00DAB725 /* sports-cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE5188A68CC00DAB725 /* sports-cat.png */; };
+		0B41CDEE188A68CC00DAB725 /* sports-cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CDE6188A68CC00DAB725 /* sports-cat@2x.png */; };
+		0B41CDF1188A725F00DAB725 /* SearchedEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CDF0188A725F00DAB725 /* SearchedEventsViewController.m */; };
 		0B5B7381188A2EE1004B29DF /* create-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7341188A2EE1004B29DF /* create-button.png */; };
 		0B5B7382188A2EE1004B29DF /* create-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7342188A2EE1004B29DF /* create-button@2x.png */; };
 		0B5B7383188A2EE1004B29DF /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B7343188A2EE1004B29DF /* facebook.png */; };
@@ -106,6 +117,18 @@
 		0B2FCB33188A0B0D0076D96E /* EventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventListViewController.m; sourceTree = "<group>"; };
 		0B41CD95188A585A00DAB725 /* JoinEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinEventViewController.h; sourceTree = "<group>"; };
 		0B41CD96188A585A00DAB725 /* JoinEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinEventViewController.m; sourceTree = "<group>"; };
+		0B41CDDB188A683C00DAB725 /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon.png"; sourceTree = "<group>"; };
+		0B41CDDC188A683C00DAB725 /* app-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2x.png"; sourceTree = "<group>"; };
+		0B41CDDF188A68CC00DAB725 /* bar-cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-cat.png"; sourceTree = "<group>"; };
+		0B41CDE0188A68CC00DAB725 /* bar-cat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-cat@2x.png"; sourceTree = "<group>"; };
+		0B41CDE1188A68CC00DAB725 /* clubbing-cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clubbing-cat.png"; sourceTree = "<group>"; };
+		0B41CDE2188A68CC00DAB725 /* clubbing-cat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clubbing-cat@2x.png"; sourceTree = "<group>"; };
+		0B41CDE3188A68CC00DAB725 /* exercise-cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exercise-cat.png"; sourceTree = "<group>"; };
+		0B41CDE4188A68CC00DAB725 /* exercise-cat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exercise-cat@2x.png"; sourceTree = "<group>"; };
+		0B41CDE5188A68CC00DAB725 /* sports-cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sports-cat.png"; sourceTree = "<group>"; };
+		0B41CDE6188A68CC00DAB725 /* sports-cat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sports-cat@2x.png"; sourceTree = "<group>"; };
+		0B41CDEF188A725F00DAB725 /* SearchedEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedEventsViewController.h; sourceTree = "<group>"; };
+		0B41CDF0188A725F00DAB725 /* SearchedEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedEventsViewController.m; sourceTree = "<group>"; };
 		0B5B7341188A2EE1004B29DF /* create-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button.png"; sourceTree = "<group>"; };
 		0B5B7342188A2EE1004B29DF /* create-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "create-button@2x.png"; sourceTree = "<group>"; };
 		0B5B7343188A2EE1004B29DF /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
@@ -217,6 +240,8 @@
 		0B5B7340188A2EE1004B29DF /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				0B41CDDB188A683C00DAB725 /* app-icon.png */,
+				0B41CDDC188A683C00DAB725 /* app-icon@2x.png */,
 				0B5B7341188A2EE1004B29DF /* create-button.png */,
 				0B5B7342188A2EE1004B29DF /* create-button@2x.png */,
 				0B5B7343188A2EE1004B29DF /* facebook.png */,
@@ -264,6 +289,14 @@
 		0B5B7364188A2EE1004B29DF /* categories */ = {
 			isa = PBXGroup;
 			children = (
+				0B41CDDF188A68CC00DAB725 /* bar-cat.png */,
+				0B41CDE0188A68CC00DAB725 /* bar-cat@2x.png */,
+				0B41CDE1188A68CC00DAB725 /* clubbing-cat.png */,
+				0B41CDE2188A68CC00DAB725 /* clubbing-cat@2x.png */,
+				0B41CDE3188A68CC00DAB725 /* exercise-cat.png */,
+				0B41CDE4188A68CC00DAB725 /* exercise-cat@2x.png */,
+				0B41CDE5188A68CC00DAB725 /* sports-cat.png */,
+				0B41CDE6188A68CC00DAB725 /* sports-cat@2x.png */,
 			);
 			path = categories;
 			sourceTree = "<group>";
@@ -339,6 +372,8 @@
 				0B2FCB2D188A0AB80076D96E /* CreateDetailViewController.m */,
 				0B2FCB2F188A0AE50076D96E /* SearchViewController.h */,
 				0B2FCB30188A0AE50076D96E /* SearchViewController.m */,
+				0B41CDEF188A725F00DAB725 /* SearchedEventsViewController.h */,
+				0B41CDF0188A725F00DAB725 /* SearchedEventsViewController.m */,
 				0B2FCB32188A0B0D0076D96E /* EventListViewController.h */,
 				0B2FCB33188A0B0D0076D96E /* EventListViewController.m */,
 				0B41CD95188A585A00DAB725 /* JoinEventViewController.h */,
@@ -463,26 +498,31 @@
 				0B5B7390188A2EE1004B29DF /* Slice 1.png in Resources */,
 				0B74589A188A08FC00F0EE6E /* InfoPlist.strings in Resources */,
 				0B5B7393188A2EE1004B29DF /* tap-interests@2x.png in Resources */,
+				0B41CDEA188A68CC00DAB725 /* clubbing-cat@2x.png in Resources */,
 				0B5B73A2188A2EE1004B29DF /* technology-bg.png in Resources */,
 				0B5B73BD188A2EE1004B29DF /* logo.png in Resources */,
 				0B5B73AC188A2EE1004B29DF /* adrenaline@2x.png in Resources */,
 				0B5B73AD188A2EE1004B29DF /* bars.png in Resources */,
 				0B5B739A188A2EE1004B29DF /* beauty-bg.png in Resources */,
 				0B5B738D188A2EE1004B29DF /* person-gray.png in Resources */,
+				0B41CDE7188A68CC00DAB725 /* bar-cat.png in Resources */,
 				0B5B73B2188A2EE1004B29DF /* clubbing@2x.png in Resources */,
 				0B5B73B4188A2EE1004B29DF /* dining@2x.png in Resources */,
 				0B5B73A1188A2EE1004B29DF /* sports-bg.png in Resources */,
 				0B7458A2188A08FC00F0EE6E /* Images.xcassets in Resources */,
 				0B5B7399188A2EE1004B29DF /* bars-bg.png in Resources */,
 				0B5B7385188A2EE1004B29DF /* Finish-Button.png in Resources */,
+				0B41CDEB188A68CC00DAB725 /* exercise-cat.png in Resources */,
 				0B5B7386188A2EE1004B29DF /* Finish-Button@2x.png in Resources */,
 				0B5B7394188A2EE1004B29DF /* up-arrow.png in Resources */,
 				0B5B73AB188A2EE1004B29DF /* adrenaline.png in Resources */,
 				0B5B7398188A2EE1004B29DF /* adrenaline-bg.png in Resources */,
 				0B5B7395188A2EE1004B29DF /* up-arrow@2x.png in Resources */,
+				0B41CDEC188A68CC00DAB725 /* exercise-cat@2x.png in Resources */,
 				0B5B739E188A2EE1004B29DF /* dining-bg.png in Resources */,
 				0B5B7392188A2EE1004B29DF /* tap-interests.png in Resources */,
 				0B5B73BA188A2EE1004B29DF /* sports@2x.png in Resources */,
+				0B41CDDE188A683C00DAB725 /* app-icon@2x.png in Resources */,
 				0B5B738F188A2EE1004B29DF /* red-search.png in Resources */,
 				0B5B738E188A2EE1004B29DF /* person-gray@2x.png in Resources */,
 				0B5B7391188A2EE1004B29DF /* Slice 1@2x.png in Resources */,
@@ -494,6 +534,7 @@
 				0B5B7388188A2EE1004B29DF /* horizontal-separator@2x.png in Resources */,
 				0B5B7396188A2EE1004B29DF /* vertical-separator.png in Resources */,
 				0B5B73B1188A2EE1004B29DF /* clubbing.png in Resources */,
+				0B41CDDD188A683C00DAB725 /* app-icon.png in Resources */,
 				0B5B739C188A2EE1004B29DF /* create-bg-2.png in Resources */,
 				0B5B7389188A2EE1004B29DF /* join-button.png in Resources */,
 				0B5B73B6188A2EE1004B29DF /* exercise@2x.png in Resources */,
@@ -505,11 +546,15 @@
 				0B5B73B3188A2EE1004B29DF /* dining.png in Resources */,
 				0B5B7381188A2EE1004B29DF /* create-button.png in Resources */,
 				0B5B73A0188A2EE1004B29DF /* gaming-bg.png in Resources */,
+				0B41CDED188A68CC00DAB725 /* sports-cat.png in Resources */,
 				0B5B738C188A2EE1004B29DF /* logo-gray@2x.png in Resources */,
+				0B41CDE9188A68CC00DAB725 /* clubbing-cat.png in Resources */,
 				0B5B73B7188A2EE1004B29DF /* games.png in Resources */,
 				0B5B73B8188A2EE1004B29DF /* games@2x.png in Resources */,
 				0B5B73B9188A2EE1004B29DF /* sports.png in Resources */,
 				0B5B7387188A2EE1004B29DF /* horizontal-separator.png in Resources */,
+				0B41CDEE188A68CC00DAB725 /* sports-cat@2x.png in Resources */,
+				0B41CDE8188A68CC00DAB725 /* bar-cat@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +579,7 @@
 				0B2FCB2E188A0AB80076D96E /* CreateDetailViewController.m in Sources */,
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
 				0B2FCB2B188A0A9E0076D96E /* CreateViewController.m in Sources */,
+				0B41CDF1188A725F00DAB725 /* SearchedEventsViewController.m in Sources */,
 				0B74589C188A08FC00F0EE6E /* main.m in Sources */,
 				0B2FCB25188A0A450076D96E /* LoginViewController.m in Sources */,
 				0B2FCB31188A0AE50076D96E /* SearchViewController.m in Sources */,
