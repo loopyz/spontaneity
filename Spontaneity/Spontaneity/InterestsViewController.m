@@ -234,6 +234,7 @@
 //User selected an interest
 - (void)interestSelected:(id)sender
 {
+    UIImage *checkMark = [UIImage imageNamed:@"checkmark-interest.png"];
     if (sender == dining) {
         if ([selections indexOfObject:@"dining"] != NSNotFound) {
             [selections removeObject:@"dining"];
