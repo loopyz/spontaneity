@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "CreateViewController.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 @implementation AppDelegate
 
 
