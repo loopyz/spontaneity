@@ -14,6 +14,7 @@
 }
 
 - (id)initWithCallback:(void (^)(void))handler;
+- (void)addEventsDetailLabel:(NSString*)interest;
 
 @property (nonatomic) NSInteger editTimeClicks;
 @property (nonatomic) NSInteger neededPeople;

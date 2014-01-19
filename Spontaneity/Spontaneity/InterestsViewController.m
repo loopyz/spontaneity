@@ -20,7 +20,7 @@
     UIButton *dining;
     UIButton *bars;
     UIButton *clubbing;
-    UIButton *sports;
+    UIButton *parties;
     UIButton *adrenaline;
     UIButton *baking;
     UIButton *exercise;
@@ -110,22 +110,22 @@
         clubbing.alpha = .5;
         
         //2nd Row
-        sports = [UIButton buttonWithType:UIButtonTypeCustom];
-        [sports addTarget:self
+        parties = [UIButton buttonWithType:UIButtonTypeCustom];
+        [parties addTarget:self
                    action:@selector(interestSelected:)
          forControlEvents:UIControlEventTouchDown];
-        [sports setImage:[UIImage imageNamed:@"sports.png"]
+        [parties setImage:[UIImage imageNamed:@"sports.png"]
                 forState: UIControlStateNormal];
-        sports.frame = CGRectMake(10, 230, 90, 90);
-        [self.view addSubview:sports];
-        UILabel *sportsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 290, 100, 100.0) ];
-        sportsLabel.textAlignment =  NSTextAlignmentCenter;
-        sportsLabel.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
-        sportsLabel.backgroundColor = [UIColor clearColor];
-        sportsLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
-        [self.view addSubview:sportsLabel];
-        sportsLabel.text = @"sports";
-        sports.alpha = .5;
+        parties.frame = CGRectMake(10, 230, 90, 90);
+        [self.view addSubview:parties];
+        UILabel *partiesLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 290, 100, 100.0) ];
+        partiesLabel.textAlignment =  NSTextAlignmentCenter;
+        partiesLabel.textColor = [UIColor colorWithRed:0.608 green:0.592 blue:0.592 alpha:1.0];
+        partiesLabel.backgroundColor = [UIColor clearColor];
+        partiesLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
+        [self.view addSubview:partiesLabel];
+        partiesLabel.text = @"sports";
+        parties.alpha = .5;
         
         adrenaline = [UIButton buttonWithType:UIButtonTypeCustom];
         [adrenaline addTarget:self
@@ -274,13 +274,13 @@
             [selections addObject:@"clubbing"];
             clubbing.alpha = 1;
         }
-    } else if (sender == sports) {
-        if ([selections indexOfObject:@"sports"] != NSNotFound) {
-            [selections removeObject:@"sports"];
-            sports.alpha = .5;
+    } else if (sender == parties) {
+        if ([selections indexOfObject:@"parties"] != NSNotFound) {
+            [selections removeObject:@"parties"];
+            parties.alpha = .5;
         } else {
-            [selections addObject:@"sports"];
-            sports.alpha = 1;
+            [selections addObject:@"parties"];
+            parties.alpha = 1;
         }
     } else if (sender == adrenaline) {
         if ([selections indexOfObject:@"adrenaline"] != NSNotFound) {

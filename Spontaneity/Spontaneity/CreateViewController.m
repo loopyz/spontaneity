@@ -18,7 +18,7 @@
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface CreateViewController ()
-
+- (void)addEventsDetailLabel:(NSString*)interest;
 @end
 
 @implementation CreateViewController
@@ -42,6 +42,25 @@
         self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
         
         self.acceptLocation = false;
+        [self loadAndUpdateInterests];
+        
+        _editTimeClicks = 0;
+        _neededPeople = 5;
+        _dateTime = [self dateToNearest15Minutes];
+        
+        locationManager = [[CLLocationManager alloc] init];
+        //[self startStandardUpdates];
+        
+        //creates background image
+        UIGraphicsBeginImageContext(self.view.frame.size);
+        
+        //TODO: randomly generate bg image based off event
+        //[self addPlaceLabel];
+        [self addTimeLabel];
+        [self addInvitedLabel];
+        [self addNeededLabel];
+        [self addSubmitButton];
+        [self addTitle];
         
         
     }
@@ -115,12 +134,40 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
-- (void)addEventsDetailLabel
+- (void)addEventsDetailLabel:(NSString*)interest
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Event Details";
+    if ([interest isEqualToString:@"adrenaline"]) {
+        label.text=@"Be daring!";
+    }
+    else if ([interest isEqualToString:@"clubbing"]) {
+        label.text=@"Go clubbing!";
+    }
+    else if ([interest isEqualToString:@"baking"]) {
+        label.text=@"Go baking!";
+    }
+    else if ([interest isEqualToString:@"bars"]) {
+        label.text=@"Time to drink!";
+    }
+    else if ([interest isEqualToString:@"dining"]) {
+        label.text=@"Grab a bite!";
+    }
+    else if ([interest isEqualToString:@"parties"]) {
+        label.text=@"Can't stop Won't Stop";
+    }
+    else if ([interest isEqualToString:@"beauty"]) {
+        label.text=@"Smile. You're beautiful.";
+    }
+    else if ([interest isEqualToString:@"exercise"]) {
+        label.text=@"Work out time!";
+    }
+    else if ([interest isEqualToString:@"games"]) {
+        label.text=@"You're not too old to play games";
+    }
+    
+    //label.text = @"Event Details";
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -339,6 +386,7 @@
                                   // TODO: test if people like the message
                                   //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                                   [self exit];
+                                  
                               } else {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
@@ -481,7 +529,8 @@
     UIGraphicsBeginImageContext(self.view.frame.size);
     
     //TODO: randomly generate bg image based off event
-    [self addEventsDetailLabel];
+    //TODO: What to do with this?
+    //[self addEventsDetailLabel:@"beauty"];
     //[self addPlaceLabel];
     [self addTimeLabel];
     [self addInvitedLabel];
@@ -503,6 +552,7 @@
     NSLog(@"Random interest: %@", self.randInterest);
     
     [self addBackgroundImage:self.randInterest];
+    [self addEventsDetailLabel:self.randInterest];
     
     NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
     
@@ -523,16 +573,10 @@
     self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
                                                      options:0 error:&jsonParsingError];
     
-
-
     NSArray *businesses = self.jsonItems[@"businesses"];
     id randomObj = businesses[arc4random_uniform([businesses count])];
-    
     NSString *name = randomObj[@"name"];
-    
     NSArray *address = randomObj[@"location"][@"display_address"];
-    
-    NSLog(@"%@", address);
     
     [self addPlaceLabel:name address:address];
     
@@ -548,6 +592,7 @@
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation
 {
+    
     if (!self.acceptLocation)
     {
         NSLog(@"Die silly race condition!");
