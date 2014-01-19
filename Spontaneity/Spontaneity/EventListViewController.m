@@ -345,7 +345,7 @@
         NSLog(@"No cover photo for %@", event[@"name"]);
     
     // TODO: pick more generic cover photo
-    UIImage *bgImg = url && url.path ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"dining-bg.png"];
+    UIImage *bgImg = url && url.path ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"adrenaline-bg.png"];
     UIImage *blurredbg = [bgImg applyDarkEffect];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
