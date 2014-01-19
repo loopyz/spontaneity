@@ -19,6 +19,9 @@
 @property (nonatomic) NSInteger editTimeClicks;
 @property (nonatomic) NSInteger neededPeople;
 @property (strong, nonatomic) UILabel *timeLabel;
+@property (strong, nonatomic) UILabel *placeLabel;
+@property (strong, nonatomic) UILabel *addressLabel;
+
 @property (strong, nonatomic) UILabel *neededLabel;
 @property (nonatomic, strong) NSArray *interests;
 @property (nonatomic, strong) Firebase *firebase;

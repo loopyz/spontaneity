@@ -73,6 +73,14 @@ NSDictionary *titles;
         //[self addSubmitButton];
         //[self addTitle];
         
+        UIColor *gray = [UIColor colorWithRed:186/255.0f green:184/255.0f blue:184/255.0f alpha:1.0f];
+        
+        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshActivity)];
+        self.navigationItem.rightBarButtonItem = refreshButton;
+        [refreshButton setTintColor:gray];
+
+
+        
         
     }
     return self;
@@ -172,13 +180,13 @@ NSDictionary *titles;
 
 - (void)addPlaceLabel:(NSString*)place address:(NSArray*)address
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
+    self.placeLabel = [[UILabel alloc] init];
+    self.placeLabel.textColor = [UIColor whiteColor];
     
     double size = 20.0;
     if ([place length]) {
         NSString *text = [@"Place: " stringByAppendingString:place];
-        label.text =text;
+        self.placeLabel.text =text;
         int length = [text length];
         if (length == 0)
             length = 1;
@@ -188,7 +196,7 @@ NSDictionary *titles;
         }
     }
     
-    UILabel *addressLabel = [[UILabel alloc] init];
+    self.addressLabel = [[UILabel alloc] init];
     
     NSMutableString *s = [[NSMutableString alloc] init];
     for (id obj in address) {
@@ -196,32 +204,32 @@ NSDictionary *titles;
         NSString *final = [obj stringByAppendingString:s];
         [s appendString:[obj stringByAppendingString:@"\n"]];
     }
-    addressLabel.numberOfLines = 0;
-    addressLabel.textColor = [UIColor whiteColor];
-    addressLabel.text = s;
+    self.addressLabel.numberOfLines = 0;
+    self.addressLabel.textColor = [UIColor whiteColor];
+    self.addressLabel.text = s;
     
-    addressLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
-    addressLabel.layer.shadowOffset = CGSizeMake(0.0, 0.4);
-    addressLabel.layer.shadowOpacity = 1.0;
+    self.addressLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.addressLabel.layer.shadowOffset = CGSizeMake(0.0, 0.4);
+    self.addressLabel.layer.shadowOpacity = 1.0;
     
-    addressLabel.frame = CGRectMake(80, 126, 400, 100);
-    addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:11.0];
+    self.addressLabel.frame = CGRectMake(80, 126, 400, 100);
+    self.addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:11.0];
     
     
     //creates shadow
-    label.layer.shadowColor = [[UIColor blackColor] CGColor];
-    label.layer.shadowOffset = CGSizeMake(0.0, 1.0);
-    label.layer.shadowOpacity = 1.0;
+    self.placeLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.placeLabel.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    self.placeLabel.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 80, 400, 100);
+    self.placeLabel.frame = CGRectMake(20, 80, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:size];
+    self.placeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:size];
     
     //adds event details label
-    [self.view addSubview:label];
-    [self.view addSubview:addressLabel];
+    [self.view addSubview:self.placeLabel];
+    [self.view addSubview:self.addressLabel];
 }
 
 - (void)addTimeLabel
