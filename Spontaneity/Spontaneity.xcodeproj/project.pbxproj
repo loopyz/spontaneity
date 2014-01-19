@@ -89,6 +89,7 @@
 		0B41CF41188AEB5A00DAB725 /* PinterestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CF40188AEB5A00DAB725 /* PinterestViewController.m */; };
 		0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B41CF43188AEF1F00DAB725 /* Pinterest.framework */; };
 		0B41D06A188BABDD00DAB725 /* RNFrostedSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41D069188BABDD00DAB725 /* RNFrostedSidebar.m */; };
+		0B41D0D7188BCA2D00DAB725 /* Pinterest-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41D0D6188BCA2D00DAB725 /* Pinterest-logo.png */; };
 		0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B74588F188A08FC00F0EE6E /* Foundation.framework */; };
 		0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745891188A08FC00F0EE6E /* CoreGraphics.framework */; };
 		0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745893188A08FC00F0EE6E /* UIKit.framework */; };
@@ -254,6 +255,7 @@
 		0B41CF45188AEF1F00DAB725 /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
 		0B41D068188BABDD00DAB725 /* RNFrostedSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFrostedSidebar.h; sourceTree = "<group>"; };
 		0B41D069188BABDD00DAB725 /* RNFrostedSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFrostedSidebar.m; sourceTree = "<group>"; };
+		0B41D0D6188BCA2D00DAB725 /* Pinterest-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pinterest-logo.png"; sourceTree = "<group>"; };
 		0B74588C188A08FC00F0EE6E /* Spontaneity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spontaneity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B74588F188A08FC00F0EE6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B745891188A08FC00F0EE6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -357,6 +359,7 @@
 		0B41CE00188A97F300DAB725 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0B41D0D6188BCA2D00DAB725 /* Pinterest-logo.png */,
 				0B41CE01188A97F300DAB725 /* assets */,
 				0B41CE23188A97F300DAB725 /* backgrounds */,
 				0B41CE32188A97F300DAB725 /* categories */,
@@ -764,6 +767,7 @@
 				0B41CE77188A97F300DAB725 /* submit-button@2x.png in Resources */,
 				F3DBDA8E188AEE790068A17D /* bars-cat@2x.png in Resources */,
 				F3DBDA97188AEED90068A17D /* games-cat@2x.png in Resources */,
+				0B41D0D7188BCA2D00DAB725 /* Pinterest-logo.png in Resources */,
 				F3DBDAD8188BB5170068A17D /* recipe-button.png in Resources */,
 				0B41CEB4188A97F300DAB725 /* logo.png in Resources */,
 				F3DBDAB0188AF28E0068A17D /* baking-bg@2x.png in Resources */,
