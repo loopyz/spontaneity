@@ -575,7 +575,7 @@ NSDictionary *titles;
 -(void)refreshActivity
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
-    self.randInterest = [self.interests objectAtIndex:rnd];
+    self.randInterest = @"clubbing"; [self.interests objectAtIndex:rnd];
     [self addBackgroundImage:self.randInterest];
     [self addEventsDetailLabel:self.randInterest];
     
