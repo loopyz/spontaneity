@@ -561,11 +561,10 @@
     self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
                                                      options:0 error:&jsonParsingError];
     
-    //uint32_t rnd2 = arc4random_uniform([self.jsonItems count]);
-    NSArray* allKeys = [self.jsonItems allKeys];
-    id randomKey = allKeys[arc4random_uniform([allKeys count])];
-    id randomObject = self.jsonItems[randomKey];
-
+    NSArray *businesses = self.jsonItems[@"businesses"];
+    id randomObj = businesses[arc4random_uniform([businesses count])];
+    NSString *name = randomObj[@"name"];
+    NSArray *address = randomObj[@"location"][@"display_address"];
     
     [self addPlaceLabel:name address:address];
     
