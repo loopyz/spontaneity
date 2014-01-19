@@ -114,7 +114,7 @@
         [parties addTarget:self
                    action:@selector(interestSelected:)
          forControlEvents:UIControlEventTouchDown];
-        [parties setImage:[UIImage imageNamed:@"sports.png"]
+        [parties setImage:[UIImage imageNamed:@"parties.png"]
                 forState: UIControlStateNormal];
         parties.frame = CGRectMake(10, 230, 90, 90);
         [self.view addSubview:parties];
@@ -124,7 +124,7 @@
         partiesLabel.backgroundColor = [UIColor clearColor];
         partiesLabel.font = [UIFont fontWithName:@"Helvetica" size:(14)];
         [self.view addSubview:partiesLabel];
-        partiesLabel.text = @"sports";
+        partiesLabel.text = @"parties";
         parties.alpha = .5;
         
         adrenaline = [UIButton buttonWithType:UIButtonTypeCustom];
