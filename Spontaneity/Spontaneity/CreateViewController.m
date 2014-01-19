@@ -54,7 +54,7 @@
         
         //TODO: randomly generate bg image based off event
         [self addEventsDetailLabel];
-        [self addPlaceLabel];
+        //[self addPlaceLabel];
         [self addTimeLabel];
         [self addInvitedLabel];
         [self addNeededLabel];
@@ -168,12 +168,35 @@
     
 }
 
-- (void)addPlaceLabel
+- (void)addPlaceLabel:(NSString*)place address:(NSArray*)address
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Place: ";
+
+    
+    label.text = [@"Place: " stringByAppendingString:place];
+    
+    UILabel *addressLabel = [[UILabel alloc] init];
+    
+    NSMutableString *s = [[NSMutableString alloc] init];
+    for (id obj in address) {
+        NSString *final = [obj stringByAppendingString:s];
+        NSLog(@"%@", obj);
+        [s appendString:[obj stringByAppendingString:@"\n"]];
+        NSLog(@"%@", s);
+    }
+    
+    addressLabel.textColor = [UIColor whiteColor];
+    addressLabel.text = s;
+    
+    addressLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    addressLabel.layer.shadowOffset = CGSizeMake(0.0, 0.4);
+    addressLabel.layer.shadowOpacity = 1.0;
+    
+    addressLabel.frame = CGRectMake(94, 122, 400, 100);
+    addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:13.0];
+    
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -188,6 +211,7 @@
     
     //adds event details label
     [self.view addSubview:label];
+    [self.view addSubview:addressLabel];
 }
 
 - (void)addTimeLabel
@@ -509,15 +533,18 @@
     self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
                                                      options:0 error:&jsonParsingError];
     
-    uint32_t rnd2 = arc4random_uniform([self.jsonItems count]);
-    NSArray* allKeys = [self.jsonItems allKeys];
-    id randomKey = allKeys[arc4random_uniform([allKeys count])];
-    id randomObject = self.jsonItems[randomKey];
-    
-    NSLog(@"Got random object %@", randomObject);
 
+
+    NSArray *businesses = self.jsonItems[@"businesses"];
+    id randomObj = businesses[arc4random_uniform([businesses count])];
     
-    [self addPlaceLabel];
+    NSString *name = randomObj[@"name"];
+    
+    NSArray *address = randomObj[@"location"][@"display_address"];
+    
+    NSLog(@"%@", address);
+    
+    [self addPlaceLabel:name address:address];
     
     
 }
