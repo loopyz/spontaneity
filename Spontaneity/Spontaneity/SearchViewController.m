@@ -35,7 +35,8 @@
     if (self) {
         self.view.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
         
-        self.tableView.separatorColor = [UIColor blackColor];
+        self.tableView.separatorColor = [UIColor clearColor];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         [self initNavBarItems];
     }
@@ -157,56 +158,56 @@
         cell = [tableView dequeueReusableCellWithIdentifier:ClubbingCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ClubbingCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"clubbing-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"clubbing-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"beauty"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:BeautyCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:BarsCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"beauty-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"beauty-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"baking"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:BakingCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:BakingCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"baking-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"baking-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"adrenaline"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:AdrenalineCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:AdrenalineCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"adrenaline-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"adrenaline-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"games"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:GamesCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:GamesCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"games-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"games-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"college parties"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:PartyCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PartyCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"college-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"parties-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"bars"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:BarsCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:BarsCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"bars-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"bars-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else if ([interest isEqual:@"exercise"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ExerciseCellIdentifier];
-            UIImage *bgImg =[UIImage imageNamed:@"exercise-cat.png"];
+            UIImage *bgImg =[UIImage imageNamed:@"exercise-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
     } else {
@@ -216,7 +217,7 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DiningCellIdentifier];
-        UIImage *bgImg =[UIImage imageNamed:@"dining-cat.png"];
+        UIImage *bgImg =[UIImage imageNamed:@"dining-cat-2.png"];
         cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     }
     
