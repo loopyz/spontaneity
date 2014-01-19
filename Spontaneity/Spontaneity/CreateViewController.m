@@ -331,7 +331,7 @@ NSDictionary *titles;
                action:selector
      forControlEvents:UIControlEventTouchDown];
     
-    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 42.75);
+    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 45.16);
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
 }
