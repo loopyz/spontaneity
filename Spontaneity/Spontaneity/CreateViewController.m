@@ -42,8 +42,6 @@
         
         [self loadAndUpdateInterests];
         
-        
-        
         _editTimeClicks = 0;
         _neededPeople = 5;
         _dateTime = [self dateToNearest15Minutes];
@@ -56,7 +54,7 @@
         
         //TODO: randomly generate bg image based off event
         [self addEventsDetailLabel];
-        [self addPlaceLabel];
+        //[self addPlaceLabel];
         [self addTimeLabel];
         [self addInvitedLabel];
         [self addNeededLabel];
@@ -97,9 +95,9 @@
 
 - (void)addTitle
 {
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-    titleImageView.frame = CGRectMake(40, 10, 124, 30);
+    titleImageView.frame = CGRectMake(30, 10, 124, 30);
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
 }
@@ -114,7 +112,6 @@
     
     [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* interest = snapshot.name;
-        NSLog(@"Interest added: %@", interest);
         [self.interests addObject:interest];
     }];
     
@@ -163,19 +160,43 @@
     label.frame = CGRectMake(20, 50, 1000, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-Oblique" size:35.0];
+    label.font = [UIFont fontWithName:@"Helvetica-Oblique" size:30.0];
     
     //adds event details label
     [self.view addSubview:label];
     
 }
 
-- (void)addPlaceLabel
+- (void)addPlaceLabel:(NSString*)place address:(NSArray*)address
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Place: ";
+
+    
+    label.text = [@"Place: " stringByAppendingString:place];
+    
+    UILabel *addressLabel = [[UILabel alloc] init];
+    
+    NSMutableString *s = [[NSMutableString alloc] init];
+    for (id obj in address) {
+        
+        NSString *final = [obj stringByAppendingString:s];
+        NSLog(@"%@", obj);
+        [s appendString:[obj stringByAppendingString:@"\n"]];
+        NSLog(@"%@", s);
+    }
+    addressLabel.numberOfLines = 0;
+    addressLabel.textColor = [UIColor whiteColor];
+    addressLabel.text = s;
+    
+    addressLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    addressLabel.layer.shadowOffset = CGSizeMake(0.0, 0.4);
+    addressLabel.layer.shadowOpacity = 1.0;
+    
+    addressLabel.frame = CGRectMake(80, 116, 400, 100);
+    addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:11.0];
+    
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -183,13 +204,14 @@
     label.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 100, 400, 100);
+    label.frame = CGRectMake(20, 80, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //adds event details label
     [self.view addSubview:label];
+    [self.view addSubview:addressLabel];
 }
 
 - (void)addTimeLabel
@@ -212,7 +234,7 @@
     timeLabel.frame = CGRectMake(20, 170, 400, 100);
     
     //set font style/text
-    timeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    timeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //add up and down arrows
     [self addTimeArrowButtons:220 y:170];
@@ -238,7 +260,7 @@
     label.frame = CGRectMake(20, 240, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //adds event details label
     [self.view addSubview:label];
@@ -264,7 +286,7 @@
     neededLabel.frame = CGRectMake(20, 310, 400, 100);
     
     //set font style/text
-    neededLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    neededLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //add up and down arrows
     [self addNeededArrowButtons:220 y:310];
@@ -290,7 +312,7 @@
 - (void)submitNewEvent:(id)sender
 {
     NSLog(@"Submitted a new event!");
-    NSString *description = [NSString stringWithFormat:@"%ld people needed. Created by Spontaneity", (long)_neededPeople];
+    NSString *description = [NSString stringWithFormat:@"People needed: %ld. Created by Spontaneity", (long)_neededPeople];
     
     [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
         andDescription:description];
@@ -298,8 +320,6 @@
 
 - (NSString*)dateToString:(NSDate*)date
 {
-    if (!date)
-        NSLog(@"no date!");
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZ'"];
     return [formatter stringFromDate:date];
@@ -324,9 +344,6 @@
                             nil
                             ];
     
-    for(id key in params)
-        NSLog(@"=== %@:%@ ===", key, [params objectForKey:key]);
-    
     /* make the API call */
     [FBRequestConnection startWithGraphPath:@"/me/events"
                                  parameters:params
@@ -336,11 +353,17 @@
                                               id result,
                                               NSError *error
                                               ) {
-                              /* handle the result */
+                              
                               AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                              if (!error && result)
-                              {
-                                  // TODO: add to Firebase
+                              if (!error && result) {
+                                  // Add event to Firebase under user's events
+                                  NSString* username = appDelegate.username;
+                                  Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
+                                                             childByAppendingPath:username] childByAppendingPath:@"events"];
+                                  
+                                  // TODO: Add to events on Firebase based on interest category
+                                  [[eventsRef childByAutoId] setValue:result[@"id"]];
+                                  NSLog(@"Created event %@", result[@"id"]);
                                   
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                               } else
@@ -516,7 +539,7 @@
     id randomObject = self.jsonItems[randomKey];
 
     
-    [self addPlaceLabel];
+    [self addPlaceLabel:name address:address];
     
     
 }
