@@ -10,5 +10,6 @@
 
 @interface InterestsViewController : UIViewController
 
+@property (strong, nonatomic) UIButton* finishButton;
 
 @end

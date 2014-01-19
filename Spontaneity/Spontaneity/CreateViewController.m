@@ -18,7 +18,7 @@
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface CreateViewController ()
-
+- (void)addEventsDetailLabel:(NSString*)interest;
 @end
 
 @implementation CreateViewController
@@ -27,6 +27,7 @@
 @synthesize timeLabel;
 @synthesize neededLabel;
 @synthesize interests;
+@synthesize randInterest;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,6 +41,7 @@
         // Initialize the root of our Firebase namespace.
         self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
         
+        self.acceptLocation = false;
         [self loadAndUpdateInterests];
         
         _editTimeClicks = 0;
@@ -47,7 +49,7 @@
         _dateTime = [self dateToNearest15Minutes];
         
         locationManager = [[CLLocationManager alloc] init];
-        [self startStandardUpdates];
+        //[self startStandardUpdates];
         
         //creates background image
         UIGraphicsBeginImageContext(self.view.frame.size);
@@ -58,17 +60,7 @@
         [self addInvitedLabel];
         [self addNeededLabel];
         [self addSubmitButton];
-        [self addTitle];        
-        
-        /* Test Button for Pinterest */
-        UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
-        [pinterest addTarget:self
-                       action:@selector(pinterest)
-             forControlEvents:UIControlEventTouchDown];
-        [pinterest setImage:[UIImage imageNamed:@"close-button-2.png"]
-                    forState: UIControlStateNormal];
-        pinterest.frame = CGRectMake(self.view.bounds.size.width-40, 70, 30, 30);
-        [self.view addSubview:pinterest];
+        [self addTitle];
         
         
     }
@@ -77,9 +69,10 @@
 
 - (void)startStandardUpdates
 {
+    self.acceptLocation = true;
     // Create the location manager if this object does not
     // already have one.
-    if (nil == locationManager)
+    if (!locationManager)
         locationManager = [[CLLocationManager alloc] init];
     
     locationManager.delegate = self;
@@ -109,16 +102,13 @@
     Firebase* interestsRef = [[[self.firebase childByAppendingPath:@"users"]
                                childByAppendingPath:username] childByAppendingPath:@"interests"];
     
-    [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        NSString* interest = snapshot.name;
-        [self.interests addObject:interest];
-    }];
-    
-    [interestsRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"Interest deleted: %@", snapshot.name);
+    [interestsRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        // do some stuff once
         
-        [self.interests removeObject:snapshot.name];
-
+        NSDictionary *interestsDict = snapshot.value;
+        
+        self.interests = [interestsDict allKeys];
+        [self startStandardUpdates];
     }];
 }
 
@@ -133,9 +123,10 @@
     [self.navigationController pushViewController:pvc animated:YES];
 }
 
-- (void)addBackgroundImage:(NSString*)interest
+- (void)addBackgroundImage:(NSString *)interest
 {
     NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
+    NSLog(@"Setting background to: %@", imageS);
     [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -199,9 +190,9 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-
-    
-    label.text = [@"Place: " stringByAppendingString:place];
+    if ([place length]) {
+        label.text = [@"Place: " stringByAppendingString:place];
+    }
     
     UILabel *addressLabel = [[UILabel alloc] init];
     
@@ -209,9 +200,7 @@
     for (id obj in address) {
         
         NSString *final = [obj stringByAppendingString:s];
-        NSLog(@"%@", obj);
         [s appendString:[obj stringByAppendingString:@"\n"]];
-        NSLog(@"%@", s);
     }
     addressLabel.numberOfLines = 0;
     addressLabel.textColor = [UIColor whiteColor];
@@ -383,18 +372,22 @@
                               
                               AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                               if (!error && result) {
-                                  // Add event to Firebase under user's events
+                                  // Add event to Firebase under user's events and interest category
                                   NSString* username = appDelegate.username;
                                   Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
                                                              childByAppendingPath:username] childByAppendingPath:@"events"];
                                   
-                                  // TODO: Add to events on Firebase based on interest category
+                                  Firebase* interestRef = [[self.firebase childByAppendingPath:@"events"] childByAppendingPath:self.randInterest];
+                                  
                                   [[eventsRef childByAutoId] setValue:result[@"id"]];
+                                  [[interestRef childByAutoId] setValue:result[@"id"]];
                                   NSLog(@"Created event %@", result[@"id"]);
                                   
-                                  [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
-                              } else
-                              {
+                                  // TODO: test if people like the message
+                                  //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
+                                  [self exit];
+                                  
+                              } else {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
                           }];
@@ -518,14 +511,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // TODO: fix clubbing photo
+    self.view.backgroundColor = [UIColor darkGrayColor];
 
-    // TODO: remove hardcoding
-    _eventName = @"Chocolate Bar";
-    _location = @"Under the Sea";
+    _eventName = @"An Adventure";
+    _location = @"The Great Unkonwn";
     
 	// Do any additional setup after loading the view.
+    [self loadAndUpdateInterests];
     
-    printf("%s", "end of didload");
+    _editTimeClicks = 0;
+    _neededPeople = 5;
+    _dateTime = [self dateToNearest15Minutes];
+    
+    //creates background image
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    
+    //TODO: randomly generate bg image based off event
+    //TODO: What to do with this?
+    //[self addEventsDetailLabel:@"beauty"];
+    //[self addPlaceLabel];
+    [self addTimeLabel];
+    [self addInvitedLabel];
+    [self addNeededLabel];
+    [self addSubmitButton];
+    [self addTitle];
 }
 
 - (void)didReceiveMemoryWarning
@@ -537,12 +548,13 @@
 -(void)refreshActivity
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
-    NSString* randInterest = [self.interests objectAtIndex:rnd];
+    self.randInterest = [self.interests objectAtIndex:rnd];
+    NSLog(@"Random interest: %@", self.randInterest);
     
-    [self addBackgroundImage:randInterest];
-    [self addEventsDetailLabel:randInterest];
+    [self addBackgroundImage:self.randInterest];
+    [self addEventsDetailLabel:self.randInterest];
     
-    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",",self.longitude];
+    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
     
     NSLog(@"%@", url);
     
@@ -568,7 +580,8 @@
     
     [self addPlaceLabel:name address:address];
     
-    
+    _eventName = name;
+    _location = [address componentsJoinedByString:@", "];
 }
 
 
@@ -579,21 +592,27 @@
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation
 {
-    //generate random interest
-    NSUInteger numInterests = [interests count];
     
-    if (numInterests > 0) {
-        printf("%s", "more than 0");
-        self.longitude = newLocation.coordinate.longitude;
-        self.latitude = newLocation.coordinate.latitude;
-        [self refreshActivity];
+    if (!self.acceptLocation)
+    {
+        NSLog(@"Die silly race condition!");
+        return;
     }
+    
+    self.acceptLocation = false;
+
+    [locationManager stopUpdatingLocation];
+    NSLog(@"Got location!");
+    
+    self.longitude = newLocation.coordinate.longitude;
+    self.latitude = newLocation.coordinate.latitude;
+    [self refreshActivity];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
 	// Handle error
-    printf("%s", "woof");
+    NSLog(@"Location error: %@; %@", error.debugDescription, error.description);
 }
 
 

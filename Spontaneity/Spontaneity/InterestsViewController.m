@@ -29,6 +29,8 @@
     NSMutableArray *selections;
 }
 
+@synthesize finishButton;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -216,15 +218,16 @@
         beauty.alpha = .5;
         
         
-        //Finish button
-        UIButton *finish = [UIButton buttonWithType:UIButtonTypeCustom];
-        [finish addTarget:self
+        // Finish button
+        self.finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.finishButton addTarget:self
                    action:@selector(didFinishSelecting)
          forControlEvents:UIControlEventTouchDown];
-        [finish setImage:[UIImage imageNamed:@"Finish-Button.png"]
+        [self.finishButton setImage:[UIImage imageNamed:@"Finish-Button.png"]
                 forState: UIControlStateNormal];
-        finish.frame = CGRectMake(30, 500, 260.0, 39.468);
-        [self.view addSubview:finish];
+        self.finishButton.frame = CGRectMake(30, 500, 260.0, 39.468);
+        [self.finishButton setEnabled:NO];
+        [self.view addSubview:finishButton];
         
     }
     return self;
@@ -320,6 +323,11 @@
             beauty.alpha = 1;
         }
     }
+    
+    if ([selections count])
+        [self.finishButton setEnabled:YES];
+    else
+        [self.finishButton setEnabled:NO];
 }
 
 

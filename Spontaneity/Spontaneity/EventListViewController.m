@@ -58,6 +58,7 @@
         self.navigationItem.titleView = logoView;
         self.navigationItem.rightBarButtonItem = createButton;
         self.navigationItem.leftBarButtonItem = searchButton;
+       
         
     }
     return self;
@@ -119,10 +120,9 @@
                  if ([match numberOfRanges] > 0)
                  {
                      event[@"needed"] = [description substringWithRange:[match rangeAtIndex:1]];
-                     NSLog(@"WOOHOO~~~ %@ people needed in %@!", event[@"needed"], event[@"name"]);
                  } else
                  {
-                     NSLog(@"Could not find people needed in %@!", event[@"name"]);
+                     //NSLog(@"Could not find people needed in %@!", event[@"name"]);
                      event[@"needed"] = @"1";
                  }
                  
@@ -179,11 +179,17 @@
                  event[@"coverPhoto"] = [result objectForKey:@"cover"] ? [[result objectForKey:@"cover"] objectForKey:@"source"] : @"";
              }
              
-             event[@"ref"] = [snapshot ref];
+             if (!event || !event[@"name"]) {
+                 [[snapshot ref] removeValue];
+                 [self.eventKeys removeObject:eventKey];
+             } else {
+                 // Store event in events array
+                 event[@"ref"] = [snapshot ref];
+                 [self.events setObject:event forKey:eventKey];
+             }
              
-             // Store event in events array
-             [self.events setObject:event forKey:eventKey];
              [self.tableView reloadData];
+             
          }];
         
         [connection start];
@@ -226,7 +232,8 @@
 
 - (void)openCreateView
 {
-    CreateViewController *cvc = [[CreateViewController alloc] init];
+    CreateViewController *cvc;
+    cvc = [[CreateViewController alloc] init];
     [self.navigationController pushViewController:cvc animated:YES];
 }
 
@@ -380,12 +387,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [self.eventKeys count])
-        return;
+    //if (indexPath.row >= [self.eventKeys count])
+    //    return;
     
-    NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
-    NSLog(@"Selected event: %@", eventKey);
-    NSMutableDictionary *event = self.events[eventKey];
+    //NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
+    //NSMutableDictionary *event = self.events[eventKey];
     // TODO: Navigate to event detail controller
 }
 
