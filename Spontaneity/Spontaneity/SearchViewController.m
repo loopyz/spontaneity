@@ -135,30 +135,86 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Updating cell");
-    
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
-    
-    // Configure the cell...
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+    static NSString *DiningCellIdentifier = @"DiningCell";
+    static NSString *BarsCellIdentifier = @"BarsCell";
+    static NSString *ClubbingCellIdentifier = @"ClubbingCell";
+    static NSString *BakingCellIdentifier = @"BakingCell";
+    static NSString *AdrenalineCellIdentifier = @"AdrenalineCell";
+    static NSString *BeautyCellIdentifier = @"BeautyCell";
+    static NSString *GamesCellIdentifier = @"GamesCell";
+    static NSString *ExerciseCellIdentifier = @"ExerciseCell";
+    static NSString *PartyCellIdentifier = @"PartyCell";
     
     NSString* interest = [self.interests objectAtIndex:indexPath.row];
+
+    UITableViewCell *cell;
     
-    // Update cell name and description
-    NSLog(@"Updating interest: %@", interest);
+    if ([interest isEqual:@"clubbing"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:ClubbingCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ClubbingCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"clubbing-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"beauty"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:BeautyCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:BarsCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"beauty-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"baking"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:BakingCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:BakingCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"baking-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"adrenaline"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:AdrenalineCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:AdrenalineCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"adrenaline-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"games"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:GamesCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:GamesCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"games-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"college parties"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:PartyCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PartyCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"college-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"bars"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:BarsCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:BarsCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"bars-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else if ([interest isEqual:@"exercise"]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:ExerciseCellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ExerciseCellIdentifier];
+            UIImage *bgImg =[UIImage imageNamed:@"exercise-cat.png"];
+            cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+        }
+    } else {
+        /* Default Cell is Dining */
+        cell = [tableView dequeueReusableCellWithIdentifier:DiningCellIdentifier];
+    }
     
-    UIImage *bgImg =[UIImage imageNamed:[interest stringByAppendingString:@"-cat.png"]];
-    UIImage *imgNamed = [UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]];
-    
-//    cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[interest stringByAppendingString:@"adrenaline-cat.png"]]];
-    
-    
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[imgNamed stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:DiningCellIdentifier];
+        UIImage *bgImg =[UIImage imageNamed:@"dining-cat.png"];
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    }
     
     return cell;
 }

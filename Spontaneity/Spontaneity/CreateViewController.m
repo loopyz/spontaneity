@@ -140,7 +140,6 @@
 - (void)addBackgroundImage:(NSString*)interest
 {
     NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
-    NSLog(@"@", imageS);
     [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
