@@ -368,12 +368,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [self.eventKeys count])
-        return;
+    //if (indexPath.row >= [self.eventKeys count])
+    //    return;
     
-    NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
-    NSLog(@"Selected event: %@", eventKey);
-    NSMutableDictionary *event = self.events[eventKey];
+    //NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
+    //NSMutableDictionary *event = self.events[eventKey];
     // TODO: Navigate to event detail controller
 }
 

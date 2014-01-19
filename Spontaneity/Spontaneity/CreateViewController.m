@@ -488,16 +488,6 @@
     [self addNeededLabel];
     [self addSubmitButton];
     [self addTitle];
-    
-    /* Test Button for Pinterest */
-    UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
-    [pinterest addTarget:self
-                  action:@selector(pinterest)
-        forControlEvents:UIControlEventTouchDown];
-    [pinterest setImage:[UIImage imageNamed:@"close-button-2.png"]
-               forState: UIControlStateNormal];
-    pinterest.frame = CGRectMake(self.view.bounds.size.width-40, 70, 30, 30);
-    [self.view addSubview:pinterest];
 }
 
 - (void)didReceiveMemoryWarning
