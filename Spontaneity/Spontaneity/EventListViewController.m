@@ -303,15 +303,15 @@
 
 - (UIImage *)randomBgImg
 {
-    NSArray* bgs = @[@"adrenaline-bg.png",
-      @"clubbing-bg.png",
-      @"baking-bg.png",
-      @"bars-bg.png",
+    NSArray* bgs = @[@"adrenaline-home.png",
+      @"clubbing-home.png",
+      @"baking-home.png",
+      @"bars-home.png",
       @"dining-bg.png",
-      @"parties-bg.png",
-      @"beauty-bg.png",
-      @"exercise-bg.png",
-      @"games-bg.png"];
+      @"parties-home.png",
+      @"beauty-home.png",
+      @"exercise-home.png",
+      @"gaming-home.png"];
     
     return [UIImage imageNamed:bgs[arc4random() % [bgs count]]];
 }
