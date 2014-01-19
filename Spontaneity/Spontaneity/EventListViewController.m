@@ -353,9 +353,27 @@
     // Address 1 label
     NSMutableDictionary *venue = event[@"venue"];
     NSString *street = venue[@"street"];
-    NSString *lowerLine = [NSString stringWithFormat:@"%@, %@ %@", venue[@"city"], venue[@"state"], venue[@"zip"]];
-    if (!venue[@"city"] || !venue[@"state"] || !venue[@"zip"])
-        lowerLine = @"";
+    
+    NSString *cityState = @"";
+    
+    if (venue[@"name"])
+        cityState = [venue[@"name"] stringByAppendingString:@"\n"];
+    
+    if ([venue[@"city"] length] && [venue[@"state"] length])
+        cityState = [NSString stringWithFormat:@"%@%@, %@", cityState, venue[@"city"], venue[@"state"]];
+    else if ([venue[@"city"] length])
+        cityState = [cityState stringByAppendingString:venue[@"city"]];
+    else if ([venue[@"state"] length])
+        cityState = [cityState stringByAppendingString:venue[@"state"]];
+    
+    NSString *lowerLine;
+    if ([cityState length] && [venue[@"zip"] length])
+        lowerLine = [NSString stringWithFormat:@"%@ %@", cityState, venue[@"zip"]];
+    else if ([venue[@"zip"] length])
+        lowerLine = venue[@"zip"];
+    else if ([cityState length])
+        lowerLine = cityState;
+    
     
     if ([street length]) {
         UILabel *addrUpperLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 68, 320, 40)];

@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) NSDictionary *pin;
 @property (strong, nonatomic) Firebase *firebase;
+@property (strong, nonatomic) Pinterest*  pinterest;
 
 @end
