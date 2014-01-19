@@ -180,9 +180,15 @@
 
 - (void)updateLabels
 {
+    // Clear old labels
+    for (UIView *v in self.view.subviews) {
+        if ([v isKindOfClass:[UILabel class]])
+            [v removeFromSuperview];
+     }
+    
     NSString *name = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"name"];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, self.view.bounds.size.width, 100.0)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 340, 100)];
     title.text = name;
     title.textAlignment =  NSTextAlignmentCenter;
     title.textColor = [UIColor whiteColor];
@@ -192,12 +198,14 @@
     int length = [title.text length];
     if (length == 0)
         length = 1;
-    if (length > 36)
+    if (length > 34)
     {
-        size = size*36/length;
+        size = size*34/length;
     }
     title.font = [UIFont fontWithName:@"Helvetica" size:size];
     [self.view addSubview:title];
+    
+    if (!pin || !pin[@"data"]) return;
     
     NSMutableDictionary *dict = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"categorized_ingredients"];
     NSMutableArray *ingredients = [[NSMutableArray alloc] initWithObjects:nil];
