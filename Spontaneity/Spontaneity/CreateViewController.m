@@ -138,6 +138,7 @@ NSDictionary *titles;
 {
     NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
     NSLog(@"Setting background to: %@", imageS);
+    UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
