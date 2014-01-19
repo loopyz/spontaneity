@@ -10,11 +10,14 @@
 #import "AppDelegate.h"
 
 #import <Firebase/Firebase.h>
+#import <Pinterest/Pinterest.h>
 
 #define firebaseURL @"https://spontaneity.firebaseio.com/"
+#define kPinItButtonWidth   72.0
+#define kPinItButtonHeight  32.0
 
 @interface PinterestViewController ()
-
+    
 @end
 
 @implementation PinterestViewController
@@ -65,6 +68,20 @@
 	// Do any additional setup after loading the view.
     [self getThingToBake];
     [self addSubmitButton];
+    
+    _pinterest = [[Pinterest alloc] initWithClientId:@"1435618" urlSchemeSuffix:@"prod"];
+    
+    // You probably need pinterest installed to see this button or use pin it!
+    // URL scheme still needs to be setup http://developers.pinterest.com/ios/
+    UIButton* pinItButton = [Pinterest pinItButton];
+    [pinItButton setFrame:CGRectMake(75,
+                                     75,
+                                     kPinItButtonWidth,
+                                     kPinItButtonHeight)];
+    [pinItButton addTarget:self
+                    action:@selector(pinIt:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:pinItButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,10 +155,17 @@
                           }];
 }
 
+- (void)pinIt:(id)sender
+{
+    [_pinterest createPinWithImageURL:@"http://placekitten.com/500/400"
+                            sourceURL:@"http://placekitten.com"
+                          description:@"Pinning from Pin It Demo"];
+}
 
 - (void)getThingToBake
 {
     NSLog(@"Getting thing to bake...");
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pinterest.com/v3/pidgets/boards/pinterest/delicious-eats/pins/"]
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                        timeoutInterval:10];
