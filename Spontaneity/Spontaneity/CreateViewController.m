@@ -27,6 +27,7 @@
 @synthesize timeLabel;
 @synthesize neededLabel;
 @synthesize interests;
+@synthesize randInterest;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -142,9 +143,9 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-
-    
-    label.text = [@"Place: " stringByAppendingString:place];
+    if ([place length]) {
+        label.text = [@"Place: " stringByAppendingString:place];
+    }
     
     UILabel *addressLabel = [[UILabel alloc] init];
     
@@ -324,13 +325,15 @@
                               
                               AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                               if (!error && result) {
-                                  // Add event to Firebase under user's events
+                                  // Add event to Firebase under user's events and interest category
                                   NSString* username = appDelegate.username;
                                   Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
                                                              childByAppendingPath:username] childByAppendingPath:@"events"];
                                   
-                                  // TODO: Add to events on Firebase based on interest category
+                                  Firebase* interestRef = [[self.firebase childByAppendingPath:@"events"] childByAppendingPath:self.randInterest];
+                                  
                                   [[eventsRef childByAutoId] setValue:result[@"id"]];
+                                  [[interestRef childByAutoId] setValue:result[@"id"]];
                                   NSLog(@"Created event %@", result[@"id"]);
                                   
                                   // TODO: test if people like the message
@@ -506,12 +509,12 @@
 -(void)refreshActivity
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
-    NSString* randInterest = [self.interests objectAtIndex:rnd];
-    NSLog(@"Random interest: %@", randInterest);
+    self.randInterest = [self.interests objectAtIndex:rnd];
+    NSLog(@"Random interest: %@", self.randInterest);
     
-    [self addBackgroundImage:randInterest];
+    [self addBackgroundImage:self.randInterest];
     
-    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",", self.longitude];
+    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
     
     NSLog(@"%@", url);
     
@@ -544,7 +547,7 @@
     [self addPlaceLabel:name address:address];
     
     _eventName = name;
-    _location = [address componentsJoinedByString:@"\n"];
+    _location = [address componentsJoinedByString:@", "];
 }
 
 

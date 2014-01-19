@@ -164,10 +164,15 @@
                  event[@"coverPhoto"] = [result objectForKey:@"cover"] ? [[result objectForKey:@"cover"] objectForKey:@"source"] : @"";
              }
              
-             event[@"ref"] = [snapshot ref];
+             if (!event || !event[@"name"]) {
+                 [[snapshot ref] removeValue];
+                 [self.eventKeys removeObject:eventKey];
+             } else {
+                 // Store event in events array
+                 event[@"ref"] = [snapshot ref];
+                 [self.events setObject:event forKey:eventKey];
+             }
              
-             // Store event in events array
-             [self.events setObject:event forKey:eventKey];
              [self.tableView reloadData];
              
          }];
