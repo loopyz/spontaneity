@@ -14,17 +14,19 @@
 
 @implementation JoinEventViewController
 
+@synthesize event;
+
+- (id)initWithEvent:(NSDictionary *)event
+{
+    self.event = event;
+    return [self init];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIGraphicsBeginImageContext(self.view.frame.size);
-        
-        [[UIImage imageNamed:@"bars-bg-2.png"] drawInRect:self.view.bounds];
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+        [self addBackgroundImage:self.event[@"interest"]];
     }
     return self;
 }
@@ -33,6 +35,39 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self addJoinButton];
+}
+
+
+- (void)addBackgroundImage:(NSString *)interest
+{
+    NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
+    NSLog(@"Setting background to: %@", imageS);
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+}
+
+- (void)joinEvent:(id)sender
+{
+    
+}
+
+- (void)addJoinButton
+{
+    UIImage *createButtonImage = [UIImage imageNamed:@"join-button.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(joinEvent:)
+     forControlEvents:UIControlEventTouchDown];
+    
+    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 42.75);
+    [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
+    [self.view addSubview:button];
 }
 
 - (void)didReceiveMemoryWarning

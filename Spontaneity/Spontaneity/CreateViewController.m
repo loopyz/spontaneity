@@ -630,6 +630,9 @@ NSDictionary *titles;
             _eventName = name;
             _location = [address componentsJoinedByString:@", "];
         }
+        
+        [self addButton:@"submit-button.png" withSelector:@selector(submitNewEvent:)];
+        
     } else {
 
         NSString *name;

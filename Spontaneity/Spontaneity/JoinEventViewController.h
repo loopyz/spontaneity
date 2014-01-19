@@ -10,4 +10,8 @@
 
 @interface JoinEventViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *event;
+
+- (id)initWithEvent:(NSDictionary *)event;
+
 @end
