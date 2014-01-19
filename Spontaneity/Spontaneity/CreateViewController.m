@@ -53,7 +53,6 @@
         UIGraphicsBeginImageContext(self.view.frame.size);
         
         //TODO: randomly generate bg image based off event
-        [self addEventsDetailLabel];
         //[self addPlaceLabel];
         [self addTimeLabel];
         [self addInvitedLabel];
@@ -137,7 +136,6 @@
 - (void)addBackgroundImage:(NSString*)interest
 {
     NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
-    NSLog(@"@", imageS);
     [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -145,12 +143,40 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
-- (void)addEventsDetailLabel
+- (void)addEventsDetailLabel:(NSString*)interest
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Event Details";
+    if ([interest isEqualToString:@"adrenaline"]) {
+        label.text=@"Be daring!";
+    }
+    else if ([interest isEqualToString:@"clubbing"]) {
+        label.text=@"Go clubbing!";
+    }
+    else if ([interest isEqualToString:@"baking"]) {
+        label.text=@"Go baking!";
+    }
+    else if ([interest isEqualToString:@"bars"]) {
+        label.text=@"Time to drink!";
+    }
+    else if ([interest isEqualToString:@"dining"]) {
+        label.text=@"Grab a bite!";
+    }
+    else if ([interest isEqualToString:@"parties"]) {
+        label.text=@"Can't stop Won't Stop";
+    }
+    else if ([interest isEqualToString:@"beauty"]) {
+        label.text=@"Smile. You're beautiful.";
+    }
+    else if ([interest isEqualToString:@"exercise"]) {
+        label.text=@"Work out time!";
+    }
+    else if ([interest isEqualToString:@"games"]) {
+        label.text=@"You're not too old to play games";
+    }
+    
+    //label.text = @"Event Details";
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -513,6 +539,7 @@
     NSString* randInterest = [self.interests objectAtIndex:rnd];
     
     [self addBackgroundImage:randInterest];
+    [self addEventsDetailLabel:randInterest];
     
     NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",",self.longitude];
     
