@@ -33,10 +33,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
+        self.view.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
         
         self.tableView.separatorColor = [UIColor blackColor];
-        self.view.backgroundColor = [UIColor blackColor];
         
         [self initNavBarItems];
     }
@@ -53,6 +52,12 @@
     
     self.navigationItem.titleView = logoView;
     self.navigationItem.rightBarButtonItem = createButton;
+    
+    //make rest of UI bar gray. doesnt work :'(
+    UIColor *gray = [UIColor colorWithRed:186/255.0f green:184/255.0f blue:184/255.0f alpha:1.0f];
+    
+    self.navigationItem.rightBarButtonItem.tintColor = gray;
+    
 }
 
 - (void)viewDidLoad

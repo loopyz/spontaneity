@@ -33,12 +33,27 @@
         self.view.backgroundColor = [UIColor colorWithRed:0.953 green:0.949 blue:0.949 alpha:1.0];
         
         /* Setting up navigation bar items */
-        UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+        UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)];
         UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
         titleImageView.frame = CGRectMake(30, 10, 124, 30);
         [logoView addSubview:titleImageView];
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
         UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search-small.png"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
+        UIColor *gray = [UIColor colorWithRed:186/255.0f green:184/255.0f blue:184/255.0f alpha:1.0f];
+        [searchButton setTintColor:gray];
+        [createButton setTintColor:gray];
+        
+        //make rest of UI bar gray. doesnt work :'(
+//        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+//         setTitleTextAttributes:[NSDictionary
+//                                 dictionaryWithObjectsAndKeys:gray, NSForegroundColorAttributeName,nil]
+//         forState:UIControlStateNormal];
+//        
+//        [[self.navigationController.navigationBar.subviews lastObject] setTintColor:gray];
+//        self.navigationController.navigationBar.tintColor =  gray;
+
+
+
         
         self.navigationItem.titleView = logoView;
         self.navigationItem.rightBarButtonItem = createButton;

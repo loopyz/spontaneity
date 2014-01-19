@@ -42,8 +42,6 @@
         
         [self loadAndUpdateInterests];
         
-        
-        
         _editTimeClicks = 0;
         _neededPeople = 5;
         _dateTime = [self dateToNearest15Minutes];
