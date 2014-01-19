@@ -261,6 +261,9 @@
     cell.backgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     
+    //cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    //cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
+    
     // Event title
     UILabel *ttitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 320, 40)];
     int size = 22;

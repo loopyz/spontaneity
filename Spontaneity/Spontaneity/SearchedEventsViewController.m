@@ -41,6 +41,9 @@
         UIGraphicsEndImageContext();
         
         self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+        
+        UIBarButtonItem *exitButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(exit)];
+        self.navigationItem.leftBarButtonItem = exitButton;
     }
     return self;
 }
@@ -102,16 +105,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+        cell.backgroundColor = [UIColor clearColor];
+        // TODO: this doesn't seem to work...
+        cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];    }
     
-    cell.backgroundColor = [UIColor clearColor];
-    // TODO: this doesn't seem to work...
-    cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];
     
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     
