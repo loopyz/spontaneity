@@ -97,9 +97,9 @@
 
 - (void)addTitle
 {
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-    titleImageView.frame = CGRectMake(40, 10, 124, 30);
+    titleImageView.frame = CGRectMake(30, 10, 124, 30);
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
 }
@@ -114,7 +114,6 @@
     
     [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* interest = snapshot.name;
-        NSLog(@"Interest added: %@", interest);
         [self.interests addObject:interest];
     }];
     
@@ -315,7 +314,7 @@
 - (void)submitNewEvent:(id)sender
 {
     NSLog(@"Submitted a new event!");
-    NSString *description = [NSString stringWithFormat:@"%ld people needed. Created by Spontaneity", (long)_neededPeople];
+    NSString *description = [NSString stringWithFormat:@"People needed: %ld. Created by Spontaneity", (long)_neededPeople];
     
     [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
         andDescription:description];
@@ -323,8 +322,6 @@
 
 - (NSString*)dateToString:(NSDate*)date
 {
-    if (!date)
-        NSLog(@"no date!");
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZ'"];
     return [formatter stringFromDate:date];
@@ -349,9 +346,6 @@
                             nil
                             ];
     
-    for(id key in params)
-        NSLog(@"=== %@:%@ ===", key, [params objectForKey:key]);
-    
     /* make the API call */
     [FBRequestConnection startWithGraphPath:@"/me/events"
                                  parameters:params
@@ -361,17 +355,20 @@
                                               id result,
                                               NSError *error
                                               ) {
-                              /* handle the result */
+                              
                               AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                              if (!error && result)
-                              {
-                                  // TODO: add to Firebase
+                              if (!error && result) {
+                                  // Add event to Firebase under user's events
+                                  NSString* username = appDelegate.username;
+                                  Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
+                                                             childByAppendingPath:username] childByAppendingPath:@"events"];
+                                  
+                                  // TODO: Add to events on Firebase based on interest category
+                                  [[eventsRef childByAutoId] setValue:result[@"id"]];
+                                  NSLog(@"Created event %@", result[@"id"]);
                                   
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
-                              } else
-                              {
-                                  NSLog(error.description);
-                                  NSLog(error.debugDescription);
+                              } else {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
                           }];
