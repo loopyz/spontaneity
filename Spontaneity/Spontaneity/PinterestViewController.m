@@ -130,8 +130,6 @@
                                   [[interestRef childByAutoId] setValue:result[@"id"]];
                                   NSLog(@"Created event %@", result[@"id"]);
                                   
-                                  // TODO: test if people like the message
-                                  //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                                   [self exit];
                                   
                               } else {
@@ -184,13 +182,22 @@
 {
     NSString *name = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"name"];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, self.view.bounds.size.width, 100.0)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, self.view.bounds.size.width, 100.0)];
+    title.text = name;
     title.textAlignment =  NSTextAlignmentCenter;
     title.textColor = [UIColor whiteColor];
     title.backgroundColor = [UIColor clearColor];
-    title.font = [UIFont fontWithName:@"Helvetica" size:(32)];
+    
+    double size = 28.0;
+    int length = [title.text length];
+    if (length == 0)
+        length = 1;
+    if (length > 36)
+    {
+        size = size*36/length;
+    }
+    title.font = [UIFont fontWithName:@"Helvetica" size:size];
     [self.view addSubview:title];
-    title.text = name;
     
     NSMutableDictionary *dict = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"categorized_ingredients"];
     NSMutableArray *ingredients = [[NSMutableArray alloc] initWithObjects:nil];

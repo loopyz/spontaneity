@@ -179,7 +179,7 @@ NSDictionary *titles;
     double size = 20.0;
     if ([place length]) {
         NSString *text = [@"Place: " stringByAppendingString:place];
-        label.text =text;
+        label.text = text;
         int length = [text length];
         if (length == 0)
             length = 1;
