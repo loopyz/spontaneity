@@ -7,6 +7,11 @@
 //
 
 #import "PinterestViewController.h"
+#import "AppDelegate.h"
+
+#import <Firebase/Firebase.h>
+
+#define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface PinterestViewController ()
 
@@ -20,6 +25,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+        // Initialize the root of our Firebase namespace.
+        self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+        
         /* Setting up navigation bar items */
         UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
         UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
@@ -55,6 +64,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self getThingToBake];
+    [self addSubmitButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +72,74 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)addSubmitButton
+{
+    UIImage *createButtonImage = [UIImage imageNamed:@"submit-button.png"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(createFacebookEvent)
+     forControlEvents:UIControlEventTouchDown];
+    
+    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 480, 247.95, 42.75);
+    [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
+    [self.view addSubview:button];
+}
+
+- (NSString*)dateToString:(NSDate*)date
+{
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ssZ'"];
+    return [formatter stringFromDate:date];
+}
+
+- (void)createFacebookEvent
+{
+    NSString *eventName = [@"Let's get baking! -- " stringByAppendingString:[[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"name"]];
+    NSString *description = @"Baking adventures. Created by Spontaneity";
+    
+    // NOTE: privacy type defaults to open
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            eventName, @"name",
+                            [self dateToString:[NSDate date]], @"start_time",
+                            @"Your place!", @"location",
+                            description, @"description",
+                            nil
+                            ];
+    
+    /* make the API call */
+    [FBRequestConnection startWithGraphPath:@"/me/events"
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              
+                              AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                              if (!error && result) {
+                                  // Add event to Firebase under user's events and interest category
+                                  NSString* username = appDelegate.username;
+                                  Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
+                                                          childByAppendingPath:username] childByAppendingPath:@"events"];
+                                  
+                                  Firebase* interestRef = [[self.firebase childByAppendingPath:@"events"] childByAppendingPath:@"baking"];
+                                  
+                                  [[eventsRef childByAutoId] setValue:result[@"id"]];
+                                  [[interestRef childByAutoId] setValue:result[@"id"]];
+                                  NSLog(@"Created event %@", result[@"id"]);
+                                  
+                                  // TODO: test if people like the message
+                                  //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
+                                  [self exit];
+                                  
+                              } else {
+                                  [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
+                              }
+                          }];
+}
+
 
 - (void)getThingToBake
 {
