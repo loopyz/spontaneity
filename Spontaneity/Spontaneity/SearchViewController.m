@@ -101,7 +101,6 @@
     
     [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* interest = snapshot.name;
-        NSLog(@"Interest added: %@", interest);
         [self.interests addObject:interest];
         [self.tableView reloadData];
     }];

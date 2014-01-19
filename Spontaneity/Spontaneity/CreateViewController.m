@@ -92,7 +92,6 @@
     
     [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* interest = snapshot.name;
-        NSLog(@"Interest added: %@", interest);
         [self.interests addObject:interest];
     }];
     
@@ -267,7 +266,7 @@
 - (void)submitNewEvent:(id)sender
 {
     NSLog(@"Submitted a new event!");
-    NSString *description = [NSString stringWithFormat:@"%ld people needed. Created by Spontaneity", (long)_neededPeople];
+    NSString *description = [NSString stringWithFormat:@"People needed: %ld. Created by Spontaneity", (long)_neededPeople];
     
     [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
         andDescription:description];

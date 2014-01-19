@@ -95,6 +95,40 @@
          ^(FBRequestConnection *connection, id result, NSError *error) {
              if (!error && result) {
                  event = result;
+                 
+                 // Store needed
+                 NSString *description = event[@"description"];
+                 NSRegularExpression *regex = [NSRegularExpression
+                                               regularExpressionWithPattern:@"People needed: (\\d+)\\." options:0 error:NULL];
+                 NSTextCheckingResult *match = [regex firstMatchInString:description options:0 range:NSMakeRange(0, [description length])];
+                 if ([match numberOfRanges] > 0)
+                 {
+                     event[@"needed"] = [description substringWithRange:[match rangeAtIndex:1]];
+                 } else
+                 {
+                     NSLog(@"Could not find people needed!");
+                     event[@"needed"] = @"1";
+                 }
+                 
+                 // Store formatted date and time
+                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                 NSString *input = event[@"start_time"];
+                 [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"]; //iso 8601 format
+                 NSDate *output = [dateFormat dateFromString:input];
+                 
+                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                 [formatter setDateFormat:@"h:mm a"];
+                 if (event[@"start_time"])
+                     event[@"time_formatted"] = [@"Time: " stringByAppendingString:[formatter stringFromDate:output]];
+                 else
+                     event[@"time_formatted"] = @"";
+                 [formatter setDateFormat:@"M/d/yy"];
+                 
+                 if (event[@"start_time"] != Nil)
+                     event[@"date_formatted"] = [@"Date: " stringByAppendingString:[formatter stringFromDate:output]];
+                 else
+                     event[@"date_formatted"] = @"";
+                 
              }
          }];
         
@@ -126,7 +160,7 @@
              completionHandler:
          ^(FBRequestConnection *connection, id result, NSError *error) {
              if (!error && result) {
-                 event[@"coverPhoto"] = [[result objectForKey:@"cover"] objectForKey:@"source"];
+                 event[@"coverPhoto"] = [result objectForKey:@"cover"] ? [[result objectForKey:@"cover"] objectForKey:@"source"] : @"";
              }
              
              event[@"ref"] = [snapshot ref];
@@ -250,12 +284,21 @@
     
     // Update cell name and description
     NSMutableDictionary* event = self.events[eventKey];
+    if (!event)
+    {
+        NSLog(@"Event not found: %@!", eventKey);
+        return cell;
+    }
+    
     NSLog(@"Updating event: %@", event[@"name"]);
     
     NSURL *url = [NSURL URLWithString:event[@"coverPhoto"]];
     
+    if (!url || !url.path)
+        NSLog(@"No cover photo for %@", event[@"name"]);
+    
     // TODO: pick more generic cover photo
-    UIImage *bgImg = url ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"adrenaline-bg.png"];
+    UIImage *bgImg = url && url.path ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"adrenaline-bg.png"];
     UIImage *blurredbg = [bgImg applyDarkEffect];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
@@ -271,28 +314,12 @@
     
     [self setupLabel:ttitle forCell:cell withText:event[@"name"] withSize:size];
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    NSString *input = event[@"start_time"];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"]; //iso 8601 format
-    NSDate *output = [dateFormat dateFromString:input];
 
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"h:mm a"];
-    NSString *time = [formatter stringFromDate:output];
-    [formatter setDateFormat:@"M/d/yy"];
-    NSString *date = [formatter stringFromDate:output];
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 320, 40)];
+    [self setupLabel:dateLabel forCell:cell withText:event[@"date_formatted"]];
     
-    // Date label
-    if ([date length]) {
-        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 320, 40)];
-        [self setupLabel:dateLabel forCell:cell withText:[@"Date: " stringByAppendingString:date]];
-    }
-    
-    // Time label
-    if ([time length]) {
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 42, 320, 40)];
-        [self setupLabel:timeLabel forCell:cell withText:[@"Time: " stringByAppendingString:time]];
-    }
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 42, 320, 40)];
+    [self setupLabel:timeLabel forCell:cell withText:event[@"time_formatted"]];
     
     // Address 1 label
     NSMutableDictionary *venue = event[@"venue"];
@@ -322,8 +349,7 @@
     [self setupLabel:numAttendingBar forCell:cell withText:@"|" withSize:28];
     
     UILabel *numNeededLabel = [[UILabel alloc] initWithFrame:CGRectMake(260, 50, 100, 40)];
-    [self setupLabel:numNeededLabel forCell:cell withText:@"10" withSize:28];
-    // TODO: un-hardcode later
+    [self setupLabel:numNeededLabel forCell:cell withText:event[@"needed"] withSize:28];
     
     // Attending label
     UILabel *attendingLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 120, 40)];
