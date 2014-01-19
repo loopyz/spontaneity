@@ -63,15 +63,15 @@ NSDictionary *titles;
         //[self startStandardUpdates];
         
         //creates background image
-        UIGraphicsBeginImageContext(self.view.frame.size);
+        //UIGraphicsBeginImageContext(self.view.frame.size);
         
         //TODO: randomly generate bg image based off event
         //[self addPlaceLabel];
-        [self addTimeLabel];
-        [self addInvitedLabel];
-        [self addNeededLabel];
-        [self addSubmitButton];
-        [self addTitle];
+        //[self addTimeLabel];
+        //[self addInvitedLabel];
+        //[self addNeededLabel];
+        //[self addSubmitButton];
+        //[self addTitle];
         
         
     }
@@ -305,18 +305,17 @@ NSDictionary *titles;
     [self.view addSubview:neededLabel];
 }
 
-- (void)addSubmitButton
+- (void)addButton:(NSString *)imageURL withSelector:(SEL)selector
 {
-    UIImage *createButtonImage = [UIImage imageNamed:@"submit-button.png"];
+    UIImage *createButtonImage = [UIImage imageNamed:imageURL];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
-               action:@selector(submitNewEvent:)
+               action:selector
      forControlEvents:UIControlEventTouchDown];
     
     button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 42.75);
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
-    
 }
 
 - (void)submitNewEvent:(id)sender
@@ -529,7 +528,7 @@ NSDictionary *titles;
     [self addTimeLabel];
     [self addInvitedLabel];
     [self addNeededLabel];
-    [self addSubmitButton];
+    //[self addSubmitButton];
     [self addTitle];
 }
 
@@ -552,11 +551,15 @@ NSDictionary *titles;
     NSArray *address;
     if ([self.randInterest isEqualToString:@"baking"])
     {
-        // TODO: unhardcode
+        [self addButton:@"submit-button.png" withSelector:@selector(pinterest)]; // recipe button
+        
+        // TODO: un-hardcode
         name = @"Yours!";
         address = @[@""];
     } else
     {
+        [self addButton:@"submit-button.png" withSelector:@selector(submitNewEvent:)];
+        
         NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
         
         NSLog(@"%@", url);

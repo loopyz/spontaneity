@@ -54,6 +54,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self getThingToBake];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,6 +65,7 @@
 
 - (void)getThingToBake
 {
+    NSLog(@"Getting thing to bake...");
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.pinterest.com/v3/pidgets/boards/pinterest/delicious-eats/pins/"]
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                        timeoutInterval:10];
