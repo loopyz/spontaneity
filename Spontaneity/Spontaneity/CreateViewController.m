@@ -632,53 +632,53 @@ NSDictionary *titles;
         }
     } else {
 
-    NSString *name;
-    NSArray *address;
-    if ([self.randInterest isEqualToString:@"baking"])
-    {
-        [self addButton:@"recipe-button.png" withSelector:@selector(openPinterestView)];
+        NSString *name;
+        NSArray *address;
+        if ([self.randInterest isEqualToString:@"baking"])
+        {
+            [self addButton:@"recipe-button.png" withSelector:@selector(openPinterestView)];
         
-        // TODO: un-hardcode
-        name = @"Yours!";
-        address = @[@""];
-    } else
-    {
-        [self addButton:@"submit-button.png" withSelector:@selector(submitNewEvent:)];
+            // TODO: un-hardcode
+            name = @"Yours!";
+            address = @[@""];
+        } else
+        {
+            [self addButton:@"submit-button.png" withSelector:@selector(submitNewEvent:)];
         
-        NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
         
-        NSLog(@"%@", url);
+            NSLog(@"%@", url);
         
-        //doing dat json stuff
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:10];
         
-        [request setHTTPMethod: @"GET"];
+            [request setHTTPMethod: @"GET"];
         
-        NSError *requestError;
-        NSURLResponse *urlResponse = nil;
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
         
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        NSError *jsonParsingError = nil;
-        self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
-                                                         options:0 error:&jsonParsingError];
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
         
-        NSArray *businesses = self.jsonItems[@"businesses"];
-        id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
         
-        name = randomObj[@"name"];
-        address = randomObj[@"location"][@"display_address"];
+            name = randomObj[@"name"];
+            address = randomObj[@"location"][@"display_address"];
         
-        if (!name)
-            name = @"";
-    }
+            if (!name)
+                name = @"";
+        }
     
-    [self addPlaceLabel:name address:address];
+        [self addPlaceLabel:name address:address];
 
-    _eventName = [[titles[self.randInterest] stringByAppendingString:@" -- "]
-                   stringByAppendingString:name];
-    _location = [address componentsJoinedByString:@", "];
+        _eventName = [[titles[self.randInterest] stringByAppendingString:@" -- "]
+                      stringByAppendingString:name];
+        _location = [address componentsJoinedByString:@", "];
     }
 }
 
