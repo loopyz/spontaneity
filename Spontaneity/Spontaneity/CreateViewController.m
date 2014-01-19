@@ -51,7 +51,7 @@ NSDictionary *titles;
                     @"baking": @"Go baking!",
                     @"bars": @"Thirsty?",
                     @"dining": @"Grab a bite!",
-                    @"parties": @"Can't stop Won't Stop",
+                    @"parties": @"Can't Stop Won't Stop",
                     @"beauty": @"You're beautiful.",
                     @"exercise": @"Work out time!",
                     @"games": @"You're never too old..."};
@@ -331,7 +331,7 @@ NSDictionary *titles;
                action:selector
      forControlEvents:UIControlEventTouchDown];
     
-    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 42.75);
+    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 45.16);
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
 }
@@ -343,6 +343,22 @@ NSDictionary *titles;
     
     [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
         andDescription:description];
+    
+    //send text to friends
+    
+    // Send text to customer
+    // TODO: de-hardcode this url zomg
+    NSString *urlAsString = [NSString stringWithFormat:@"http://twitterautomate.com/testapp/spontaneity.php"];
+    NSURL *url = [[NSURL alloc] initWithString:urlAsString];
+    
+    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            NSLog(@"Error %@; %@", error, [error localizedDescription]);
+        } else {
+            NSLog(@"Twilio'd");
+        }
+    }];
 }
 
 - (NSString*)dateToString:(NSDate*)date
