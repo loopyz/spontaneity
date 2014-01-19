@@ -464,9 +464,8 @@
     // TODO: fix clubbing photo
     self.view.backgroundColor = [UIColor darkGrayColor];
 
-    // TODO: remove hardcoding
-    _eventName = @"Chocolate Bar";
-    _location = @"Under the Sea";
+    _eventName = @"An Adventure";
+    _location = @"The Great Unkonwn";
     
 	// Do any additional setup after loading the view.
     [self loadAndUpdateInterests];
@@ -544,7 +543,8 @@
     
     [self addPlaceLabel:name address:address];
     
-    
+    _eventName = name;
+    _location = [address componentsJoinedByString:@"\n"];
 }
 
 
