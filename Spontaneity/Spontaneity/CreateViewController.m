@@ -40,36 +40,7 @@
         // Initialize the root of our Firebase namespace.
         self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
         
-        [self loadAndUpdateInterests];
-        
-        _editTimeClicks = 0;
-        _neededPeople = 5;
-        _dateTime = [self dateToNearest15Minutes];
-        
-        locationManager = [[CLLocationManager alloc] init];
-        [self startStandardUpdates];
-        
-        //creates background image
-        UIGraphicsBeginImageContext(self.view.frame.size);
-        
-        //TODO: randomly generate bg image based off event
-        [self addEventsDetailLabel];
-        //[self addPlaceLabel];
-        [self addTimeLabel];
-        [self addInvitedLabel];
-        [self addNeededLabel];
-        [self addSubmitButton];
-        [self addTitle];        
-        
-        /* Test Button for Pinterest */
-        UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
-        [pinterest addTarget:self
-                       action:@selector(pinterest)
-             forControlEvents:UIControlEventTouchDown];
-        [pinterest setImage:[UIImage imageNamed:@"close-button-2.png"]
-                    forState: UIControlStateNormal];
-        pinterest.frame = CGRectMake(self.view.bounds.size.width-40, 70, 30, 30);
-        [self.view addSubview:pinterest];
+        self.acceptLocation = false;
         
         
     }
@@ -78,6 +49,7 @@
 
 - (void)startStandardUpdates
 {
+    self.acceptLocation = true;
     // Create the location manager if this object does not
     // already have one.
     if (!locationManager)
@@ -110,16 +82,13 @@
     Firebase* interestsRef = [[[self.firebase childByAppendingPath:@"users"]
                                childByAppendingPath:username] childByAppendingPath:@"interests"];
     
-    [interestsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        NSString* interest = snapshot.name;
-        [self.interests addObject:interest];
-    }];
-    
-    [interestsRef observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"Interest deleted: %@", snapshot.name);
+    [interestsRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        // do some stuff once
         
-        [self.interests removeObject:snapshot.name];
-
+        NSDictionary *interestsDict = snapshot.value;
+        
+        self.interests = [interestsDict allKeys];
+        [self startStandardUpdates];
     }];
 }
 
@@ -183,9 +152,7 @@
     for (id obj in address) {
         
         NSString *final = [obj stringByAppendingString:s];
-        NSLog(@"%@", obj);
         [s appendString:[obj stringByAppendingString:@"\n"]];
-        NSLog(@"%@", s);
     }
     addressLabel.numberOfLines = 0;
     addressLabel.textColor = [UIColor whiteColor];
@@ -499,6 +466,33 @@
     _location = @"Under the Sea";
     
 	// Do any additional setup after loading the view.
+    [self loadAndUpdateInterests];
+    
+    _editTimeClicks = 0;
+    _neededPeople = 5;
+    _dateTime = [self dateToNearest15Minutes];
+    
+    //creates background image
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    
+    //TODO: randomly generate bg image based off event
+    [self addEventsDetailLabel];
+    //[self addPlaceLabel];
+    [self addTimeLabel];
+    [self addInvitedLabel];
+    [self addNeededLabel];
+    [self addSubmitButton];
+    [self addTitle];
+    
+    /* Test Button for Pinterest */
+    UIButton *pinterest = [UIButton buttonWithType:UIButtonTypeCustom];
+    [pinterest addTarget:self
+                  action:@selector(pinterest)
+        forControlEvents:UIControlEventTouchDown];
+    [pinterest setImage:[UIImage imageNamed:@"close-button-2.png"]
+               forState: UIControlStateNormal];
+    pinterest.frame = CGRectMake(self.view.bounds.size.width-40, 70, 30, 30);
+    [self.view addSubview:pinterest];
 }
 
 - (void)didReceiveMemoryWarning
@@ -558,22 +552,26 @@
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"Got location!");
-    //generate random interest
-    int numInterests = [self.interests count];
-    
-    if (numInterests > 0) {
-        printf("%s", "more than 0");
-        self.longitude = newLocation.coordinate.longitude;
-        self.latitude = newLocation.coordinate.latitude;
-        [self refreshActivity];
+    if (!self.acceptLocation)
+    {
+        NSLog(@"Die silly race condition!");
+        return;
     }
+    
+    self.acceptLocation = false;
+
+    [locationManager stopUpdatingLocation];
+    NSLog(@"Got location!");
+    
+    self.longitude = newLocation.coordinate.longitude;
+    self.latitude = newLocation.coordinate.latitude;
+    [self refreshActivity];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
 	// Handle error
-    printf("%s", "woof");
+    NSLog(@"Location error: %@; %@", error.debugDescription, error.description);
 }
 
 

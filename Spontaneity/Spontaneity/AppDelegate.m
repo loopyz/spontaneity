@@ -6,7 +6,7 @@
 //
 //
 
-#define FORCE_LOGOUT true
+#define FORCE_LOGOUT false
 
 #import <FacebookSDK/FacebookSDK.h>
 

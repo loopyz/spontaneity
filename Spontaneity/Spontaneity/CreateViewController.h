@@ -13,11 +13,13 @@
     CLLocationManager *locationManager;
 }
 
+- (id)initWithCallback:(void (^)(void))handler;
+
 @property (nonatomic) NSInteger editTimeClicks;
 @property (nonatomic) NSInteger neededPeople;
 @property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) UILabel *neededLabel;
-@property (nonatomic, strong) NSMutableArray *interests;
+@property (nonatomic, strong) NSArray *interests;
 @property (nonatomic, strong) Firebase *firebase;
 @property (nonatomic, strong) NSDictionary *jsonItems;
 @property (nonatomic, strong) NSString *randInterest;
@@ -28,5 +30,8 @@
 @property (strong, nonatomic) NSString *location;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
+@property (strong, nonatomic) void (^initCompletionHandler)();
+@property (nonatomic) BOOL acceptLocation;
+
 
 @end

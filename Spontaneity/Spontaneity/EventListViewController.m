@@ -212,7 +212,8 @@
 
 - (void)openCreateView
 {
-    CreateViewController *cvc = [[CreateViewController alloc] init];
+    CreateViewController *cvc;
+    cvc = [[CreateViewController alloc] init];
     [self.navigationController pushViewController:cvc animated:YES];
 }
 
