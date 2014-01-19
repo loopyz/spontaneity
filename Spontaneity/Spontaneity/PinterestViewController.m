@@ -95,8 +95,43 @@
     NSDictionary *richPin = [NSJSONSerialization JSONObjectWithData:response2 options:0 error:&jsonParsingError];
     
     pin = richPin;
+    NSLog(@"%@", pin);
+    if ([pin objectForKey:@"data"] != nil) {
+        [self updateLabels];
+    }
     
-    /* Change bg image! */
+}
+
+- (void)updateLabels
+{
+    NSString *name = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"name"];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, self.view.bounds.size.width, 100.0)];
+    title.textAlignment =  NSTextAlignmentCenter;
+    title.textColor = [UIColor whiteColor];
+    title.backgroundColor = [UIColor clearColor];
+    title.font = [UIFont fontWithName:@"Helvetica" size:(32)];
+    [self.view addSubview:title];
+    title.text = name;
+    
+    NSMutableDictionary *dict = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"categorized_ingredients"];
+    NSMutableArray *ingredients = [[NSMutableArray alloc] initWithObjects:nil];
+    for (NSDictionary *d in dict) {
+        [ingredients addObject:[[[d objectForKey:@"ingredients"] objectAtIndex:0]
+                                objectForKey:@"name"]];
+    }
+    for (int i = 0; i < [ingredients count]; i ++) {
+        UILabel *ingrLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(15, 120.0 + i*25, self.view.bounds.size.width, 43.0)];
+        ingrLabel.textAlignment =  NSTextAlignmentLeft;
+        ingrLabel.textColor = [UIColor whiteColor];
+        ingrLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:(20.0)];
+        [self.view addSubview:ingrLabel];
+        ingrLabel.text = [ingredients objectAtIndex:i];
+    }
+    
+    UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Pinterest-logo.png"]];
+    pinImageView.frame = CGRectMake(self.view.bounds.size.width/2-25, self.view.bounds.size.height - 150, 50, 50);
+    [self.view addSubview:pinImageView];
 }
 
 @end
