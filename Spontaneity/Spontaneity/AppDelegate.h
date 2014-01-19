@@ -25,5 +25,6 @@
 - (void)userLoggedIn;
 - (void)userLoggedOut;
 - (void)showMessage:(NSString *)text withTitle:(NSString *)title;
+- (void)logout;
 
 @end

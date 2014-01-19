@@ -26,6 +26,13 @@
 @synthesize eventKeys;
 @synthesize events;
 
+- (IBAction)logoutButtonTouched:(id)sender
+{
+    NSLog(@"Logout initiated.");
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate logout];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,6 +44,13 @@
         UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
         titleImageView.frame = CGRectMake(30, 10, 124, 30);
         [logoView addSubview:titleImageView];
+        
+        UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        logoutButton.frame = CGRectMake(50,0,100,50);
+        [logoutButton addTarget:self action:@selector(logoutButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [logoView addSubview:logoutButton];
+        
+        
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
         UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"red-search-small.png"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
         UIColor *gray = [UIColor colorWithRed:186/255.0f green:184/255.0f blue:184/255.0f alpha:1.0f];
