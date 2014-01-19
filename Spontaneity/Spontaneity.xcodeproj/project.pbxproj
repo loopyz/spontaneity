@@ -88,6 +88,7 @@
 		0B41CEBC188AC98800DAB725 /* close-button-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41CEBA188AC98800DAB725 /* close-button-2@2x.png */; };
 		0B41CF41188AEB5A00DAB725 /* PinterestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41CF40188AEB5A00DAB725 /* PinterestViewController.m */; };
 		0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B41CF43188AEF1F00DAB725 /* Pinterest.framework */; };
+		0B41D06A188BABDD00DAB725 /* RNFrostedSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B41D069188BABDD00DAB725 /* RNFrostedSidebar.m */; };
 		0B745890188A08FC00F0EE6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B74588F188A08FC00F0EE6E /* Foundation.framework */; };
 		0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745891188A08FC00F0EE6E /* CoreGraphics.framework */; };
 		0B745894188A08FC00F0EE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745893188A08FC00F0EE6E /* UIKit.framework */; };
@@ -247,6 +248,8 @@
 		0B41CF40188AEB5A00DAB725 /* PinterestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestViewController.m; sourceTree = "<group>"; };
 		0B41CF43188AEF1F00DAB725 /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
 		0B41CF45188AEF1F00DAB725 /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
+		0B41D068188BABDD00DAB725 /* RNFrostedSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFrostedSidebar.h; sourceTree = "<group>"; };
+		0B41D069188BABDD00DAB725 /* RNFrostedSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFrostedSidebar.m; sourceTree = "<group>"; };
 		0B74588C188A08FC00F0EE6E /* Spontaneity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spontaneity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B74588F188A08FC00F0EE6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B745891188A08FC00F0EE6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -569,6 +572,8 @@
 				0B41CD96188A585A00DAB725 /* JoinEventViewController.m */,
 				F3DBDA87188AE1C20068A17D /* UIImage+ImageEffects.h */,
 				F3DBDA88188AE1C20068A17D /* UIImage+ImageEffects.m */,
+				0B41D068188BABDD00DAB725 /* RNFrostedSidebar.h */,
+				0B41D069188BABDD00DAB725 /* RNFrostedSidebar.m */,
 				0B41CE00188A97F300DAB725 /* images */,
 				0B7458A1188A08FC00F0EE6E /* Images.xcassets */,
 				0B745896188A08FC00F0EE6E /* Supporting Files */,
@@ -811,6 +816,7 @@
 			files = (
 				0B2FCB28188A0A7C0076D96E /* InterestsViewController.m in Sources */,
 				0B2FCB34188A0B0D0076D96E /* EventListViewController.m in Sources */,
+				0B41D06A188BABDD00DAB725 /* RNFrostedSidebar.m in Sources */,
 				0B41CF41188AEB5A00DAB725 /* PinterestViewController.m in Sources */,
 				0B41CD97188A585A00DAB725 /* JoinEventViewController.m in Sources */,
 				0B7458A0188A08FC00F0EE6E /* AppDelegate.m in Sources */,
