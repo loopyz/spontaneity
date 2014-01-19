@@ -163,7 +163,7 @@
     label.frame = CGRectMake(20, 50, 1000, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-Oblique" size:35.0];
+    label.font = [UIFont fontWithName:@"Helvetica-Oblique" size:30.0];
     
     //adds event details label
     [self.view addSubview:label];
@@ -183,12 +183,13 @@
     
     NSMutableString *s = [[NSMutableString alloc] init];
     for (id obj in address) {
+        
         NSString *final = [obj stringByAppendingString:s];
         NSLog(@"%@", obj);
         [s appendString:[obj stringByAppendingString:@"\n"]];
         NSLog(@"%@", s);
     }
-    
+    addressLabel.numberOfLines = 0;
     addressLabel.textColor = [UIColor whiteColor];
     addressLabel.text = s;
     
@@ -196,8 +197,8 @@
     addressLabel.layer.shadowOffset = CGSizeMake(0.0, 0.4);
     addressLabel.layer.shadowOpacity = 1.0;
     
-    addressLabel.frame = CGRectMake(94, 122, 400, 100);
-    addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:13.0];
+    addressLabel.frame = CGRectMake(80, 116, 400, 100);
+    addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:11.0];
     
     
     //creates shadow
@@ -206,10 +207,10 @@
     label.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 100, 400, 100);
+    label.frame = CGRectMake(20, 80, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //adds event details label
     [self.view addSubview:label];
@@ -236,7 +237,7 @@
     timeLabel.frame = CGRectMake(20, 170, 400, 100);
     
     //set font style/text
-    timeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    timeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //add up and down arrows
     [self addTimeArrowButtons:220 y:170];
@@ -262,7 +263,7 @@
     label.frame = CGRectMake(20, 240, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //adds event details label
     [self.view addSubview:label];
@@ -288,7 +289,7 @@
     neededLabel.frame = CGRectMake(20, 310, 400, 100);
     
     //set font style/text
-    neededLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:25.0];
+    neededLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //add up and down arrows
     [self addNeededArrowButtons:220 y:310];
