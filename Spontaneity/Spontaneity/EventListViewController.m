@@ -43,6 +43,7 @@
         self.navigationItem.titleView = logoView;
         self.navigationItem.rightBarButtonItem = createButton;
         self.navigationItem.leftBarButtonItem = searchButton;
+       
         
     }
     return self;
@@ -104,10 +105,9 @@
                  if ([match numberOfRanges] > 0)
                  {
                      event[@"needed"] = [description substringWithRange:[match rangeAtIndex:1]];
-                     NSLog(@"WOOHOO~~~ %@ people needed in %@!", event[@"needed"], event[@"name"]);
                  } else
                  {
-                     NSLog(@"Could not find people needed in %@!", event[@"name"]);
+                     //NSLog(@"Could not find people needed in %@!", event[@"name"]);
                      event[@"needed"] = @"1";
                  }
                  
@@ -169,6 +169,7 @@
              // Store event in events array
              [self.events setObject:event forKey:eventKey];
              [self.tableView reloadData];
+             
          }];
         
         [connection start];

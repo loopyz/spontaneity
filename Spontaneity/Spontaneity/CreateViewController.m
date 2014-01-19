@@ -42,8 +42,6 @@
         
         [self loadAndUpdateInterests];
         
-        
-        
         _editTimeClicks = 0;
         _neededPeople = 5;
         _dateTime = [self dateToNearest15Minutes];
@@ -82,7 +80,7 @@
 {
     // Create the location manager if this object does not
     // already have one.
-    if (nil == locationManager)
+    if (!locationManager)
         locationManager = [[CLLocationManager alloc] init];
     
     locationManager.delegate = self;
@@ -136,10 +134,10 @@
     [self.navigationController pushViewController:pvc animated:YES];
 }
 
-- (void)addBackgroundImage:(NSString*)interest
+- (void)addBackgroundImage:(NSString *)interest
 {
     NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
-    NSLog(@"@", imageS);
+    NSLog(@"Setting background to: %@", imageS);
     [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -345,11 +343,10 @@
                                   
                                   // TODO: test if people like the message
                                   //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
+                                  [self exit];
                               } else {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
-                              
-                              [self exit];
                           }];
 }
 
@@ -477,8 +474,6 @@
     _location = @"Under the Sea";
     
 	// Do any additional setup after loading the view.
-    
-    printf("%s", "end of didload");
 }
 
 - (void)didReceiveMemoryWarning
@@ -491,10 +486,11 @@
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
     NSString* randInterest = [self.interests objectAtIndex:rnd];
+    NSLog(@"Random interest: %@", randInterest);
     
     [self addBackgroundImage:randInterest];
     
-    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",",self.longitude];
+    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",", self.longitude];
     
     NSLog(@"%@", url);
     
@@ -517,6 +513,8 @@
     NSArray* allKeys = [self.jsonItems allKeys];
     id randomKey = allKeys[arc4random_uniform([allKeys count])];
     id randomObject = self.jsonItems[randomKey];
+    
+    NSLog(@"Got random object %@", randomObject);
 
     
     [self addPlaceLabel];
@@ -532,8 +530,9 @@
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation
 {
+    NSLog(@"Got location!");
     //generate random interest
-    int numInterests = [interests count];
+    int numInterests = [self.interests count];
     
     if (numInterests > 0) {
         printf("%s", "more than 0");

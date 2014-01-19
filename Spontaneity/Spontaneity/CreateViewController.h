@@ -23,7 +23,6 @@
 @property (nonatomic, strong) NSString *randInterest;
 
 
-
 @property (strong, nonatomic) NSString *eventName;
 @property (strong, nonatomic) NSDate *dateTime;
 @property (strong, nonatomic) NSString *location;
