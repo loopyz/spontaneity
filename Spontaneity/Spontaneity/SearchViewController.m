@@ -189,7 +189,7 @@
             UIImage *bgImg =[UIImage imageNamed:@"games-cat-2.png"];
             cell.backgroundView = [[UIImageView alloc] initWithImage:[bgImg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
         }
-    } else if ([interest isEqual:@"college parties"]) {
+    } else if ([interest isEqual:@"parties"]) {
         cell = [tableView dequeueReusableCellWithIdentifier:PartyCellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PartyCellIdentifier];
