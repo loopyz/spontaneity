@@ -584,11 +584,13 @@ NSDictionary *titles;
         
         name = randomObj[@"name"];
         address = randomObj[@"location"][@"display_address"];
+        
+        if (!name)
+            name = @"";
     }
     
     [self addPlaceLabel:name address:address];
 
-    
     _eventName = [[titles[self.randInterest] stringByAppendingString:@" -- "]
                    stringByAppendingString:name];
     _location = [address componentsJoinedByString:@", "];
