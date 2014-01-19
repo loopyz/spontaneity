@@ -222,9 +222,21 @@
         ingrLabel.text = [ingredients objectAtIndex:i];
     }
     
-    UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pinterest.png"]];
-    pinImageView.frame = CGRectMake(30, self.view.bounds.size.height - 150, 96.5, 96.5);
-    [self.view addSubview:pinImageView];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(30, self.view.bounds.size.height - 150, 96.5, 96.5);
+    [button setBackgroundImage:[UIImage imageNamed:@"pinterest.png"] forState:UIControlStateNormal];
+    [button addTarget:self
+               action:@selector(pinIt:)
+     forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:button];
+}
+
+- (void)pinIt:(id)sender
+{
+    Pinterest *_pinterest;
+    [_pinterest createPinWithImageURL:[[[pin objectForKey:@"data"] objectForKey:@"pin"] objectForKey:@"image_large_url"]
+                            sourceURL:[[[pin objectForKey:@"data"] objectForKey:@"pin"] objectForKey:@"link"]
+                          description:@"Pinning from Spontaneity"];
 }
 
 @end

@@ -102,6 +102,7 @@
 		0B7458AB188A08FC00F0EE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B745893188A08FC00F0EE6E /* UIKit.framework */; };
 		0B7458B3188A08FC00F0EE6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B7458B1188A08FC00F0EE6E /* InfoPlist.strings */; };
 		0B7458B5188A08FC00F0EE6E /* SpontaneityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */; };
+		0B7F5C00188BFA1F00CBB785 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7F5BFF188BFA1F00CBB785 /* Firebase.framework */; };
 		F3DBDA76188A5D430068A17D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA75188A5D430068A17D /* libicucore.dylib */; };
 		F3DBDA78188A5D4B0068A17D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA77188A5D4B0068A17D /* libc++.dylib */; };
 		F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA79188A5D520068A17D /* CFNetwork.framework */; };
@@ -140,9 +141,7 @@
 		F3DBDAC1188AF28E0068A17D /* technology-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAAC188AF28E0068A17D /* technology-bg@2x.png */; };
 		F3DBDAC5188AFC820068A17D /* red-search.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAC4188AFC820068A17D /* red-search.png */; };
 		F3DBDAC7188AFD010068A17D /* red-search-small.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAC6188AFD010068A17D /* red-search-small.png */; };
-		F3DBDAC9188B403A0068A17D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDAC8188B403A0068A17D /* Firebase.framework */; };
 		F3DBDACB188B40520068A17D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDACA188B40520068A17D /* FacebookSDK.framework */; };
-		F3DBDACD188B40690068A17D /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDACC188B40690068A17D /* Pinterest.framework */; };
 		F3DBDAD0188BA0960068A17D /* parties-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDACE188BA0960068A17D /* parties-bg.png */; };
 		F3DBDAD1188BA0960068A17D /* parties-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDACF188BA0960068A17D /* parties-bg@2x.png */; };
 		F3DBDAD4188BA1740068A17D /* exercise-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAD2188BA1740068A17D /* exercise-bg.png */; };
@@ -274,6 +273,7 @@
 		0B7458B0188A08FC00F0EE6E /* SpontaneityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpontaneityTests-Info.plist"; sourceTree = "<group>"; };
 		0B7458B2188A08FC00F0EE6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpontaneityTests.m; sourceTree = "<group>"; };
+		0B7F5BFF188BFA1F00CBB785 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../../Downloads/Firebase.framework; sourceTree = "<group>"; };
 		F3DBDA75188A5D430068A17D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F3DBDA77188A5D4B0068A17D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F3DBDA79188A5D520068A17D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -313,9 +313,7 @@
 		F3DBDAAC188AF28E0068A17D /* technology-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "technology-bg@2x.png"; sourceTree = "<group>"; };
 		F3DBDAC4188AFC820068A17D /* red-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-search.png"; sourceTree = "<group>"; };
 		F3DBDAC6188AFD010068A17D /* red-search-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-search-small.png"; sourceTree = "<group>"; };
-		F3DBDAC8188B403A0068A17D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../Firebase.framework; sourceTree = "<group>"; };
 		F3DBDACA188B40520068A17D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		F3DBDACC188B40690068A17D /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pinterest.framework; path = ../../PinItSDKiOS/Pinterest.embeddedframework/Pinterest.framework; sourceTree = "<group>"; };
 		F3DBDACE188BA0960068A17D /* parties-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parties-bg.png"; sourceTree = "<group>"; };
 		F3DBDACF188BA0960068A17D /* parties-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parties-bg@2x.png"; sourceTree = "<group>"; };
 		F3DBDAD2188BA1740068A17D /* exercise-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exercise-bg.png"; sourceTree = "<group>"; };
@@ -332,12 +330,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B7F5C00188BFA1F00CBB785 /* Firebase.framework in Frameworks */,
 				0B41CF46188AEF3400DAB725 /* Pinterest.framework in Frameworks */,
-				F3DBDACD188B40690068A17D /* Pinterest.framework in Frameworks */,
 				F3DBDA7E188A5D600068A17D /* SystemConfiguration.framework in Frameworks */,
 				F3DBDA7C188A5D590068A17D /* Security.framework in Frameworks */,
 				F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */,
-				F3DBDAC9188B403A0068A17D /* Firebase.framework in Frameworks */,
 				F3DBDA78188A5D4B0068A17D /* libc++.dylib in Frameworks */,
 				F3DBDA76188A5D430068A17D /* libicucore.dylib in Frameworks */,
 				0B745892188A08FC00F0EE6E /* CoreGraphics.framework in Frameworks */,
@@ -553,9 +550,8 @@
 		0B74588E188A08FC00F0EE6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F3DBDACC188B40690068A17D /* Pinterest.framework */,
+				0B7F5BFF188BFA1F00CBB785 /* Firebase.framework */,
 				F3DBDACA188B40520068A17D /* FacebookSDK.framework */,
-				F3DBDAC8188B403A0068A17D /* Firebase.framework */,
 				0B41CF42188AEF1F00DAB725 /* Pinterest.embeddedframework */,
 				F3DBDA7D188A5D600068A17D /* SystemConfiguration.framework */,
 				F3DBDA7B188A5D590068A17D /* Security.framework */,
@@ -982,6 +978,7 @@
 					/Users/gregory/MHacks,
 					/Users/gregory/Documents/FacebookSDK,
 					/Users/gregory/MHacks/PinItSDKiOS/Pinterest.embeddedframework,
+					/Users/Angela/Downloads,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
@@ -1008,6 +1005,7 @@
 					/Users/gregory/MHacks,
 					/Users/gregory/Documents/FacebookSDK,
 					/Users/gregory/MHacks/PinItSDKiOS/Pinterest.embeddedframework,
+					/Users/Angela/Downloads,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spontaneity/Spontaneity-Prefix.pch";
