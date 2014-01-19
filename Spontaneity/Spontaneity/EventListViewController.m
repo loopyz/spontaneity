@@ -301,6 +301,21 @@
     [cell.contentView addSubview:label];
 }
 
+- (UIImage *)randomBgImg
+{
+    NSArray* bgs = @[@"adrenaline-bg.png",
+      @"clubbing-bg.png",
+      @"baking-bg.png",
+      @"bars-bg.png",
+      @"dining-bg.png",
+      @"parties-bg.png",
+      @"beauty-bg.png",
+      @"exercise-bg.png",
+      @"games-bg.png"];
+    
+    return [UIImage imageNamed:bgs[arc4random() % [bgs count]]];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -345,7 +360,7 @@
         NSLog(@"No cover photo for %@", event[@"name"]);
     
     // TODO: pick more generic cover photo
-    UIImage *bgImg = url && url.path ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [UIImage imageNamed:@"adrenaline-bg.png"];
+    UIImage *bgImg = url && url.path ? [[UIImage alloc] initWithData:[[NSData alloc]initWithContentsOfURL:url]] : [self randomBgImg];
     UIImage *blurredbg = [bgImg applyDarkEffect];
     cell.backgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[blurredbg stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
