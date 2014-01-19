@@ -343,10 +343,13 @@
                                   [[eventsRef childByAutoId] setValue:result[@"id"]];
                                   NSLog(@"Created event %@", result[@"id"]);
                                   
-                                  [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
+                                  // TODO: test if people like the message
+                                  //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                               } else {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
+                              
+                              [self exit];
                           }];
 }
 
