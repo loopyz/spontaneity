@@ -178,6 +178,7 @@
     NSString *link = [pins objectForKey:@"link"];
     NSString *tmpLink = [@"https://api.pinterest.com/v3/rich_pins/validate/?link=" stringByAppendingString:link];
     NSString *validateLink = [tmpLink stringByAppendingString:@"&access_token=MTQzNTUzOTo0NDgzMTk0NzUzMTQzNDEyMzY6MXwxMzkwMDc5OTU1OjAtLTAxZTFiMjIwZThkNTNlYzRlNmU2MjBlMmVkYjExZmI5YjdlMzhkZGU="];
+    NSLog(validateLink);
     
     NSMutableURLRequest *req2 = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:validateLink]
                                                         cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -215,9 +216,9 @@
     int length = [title.text length];
     if (length == 0)
         length = 1;
-    if (length > 34)
+    if (length > 21)
     {
-        size = size*34/length;
+        size = size*21/length;
     }
     title.font = [UIFont fontWithName:@"Helvetica" size:size];
     [self.view addSubview:title];
