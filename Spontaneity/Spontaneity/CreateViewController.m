@@ -128,7 +128,7 @@ NSDictionary *titles;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)pinterest
+- (void)openPinterestView
 {
     PinterestViewController *pvc = [[PinterestViewController alloc] init];
     [self.navigationController pushViewController:pvc animated:YES];
@@ -551,7 +551,7 @@ NSDictionary *titles;
     NSArray *address;
     if ([self.randInterest isEqualToString:@"baking"])
     {
-        [self addButton:@"submit-button.png" withSelector:@selector(pinterest)]; // recipe button
+        [self addButton:@"recipe-button.png" withSelector:@selector(openPinterestView)];
         
         // TODO: un-hardcode
         name = @"Yours!";
