@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *interests;
 @property (nonatomic, strong) Firebase *firebase;
 @property (nonatomic, strong) NSDictionary *jsonItems;
+@property (nonatomic, strong) NSString *randInterest;
 
 
 

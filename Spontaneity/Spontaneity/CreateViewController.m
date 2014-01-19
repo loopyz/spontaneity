@@ -34,6 +34,16 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        // Initialize array that will store events and event keys.
+        self.interests = [[NSMutableArray alloc] init];
+        
+        // Initialize the root of our Firebase namespace.
+        self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+        
+        [self loadAndUpdateInterests];
+        
+        
+        
         _editTimeClicks = 0;
         _neededPeople = 5;
         _dateTime = [self dateToNearest15Minutes];
@@ -45,7 +55,6 @@
         UIGraphicsBeginImageContext(self.view.frame.size);
         
         //TODO: randomly generate bg image based off event
-        [self addBackgroundImage];
         [self addEventsDetailLabel];
         [self addPlaceLabel];
         [self addTimeLabel];
@@ -127,9 +136,11 @@
     [self.navigationController pushViewController:pvc animated:YES];
 }
 
-- (void)addBackgroundImage
+- (void)addBackgroundImage:(NSString*)interest
 {
-    [[UIImage imageNamed:@"college-bg.png"] drawInRect:self.view.bounds];
+    NSString *imageS = [interest stringByAppendingString:@"-bg.png"];
+    NSLog(@"@", imageS);
+    [[UIImage imageNamed:imageS] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -456,19 +467,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Initialize array that will store events and event keys.
-    self.interests = [[NSMutableArray alloc] init];
-    
-    // Initialize the root of our Firebase namespace.
-    self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
-    
-    [self loadAndUpdateInterests];
 
     // TODO: remove hardcoding
     _eventName = @"Chocolate Bar";
     _location = @"Under the Sea";
-    
-    [self loadAndUpdateInterests];
     
 	// Do any additional setup after loading the view.
     
@@ -485,6 +487,9 @@
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
     NSString* randInterest = [self.interests objectAtIndex:rnd];
+    
+    [self addBackgroundImage:randInterest];
+    
     NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", randInterest, self.latitude, @",",self.longitude];
     
     NSLog(@"%@", url);
@@ -504,6 +509,14 @@
     self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
                                                      options:0 error:&jsonParsingError];
     
+    uint32_t rnd2 = arc4random_uniform([self.jsonItems count]);
+    NSArray* allKeys = [self.jsonItems allKeys];
+    id randomKey = allKeys[arc4random_uniform([allKeys count])];
+    id randomObject = self.jsonItems[randomKey];
+
+    
+    [self addPlaceLabel];
+    
     
 }
 
@@ -519,6 +532,7 @@
     int numInterests = [interests count];
     
     if (numInterests > 0) {
+        printf("%s", "more than 0");
         self.longitude = newLocation.coordinate.longitude;
         self.latitude = newLocation.coordinate.latitude;
         [self refreshActivity];
