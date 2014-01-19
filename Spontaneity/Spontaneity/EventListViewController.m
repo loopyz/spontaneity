@@ -296,6 +296,13 @@
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    } else
+    {
+        // Clear old labels
+        for (UIView *v in cell.subviews) {
+            if ([v isKindOfClass:[UILabel class]])
+                [v removeFromSuperview];
+        }
     }
     
     //blurred images yayyy

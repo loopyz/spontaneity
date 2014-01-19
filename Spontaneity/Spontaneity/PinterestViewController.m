@@ -222,9 +222,9 @@
     int length = [title.text length];
     if (length == 0)
         length = 1;
-    if (length > 34)
+    if (length > 21)
     {
-        size = size*34/length;
+        size = size*21/length;
     }
     title.font = [UIFont fontWithName:@"Helvetica" size:size];
     [self.view addSubview:title];
