@@ -34,7 +34,6 @@
 @property (strong, nonatomic) NSString *location;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
-@property (strong, nonatomic) void (^initCompletionHandler)();
 @property (nonatomic) BOOL acceptLocation;
 
 

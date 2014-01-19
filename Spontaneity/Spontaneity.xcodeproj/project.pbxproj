@@ -150,6 +150,8 @@
 		F3DBDAD9188BB5170068A17D /* recipe-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAD7188BB5170068A17D /* recipe-button@2x.png */; };
 		F3DBDADC188BB5240068A17D /* join-button-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDADA188BB5240068A17D /* join-button-v2.png */; };
 		F3DBDADD188BB5240068A17D /* join-button-v2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDADB188BB5240068A17D /* join-button-v2@2x.png */; };
+		F3DBDAE0188BD1E30068A17D /* parties.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDADE188BD1E30068A17D /* parties.png */; };
+		F3DBDAE1188BD1E30068A17D /* parties@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDADF188BD1E30068A17D /* parties@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -321,6 +323,8 @@
 		F3DBDAD7188BB5170068A17D /* recipe-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipe-button@2x.png"; sourceTree = "<group>"; };
 		F3DBDADA188BB5240068A17D /* join-button-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "join-button-v2.png"; sourceTree = "<group>"; };
 		F3DBDADB188BB5240068A17D /* join-button-v2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "join-button-v2@2x.png"; sourceTree = "<group>"; };
+		F3DBDADE188BD1E30068A17D /* parties.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parties.png; sourceTree = "<group>"; };
+		F3DBDADF188BD1E30068A17D /* parties@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parties@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +487,8 @@
 			children = (
 				F3DBDA83188AD35D0068A17D /* baking.png */,
 				F3DBDA84188AD35D0068A17D /* baking@2x.png */,
+				F3DBDADE188BD1E30068A17D /* parties.png */,
+				F3DBDADF188BD1E30068A17D /* parties@2x.png */,
 				0B41CE4A188A97F300DAB725 /* adrenaline.png */,
 				0B41CE4B188A97F300DAB725 /* adrenaline@2x.png */,
 				0B41CE4C188A97F300DAB725 /* bars.png */,
@@ -710,6 +716,7 @@
 				0B41CE65188A97F300DAB725 /* down-arrow.png in Resources */,
 				0B41CE60188A97F300DAB725 /* checkmark-interest@2x.png in Resources */,
 				0B41CEB8188AC4CC00DAB725 /* baking@2x.png in Resources */,
+				F3DBDAE0188BD1E30068A17D /* parties.png in Resources */,
 				F3DBDAB5188AF28E0068A17D /* clubbing-bg.png in Resources */,
 				0B41CE6B188A97F300DAB725 /* horizontal-separator.png in Resources */,
 				F3DBDA85188AD35D0068A17D /* baking.png in Resources */,
@@ -800,6 +807,7 @@
 				0B41CEAB188A97F300DAB725 /* dining@2x.png in Resources */,
 				F3DBDABE188AF28E0068A17D /* sports-bg.png in Resources */,
 				0B41CE94188A97F300DAB725 /* clubbing-cat@2x.png in Resources */,
+				F3DBDAE1188BD1E30068A17D /* parties@2x.png in Resources */,
 				0B41CEA5188A97F300DAB725 /* bars@2x.png in Resources */,
 				F3DBDAB2188AF28E0068A17D /* bars-bg@2x.png in Resources */,
 				F3DBDAD0188BA0960068A17D /* parties-bg.png in Resources */,
