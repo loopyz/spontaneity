@@ -155,13 +155,6 @@
                           }];
 }
 
-- (void)pinIt:(id)sender
-{
-    [_pinterest createPinWithImageURL:@"http://placekitten.com/500/400"
-                            sourceURL:@"http://placekitten.com"
-                          description:@"Pinning from Pin It Demo"];
-}
-
 - (void)getThingToBake
 {
     NSLog(@"Getting thing to bake...");
@@ -257,7 +250,7 @@
 
 - (void)pinIt:(id)sender
 {
-    Pinterest *_pinterest;
+    //NSLog(@"%@, %@, %@", [[pin objectForKey:@"data"] objectForKey:@"pin"] , [[[pin objectForKey:@"data"] objectForKey:@"pin"] objectForKey:@"image_large_url"], [[[pin objectForKey:@"data"] objectForKey:@"pin"] objectForKey:@"link"]);
     [_pinterest createPinWithImageURL:[[[pin objectForKey:@"data"] objectForKey:@"pin"] objectForKey:@"image_large_url"]
                             sourceURL:[[[pin objectForKey:@"data"] objectForKey:@"pin"] objectForKey:@"link"]
                           description:@"Pinning from Spontaneity"];

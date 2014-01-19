@@ -103,6 +103,10 @@
 		0B7458B3188A08FC00F0EE6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B7458B1188A08FC00F0EE6E /* InfoPlist.strings */; };
 		0B7458B5188A08FC00F0EE6E /* SpontaneityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */; };
 		0B7F5C00188BFA1F00CBB785 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7F5BFF188BFA1F00CBB785 /* Firebase.framework */; };
+		0B7F5C03188BFB1C00CBB785 /* pinterest.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F5C01188BFB1C00CBB785 /* pinterest.png */; };
+		0B7F5C04188BFB1C00CBB785 /* pinterest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F5C02188BFB1C00CBB785 /* pinterest@2x.png */; };
+		0B7F5C07188BFB5100CBB785 /* recipe-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F5C05188BFB5100CBB785 /* recipe-check.png */; };
+		0B7F5C08188BFB5100CBB785 /* recipe-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7F5C06188BFB5100CBB785 /* recipe-check@2x.png */; };
 		F3DBDA76188A5D430068A17D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA75188A5D430068A17D /* libicucore.dylib */; };
 		F3DBDA78188A5D4B0068A17D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA77188A5D4B0068A17D /* libc++.dylib */; };
 		F3DBDA7A188A5D520068A17D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DBDA79188A5D520068A17D /* CFNetwork.framework */; };
@@ -274,6 +278,10 @@
 		0B7458B2188A08FC00F0EE6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B7458B4188A08FC00F0EE6E /* SpontaneityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpontaneityTests.m; sourceTree = "<group>"; };
 		0B7F5BFF188BFA1F00CBB785 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../../Downloads/Firebase.framework; sourceTree = "<group>"; };
+		0B7F5C01188BFB1C00CBB785 /* pinterest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinterest.png; sourceTree = "<group>"; };
+		0B7F5C02188BFB1C00CBB785 /* pinterest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinterest@2x.png"; sourceTree = "<group>"; };
+		0B7F5C05188BFB5100CBB785 /* recipe-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipe-check.png"; sourceTree = "<group>"; };
+		0B7F5C06188BFB5100CBB785 /* recipe-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipe-check@2x.png"; sourceTree = "<group>"; };
 		F3DBDA75188A5D430068A17D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F3DBDA77188A5D4B0068A17D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F3DBDA79188A5D520068A17D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -373,6 +381,10 @@
 		0B41CE01188A97F300DAB725 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				0B7F5C05188BFB5100CBB785 /* recipe-check.png */,
+				0B7F5C06188BFB5100CBB785 /* recipe-check@2x.png */,
+				0B7F5C01188BFB1C00CBB785 /* pinterest.png */,
+				0B7F5C02188BFB1C00CBB785 /* pinterest@2x.png */,
 				F3DBDAD6188BB5170068A17D /* recipe-button.png */,
 				F3DBDAD7188BB5170068A17D /* recipe-button@2x.png */,
 				F3DBDA7F188AD33F0068A17D /* close-button-2.png */,
@@ -723,6 +735,7 @@
 				0B41CE9D188A97F300DAB725 /* sports-cat.png in Resources */,
 				F3DBDA8F188AEE790068A17D /* bars@2x-cat.png in Resources */,
 				0B41CE68188A97F300DAB725 /* facebook@2x.png in Resources */,
+				0B7F5C04188BFB1C00CBB785 /* pinterest@2x.png in Resources */,
 				F3DBDA96188AEED90068A17D /* games-cat.png in Resources */,
 				0B41CEBB188AC98800DAB725 /* close-button-2.png in Resources */,
 				F3DBDAB6188AF28E0068A17D /* college-bg.png in Resources */,
@@ -730,6 +743,7 @@
 				0B41CEA0188A97F300DAB725 /* tech-cat.png in Resources */,
 				F3DBDAB8188AF28E0068A17D /* dining-bg.png in Resources */,
 				0B41CEB1188A97F300DAB725 /* sports@2x.png in Resources */,
+				0B7F5C08188BFB5100CBB785 /* recipe-check@2x.png in Resources */,
 				0B41CEA9188A97F300DAB725 /* clubbing@2x.png in Resources */,
 				F3DBDABF188AF28E0068A17D /* sports-bg@2x.png in Resources */,
 				0B41CE95188A97F300DAB725 /* clubbing@2x-cat.png in Resources */,
@@ -753,6 +767,7 @@
 				F3DBDAD1188BA0960068A17D /* parties-bg@2x.png in Resources */,
 				0B41CE61188A97F300DAB725 /* close-button.png in Resources */,
 				0B41CE8D188A97F300DAB725 /* adrenaline-cat@2x.png in Resources */,
+				0B7F5C07188BFB5100CBB785 /* recipe-check.png in Resources */,
 				0B41CEA4188A97F300DAB725 /* bars.png in Resources */,
 				F3DBDAD9188BB5170068A17D /* recipe-button@2x.png in Resources */,
 				0B41CEA2188A97F300DAB725 /* adrenaline.png in Resources */,
@@ -816,6 +831,7 @@
 				F3DBDABD188AF28E0068A17D /* games-bg@2x.png in Resources */,
 				F3DBDAD4188BA1740068A17D /* exercise-bg.png in Resources */,
 				F3DBDA93188AEE9C0068A17D /* baking-cat@2x.png in Resources */,
+				0B7F5C03188BFB1C00CBB785 /* pinterest.png in Resources */,
 				0B41CEAF188A97F300DAB725 /* games@2x.png in Resources */,
 				0B41CE75188A97F300DAB725 /* Slice 1@2x.png in Resources */,
 				0B41CE62188A97F300DAB725 /* close-button@2x.png in Resources */,
