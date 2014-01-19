@@ -14,4 +14,6 @@
 @property (nonatomic, strong) NSMutableArray* interests;
 @property (nonatomic, strong) Firebase* firebase;
 
+@property (nonatomic) bool done;
+
 @end
