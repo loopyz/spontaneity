@@ -245,7 +245,7 @@
     [button setBackgroundImage:[UIImage imageNamed:@"pinterest.png"] forState:UIControlStateNormal];
     [button addTarget:self
                action:@selector(pinIt:)
-     forControlEvents:UIControlEventTouchDown];
+     forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
 
