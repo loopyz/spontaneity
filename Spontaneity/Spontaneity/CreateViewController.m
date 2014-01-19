@@ -542,11 +542,96 @@ NSDictionary *titles;
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
     self.randInterest = [self.interests objectAtIndex:rnd];
-    NSLog(@"Random interest: %@", self.randInterest);
-    
     [self addBackgroundImage:self.randInterest];
     [self addEventsDetailLabel:self.randInterest];
     
+    if ([self.randInterest isEqualToString:@"exercise"]) {
+        int random = arc4random_uniform(5);
+        if (random == 0 || random == 1) {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=park&ll=%f%@%f", self.latitude, @",", self.longitude];
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+
+            [self addPlaceLabel:@"Go for a run at:" address:[NSArray arrayWithObjects:name, nil]];
+            
+            _eventName = @"Go for a run at:";
+            _location = [NSArray arrayWithObjects:name, nil];
+        }
+        
+        else if (random == 2 || random == 3 ) {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=swim&ll=%f%@%f", self.latitude, @",", self.longitude];
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+            
+            [self addPlaceLabel:@"Go for a swim at:" address:[NSArray arrayWithObjects:name, nil]];
+            
+            _eventName = @"Go for a swim at:";
+            _location = [NSArray arrayWithObjects:name, nil];
+        }
+        else {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
+            
+            NSLog(@"%@", url);
+            
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+            NSArray *address = randomObj[@"location"][@"display_address"];
+            
+            [self addPlaceLabel:name address:address];
+            
+            _eventName = name;
+            _location = [address componentsJoinedByString:@", "];
+        }
+    } else {
+
     NSString *name;
     NSArray *address;
     if ([self.randInterest isEqualToString:@"baking"])
@@ -594,6 +679,7 @@ NSDictionary *titles;
     _eventName = [[titles[self.randInterest] stringByAppendingString:@" -- "]
                    stringByAppendingString:name];
     _location = [address componentsJoinedByString:@", "];
+    }
 }
 
 
