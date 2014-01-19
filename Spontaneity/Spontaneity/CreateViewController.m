@@ -393,7 +393,8 @@
                                   NSLog(@"Created event %@", result[@"id"]);
                                   
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
-                              } else {
+                              } else
+                              {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
                           }];
@@ -560,16 +561,10 @@
     self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
                                                      options:0 error:&jsonParsingError];
     
-
-    NSArray *businesses = self.jsonItems[@"businesses"];
-    id randomObj = businesses[arc4random_uniform([businesses count])];
-    
-    NSString *name = randomObj[@"name"];
-    
-    NSArray *address = randomObj[@"location"][@"display_address"];
-    
-    NSLog(@"%@", address);
-    
+    //uint32_t rnd2 = arc4random_uniform([self.jsonItems count]);
+    NSArray* allKeys = [self.jsonItems allKeys];
+    id randomKey = allKeys[arc4random_uniform([allKeys count])];
+    id randomObject = self.jsonItems[randomKey];
 
     
     [self addPlaceLabel:name address:address];
@@ -586,7 +581,7 @@
           fromLocation:(CLLocation *)oldLocation
 {
     //generate random interest
-    int numInterests = [interests count];
+    NSUInteger numInterests = [interests count];
     
     if (numInterests > 0) {
         printf("%s", "more than 0");
