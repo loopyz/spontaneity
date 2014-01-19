@@ -340,7 +340,8 @@
                                                              childByAppendingPath:username] childByAppendingPath:@"events"];
                                   
                                   // TODO: Add to events on Firebase based on interest category
-                                  [[eventsRef childByAutoId] setValue:result];
+                                  [[eventsRef childByAutoId] setValue:result[@"id"]];
+                                  NSLog(@"Created event %@", result[@"id"]);
                                   
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                               } else {

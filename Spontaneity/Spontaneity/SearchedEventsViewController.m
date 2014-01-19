@@ -294,9 +294,10 @@
                  if ([match numberOfRanges] > 0)
                  {
                      event[@"needed"] = [description substringWithRange:[match rangeAtIndex:1]];
+                     NSLog(@"WOOHOO~~~ %@ people needed in %@!", event[@"needed"], event[@"name"]);
                  } else
                  {
-                     NSLog(@"Could not find people needed!");
+                     NSLog(@"Could not find people needed in %@!", event[@"name"]);
                      event[@"needed"] = @"1";
                  }
                  
