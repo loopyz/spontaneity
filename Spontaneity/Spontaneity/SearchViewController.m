@@ -45,9 +45,9 @@
 
 - (void)initNavBarItems
 {
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-    titleImageView.frame = CGRectMake(40, 10, 124, 30);
+    titleImageView.frame = CGRectMake(30, 10, 124, 30);
     [logoView addSubview:titleImageView];
     UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openCreateView)];
     

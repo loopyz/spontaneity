@@ -88,9 +88,9 @@
 
 - (void)addTitle
 {
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-    titleImageView.frame = CGRectMake(40, 10, 124, 30);
+    titleImageView.frame = CGRectMake(30, 10, 124, 30);
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
 }
@@ -320,17 +320,19 @@
                                               id result,
                                               NSError *error
                                               ) {
-                              /* handle the result */
+                              
                               AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                              if (!error && result)
-                              {
-                                  // TODO: add to Firebase
+                              if (!error && result) {
+                                  // Add event to Firebase under user's events
+                                  NSString* username = appDelegate.username;
+                                  Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
+                                                             childByAppendingPath:username] childByAppendingPath:@"events"];
+                                  
+                                  // TODO: Add to events on Firebase based on interest category
+                                  [[eventsRef childByAutoId] setValue:result];
                                   
                                   [appDelegate showMessage:@"Event created!" withTitle:@"Success"];
-                              } else
-                              {
-                                  NSLog(error.description);
-                                  NSLog(error.debugDescription);
+                              } else {
                                   [appDelegate showMessage:@"Error creating event, try again later" withTitle:@"Error"];
                               }
                           }];
