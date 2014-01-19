@@ -130,8 +130,6 @@
                                   [[interestRef childByAutoId] setValue:result[@"id"]];
                                   NSLog(@"Created event %@", result[@"id"]);
                                   
-                                  // TODO: test if people like the message
-                                  //[appDelegate showMessage:@"Event created!" withTitle:@"Success"];
                                   [self exit];
                                   
                               } else {
@@ -182,15 +180,32 @@
 
 - (void)updateLabels
 {
+    // Clear old labels
+    for (UIView *v in self.view.subviews) {
+        if ([v isKindOfClass:[UILabel class]])
+            [v removeFromSuperview];
+     }
+    
     NSString *name = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"name"];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, self.view.bounds.size.width, 100.0)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 340, 100)];
+    title.text = name;
     title.textAlignment =  NSTextAlignmentCenter;
     title.textColor = [UIColor whiteColor];
     title.backgroundColor = [UIColor clearColor];
-    title.font = [UIFont fontWithName:@"Helvetica" size:(32)];
+    
+    double size = 28.0;
+    int length = [title.text length];
+    if (length == 0)
+        length = 1;
+    if (length > 34)
+    {
+        size = size*34/length;
+    }
+    title.font = [UIFont fontWithName:@"Helvetica" size:size];
     [self.view addSubview:title];
-    title.text = name;
+    
+    if (!pin || !pin[@"data"]) return;
     
     NSMutableDictionary *dict = [[[[pin objectForKey:@"data"] objectForKey:@"rich_data"] objectForKey:@"recipe"] objectForKey:@"categorized_ingredients"];
     NSMutableArray *ingredients = [[NSMutableArray alloc] initWithObjects:nil];

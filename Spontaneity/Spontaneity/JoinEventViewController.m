@@ -92,11 +92,11 @@
 - (void)addLabels
 {
     UILabel *ttitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 80, 320, 40)];
-    int size = 30;
+    double size = 28.0;
     int length = [event[@"name"] length];
-    if (length > 32)
+    if (length > 36)
     {
-        size = size*32/length;
+        size = size*36/length;
     }
     
     [self setupLabel:ttitle forView:self.view withText:self.event[@"name"] withSize:size];

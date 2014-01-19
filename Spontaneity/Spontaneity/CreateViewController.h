@@ -18,6 +18,7 @@
 
 @property (nonatomic) NSInteger editTimeClicks;
 @property (nonatomic) NSInteger neededPeople;
+@property (strong, nonatomic) UILabel *eventLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) UILabel *placeLabel;
 @property (strong, nonatomic) UILabel *addressLabel;

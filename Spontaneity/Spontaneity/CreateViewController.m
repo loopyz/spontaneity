@@ -24,6 +24,7 @@
 @implementation CreateViewController
 
 
+@synthesize eventLabel;
 @synthesize timeLabel;
 @synthesize neededLabel;
 @synthesize interests;
@@ -78,9 +79,6 @@ NSDictionary *titles;
         UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshActivity)];
         self.navigationItem.rightBarButtonItem = refreshButton;
         [refreshButton setTintColor:gray];
-
-
-        
         
     }
     return self;
@@ -156,38 +154,46 @@ NSDictionary *titles;
 
 - (void)addEventsDetailLabel:(NSString*)interest
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
+    if (!self.eventLabel)
+        self.eventLabel = [[UILabel alloc] init];
+    else
+        self.eventLabel.text = @"";
     
-    label.text = titles[interest];
-    if (!label.text)
-        label.text = @"Fun times";
+    self.eventLabel.textColor = [UIColor whiteColor];
+    
+    self.eventLabel.text = titles[interest];
+    if (!self.eventLabel.text)
+        self.eventLabel.text = @"Fun times";
     
     //creates shadow
-    label.layer.shadowColor = [[UIColor blackColor] CGColor];
-    label.layer.shadowOffset = CGSizeMake(0.0, 1.0);
-    label.layer.shadowOpacity = 1.0;
+    self.eventLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.eventLabel.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    self.eventLabel.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 50, 1000, 100);
+    self.eventLabel.frame = CGRectMake(20, 50, 500, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-Oblique" size:30.0];
+    self.eventLabel.font = [UIFont fontWithName:@"Helvetica-Oblique" size:30.0];
     
     //adds event details label
-    [self.view addSubview:label];
+    [self.view addSubview:self.eventLabel];
     
 }
 
 - (void)addPlaceLabel:(NSString*)place address:(NSArray*)address
 {
-    self.placeLabel = [[UILabel alloc] init];
+    if (!self.placeLabel)
+        self.placeLabel = [[UILabel alloc] init];
+    else
+        self.placeLabel.text = @"";
+    
     self.placeLabel.textColor = [UIColor whiteColor];
     
     double size = 20.0;
     if ([place length]) {
         NSString *text = [@"Place: " stringByAppendingString:place];
-        self.placeLabel.text =text;
+        self.placeLabel.text = text;
         int length = [text length];
         if (length == 0)
             length = 1;
@@ -197,7 +203,10 @@ NSDictionary *titles;
         }
     }
     
-    self.addressLabel = [[UILabel alloc] init];
+    if (!self.addressLabel)
+        self.addressLabel = [[UILabel alloc] init];
+    else
+        self.addressLabel.text = @"";
     
     NSMutableString *s = [[NSMutableString alloc] init];
     for (id obj in address) {
@@ -268,7 +277,7 @@ NSDictionary *titles;
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    label.text = @"Invited: ";
+    label.text = @"Invited: 3"; // TODO: un-hardcode
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -694,8 +703,7 @@ NSDictionary *titles;
         if ([self.randInterest isEqualToString:@"baking"])
         {
             [self addButton:@"recipe-button.png" withSelector:@selector(openPinterestView)];
-        
-            // TODO: un-hardcode
+            
             name = @"Yours!";
             address = @[@""];
         } else
