@@ -145,6 +145,10 @@
 		F3DBDAD0188BA0960068A17D /* parties-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDACE188BA0960068A17D /* parties-bg.png */; };
 		F3DBDAD1188BA0960068A17D /* parties-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDACF188BA0960068A17D /* parties-bg@2x.png */; };
 		F3DBDAD4188BA1740068A17D /* exercise-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAD2188BA1740068A17D /* exercise-bg.png */; };
+		F3DBDAD8188BB5170068A17D /* recipe-button.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAD6188BB5170068A17D /* recipe-button.png */; };
+		F3DBDAD9188BB5170068A17D /* recipe-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDAD7188BB5170068A17D /* recipe-button@2x.png */; };
+		F3DBDADC188BB5240068A17D /* join-button-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDADA188BB5240068A17D /* join-button-v2.png */; };
+		F3DBDADD188BB5240068A17D /* join-button-v2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DBDADB188BB5240068A17D /* join-button-v2@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +315,10 @@
 		F3DBDACE188BA0960068A17D /* parties-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parties-bg.png"; sourceTree = "<group>"; };
 		F3DBDACF188BA0960068A17D /* parties-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parties-bg@2x.png"; sourceTree = "<group>"; };
 		F3DBDAD2188BA1740068A17D /* exercise-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exercise-bg.png"; sourceTree = "<group>"; };
+		F3DBDAD6188BB5170068A17D /* recipe-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipe-button.png"; sourceTree = "<group>"; };
+		F3DBDAD7188BB5170068A17D /* recipe-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipe-button@2x.png"; sourceTree = "<group>"; };
+		F3DBDADA188BB5240068A17D /* join-button-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "join-button-v2.png"; sourceTree = "<group>"; };
+		F3DBDADB188BB5240068A17D /* join-button-v2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "join-button-v2@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +369,8 @@
 		0B41CE01188A97F300DAB725 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				F3DBDAD6188BB5170068A17D /* recipe-button.png */,
+				F3DBDAD7188BB5170068A17D /* recipe-button@2x.png */,
 				F3DBDA7F188AD33F0068A17D /* close-button-2.png */,
 				F3DBDA80188AD33F0068A17D /* close-button-2@2x.png */,
 				0B41CE02188A97F300DAB725 /* app-icon.png */,
@@ -381,6 +391,8 @@
 				0B41CE0F188A97F300DAB725 /* Finish-Button@2x.png */,
 				0B41CE10188A97F300DAB725 /* horizontal-separator.png */,
 				0B41CE11188A97F300DAB725 /* horizontal-separator@2x.png */,
+				F3DBDADA188BB5240068A17D /* join-button-v2.png */,
+				F3DBDADB188BB5240068A17D /* join-button-v2@2x.png */,
 				0B41CE12188A97F300DAB725 /* join-button.png */,
 				0B41CE13188A97F300DAB725 /* join-button@2x.png */,
 				0B41CE14188A97F300DAB725 /* logo-gray.png */,
@@ -698,6 +710,7 @@
 				F3DBDAB5188AF28E0068A17D /* clubbing-bg.png in Resources */,
 				0B41CE6B188A97F300DAB725 /* horizontal-separator.png in Resources */,
 				F3DBDA85188AD35D0068A17D /* baking.png in Resources */,
+				F3DBDADD188BB5240068A17D /* join-button-v2@2x.png in Resources */,
 				0B41CE71188A97F300DAB725 /* person-gray.png in Resources */,
 				0B41CEB7188AC4CC00DAB725 /* baking.png in Resources */,
 				F3DBDAC7188AFD010068A17D /* red-search-small.png in Resources */,
@@ -735,6 +748,7 @@
 				0B41CE61188A97F300DAB725 /* close-button.png in Resources */,
 				0B41CE8D188A97F300DAB725 /* adrenaline-cat@2x.png in Resources */,
 				0B41CEA4188A97F300DAB725 /* bars.png in Resources */,
+				F3DBDAD9188BB5170068A17D /* recipe-button@2x.png in Resources */,
 				0B41CEA2188A97F300DAB725 /* adrenaline.png in Resources */,
 				0B41CE5F188A97F300DAB725 /* checkmark-interest.png in Resources */,
 				0B41CE72188A97F300DAB725 /* person-gray@2x.png in Resources */,
@@ -750,6 +764,7 @@
 				0B41CE77188A97F300DAB725 /* submit-button@2x.png in Resources */,
 				F3DBDA8E188AEE790068A17D /* bars-cat@2x.png in Resources */,
 				F3DBDA97188AEED90068A17D /* games-cat@2x.png in Resources */,
+				F3DBDAD8188BB5170068A17D /* recipe-button.png in Resources */,
 				0B41CEB4188A97F300DAB725 /* logo.png in Resources */,
 				F3DBDAB0188AF28E0068A17D /* baking-bg@2x.png in Resources */,
 				F3DBDAB7188AF28E0068A17D /* college-bg@2x.png in Resources */,
@@ -784,6 +799,7 @@
 				0B41CEA5188A97F300DAB725 /* bars@2x.png in Resources */,
 				F3DBDAB2188AF28E0068A17D /* bars-bg@2x.png in Resources */,
 				F3DBDAD0188BA0960068A17D /* parties-bg.png in Resources */,
+				F3DBDADC188BB5240068A17D /* join-button-v2.png in Resources */,
 				0B41CE74188A97F300DAB725 /* Slice 1.png in Resources */,
 				0B41CE7A188A97F300DAB725 /* up-arrow.png in Resources */,
 				F3DBDA81188AD33F0068A17D /* close-button-2.png in Resources */,

@@ -29,6 +29,7 @@
 @synthesize interests;
 @synthesize randInterest;
 
+NSDictionary *titles;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +45,16 @@
         self.acceptLocation = false;
         [self loadAndUpdateInterests];
         
+        titles = @{@"adrenaline": @"Be daring!",
+                    @"clubbing": @"Go clubbing!",
+                    @"baking": @"Go baking!",
+                    @"bars": @"Thirsty?",
+                    @"dining": @"Grab a bite!",
+                    @"parties": @"Can't stop Won't Stop",
+                    @"beauty": @"You're beautiful.",
+                    @"exercise": @"Work out time!",
+                    @"games": @"You're never too old..."};
+        
         _editTimeClicks = 0;
         _neededPeople = 5;
         _dateTime = [self dateToNearest15Minutes];
@@ -52,15 +63,15 @@
         //[self startStandardUpdates];
         
         //creates background image
-        UIGraphicsBeginImageContext(self.view.frame.size);
+        //UIGraphicsBeginImageContext(self.view.frame.size);
         
         //TODO: randomly generate bg image based off event
         //[self addPlaceLabel];
-        [self addTimeLabel];
-        [self addInvitedLabel];
-        [self addNeededLabel];
-        [self addSubmitButton];
-        [self addTitle];
+        //[self addTimeLabel];
+        //[self addInvitedLabel];
+        //[self addNeededLabel];
+        //[self addSubmitButton];
+        //[self addTitle];
         
         
     }
@@ -117,7 +128,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)pinterest
+- (void)openPinterestView
 {
     PinterestViewController *pvc = [[PinterestViewController alloc] init];
     [self.navigationController pushViewController:pvc animated:YES];
@@ -139,35 +150,9 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
-    if ([interest isEqualToString:@"adrenaline"]) {
-        label.text=@"Be daring!";
-    }
-    else if ([interest isEqualToString:@"clubbing"]) {
-        label.text=@"Go clubbing!";
-    }
-    else if ([interest isEqualToString:@"baking"]) {
-        label.text=@"Go baking!";
-    }
-    else if ([interest isEqualToString:@"bars"]) {
-        label.text=@"Thirsty?";
-    }
-    else if ([interest isEqualToString:@"dining"]) {
-        label.text=@"Grab a bite!";
-    }
-    else if ([interest isEqualToString:@"parties"]) {
-        label.text=@"Can't stop Won't Stop";
-    }
-    else if ([interest isEqualToString:@"beauty"]) {
-        label.text=@"You're beautiful.";
-    }
-    else if ([interest isEqualToString:@"exercise"]) {
-        label.text=@"Work out time!";
-    }
-    else if ([interest isEqualToString:@"games"]) {
-        label.text=@"You're never too old...";
-    }
-    
-    //label.text = @"Event Details";
+    label.text = titles[interest];
+    if (!label.text)
+        label.text = @"Fun times";
     
     //creates shadow
     label.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -320,18 +305,17 @@
     [self.view addSubview:neededLabel];
 }
 
-- (void)addSubmitButton
+- (void)addButton:(NSString *)imageURL withSelector:(SEL)selector
 {
-    UIImage *createButtonImage = [UIImage imageNamed:@"submit-button.png"];
+    UIImage *createButtonImage = [UIImage imageNamed:imageURL];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
-               action:@selector(submitNewEvent:)
+               action:selector
      forControlEvents:UIControlEventTouchDown];
     
     button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 450, 247.95, 42.75);
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
-    
 }
 
 - (void)submitNewEvent:(id)sender
@@ -544,7 +528,7 @@
     [self addTimeLabel];
     [self addInvitedLabel];
     [self addNeededLabel];
-    [self addSubmitButton];
+    //[self addSubmitButton];
     [self addTitle];
 }
 
@@ -558,39 +542,144 @@
 {
     uint32_t rnd = arc4random_uniform([self.interests count]);
     self.randInterest = [self.interests objectAtIndex:rnd];
-    NSLog(@"Random interest: %@", self.randInterest);
-    
     [self addBackgroundImage:self.randInterest];
     [self addEventsDetailLabel:self.randInterest];
     
-    NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
+    if ([self.randInterest isEqualToString:@"exercise"]) {
+        int random = arc4random_uniform(5);
+        if (random == 0 || random == 1) {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=park&ll=%f%@%f", self.latitude, @",", self.longitude];
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+
+            [self addPlaceLabel:@"Go for a run at:" address:[NSArray arrayWithObjects:name, nil]];
+            
+            _eventName = @"Go for a run at:";
+            _location = [NSArray arrayWithObjects:name, nil];
+        }
+        
+        else if (random == 2 || random == 3 ) {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=swim&ll=%f%@%f", self.latitude, @",", self.longitude];
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+            
+            [self addPlaceLabel:@"Go for a swim at:" address:[NSArray arrayWithObjects:name, nil]];
+            
+            _eventName = @"Go for a swim at:";
+            _location = [NSArray arrayWithObjects:name, nil];
+        }
+        else {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
+            
+            NSLog(@"%@", url);
+            
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+            NSArray *address = randomObj[@"location"][@"display_address"];
+            
+            [self addPlaceLabel:name address:address];
+            
+            _eventName = name;
+            _location = [address componentsJoinedByString:@", "];
+        }
+    } else {
+
+        NSString *name;
+        NSArray *address;
+        if ([self.randInterest isEqualToString:@"baking"])
+        {
+            [self addButton:@"recipe-button.png" withSelector:@selector(openPinterestView)];
+        
+            // TODO: un-hardcode
+            name = @"Yours!";
+            address = @[@""];
+        } else
+        {
+            [self addButton:@"submit-button.png" withSelector:@selector(submitNewEvent:)];
+        
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=%@%&ll=%f%@%f", self.randInterest, self.latitude, @",", self.longitude];
+        
+            NSLog(@"%@", url);
+        
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                           timeoutInterval:10];
+        
+            [request setHTTPMethod: @"GET"];
+        
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+        
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+        
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+        
+            name = randomObj[@"name"];
+            address = randomObj[@"location"][@"display_address"];
+        
+            if (!name)
+                name = @"";
+        }
     
-    NSLog(@"%@", url);
-    
-    //doing dat json stuff
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
-                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                       timeoutInterval:10];
-    
-    [request setHTTPMethod: @"GET"];
-    
-    NSError *requestError;
-    NSURLResponse *urlResponse = nil;
-    
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-    NSError *jsonParsingError = nil;
-    self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
-                                                     options:0 error:&jsonParsingError];
-    
-    NSArray *businesses = self.jsonItems[@"businesses"];
-    id randomObj = businesses[arc4random_uniform([businesses count])];
-    NSString *name = randomObj[@"name"];
-    NSArray *address = randomObj[@"location"][@"display_address"];
-    
-    [self addPlaceLabel:name address:address];
-    
-    _eventName = name;
-    _location = [address componentsJoinedByString:@", "];
+        [self addPlaceLabel:name address:address];
+
+        _eventName = [[titles[self.randInterest] stringByAppendingString:@" -- "]
+                      stringByAppendingString:name];
+        _location = [address componentsJoinedByString:@", "];
+    }
 }
 
 
