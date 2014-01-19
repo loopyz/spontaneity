@@ -343,6 +343,22 @@ NSDictionary *titles;
     
     [self createFacebookEvent:_eventName withStartTime:_dateTime andLocation:_location
         andDescription:description];
+    
+    //send text to friends
+    
+    // Send text to customer
+    // TODO: de-hardcode this url zomg
+    NSString *urlAsString = [NSString stringWithFormat:@"http://twitterautomate.com/testapp/spontaneity.php"];
+    NSURL *url = [[NSURL alloc] initWithString:urlAsString];
+    
+    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            NSLog(@"Error %@; %@", error, [error localizedDescription]);
+        } else {
+            NSLog(@"Twilio'd");
+        }
+    }];
 }
 
 - (NSString*)dateToString:(NSDate*)date
