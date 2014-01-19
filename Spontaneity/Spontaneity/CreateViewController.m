@@ -149,7 +149,7 @@
         label.text=@"Go baking!";
     }
     else if ([interest isEqualToString:@"bars"]) {
-        label.text=@"Time to drink!";
+        label.text=@"Thirsty?";
     }
     else if ([interest isEqualToString:@"dining"]) {
         label.text=@"Grab a bite!";
@@ -158,13 +158,13 @@
         label.text=@"Can't stop Won't Stop";
     }
     else if ([interest isEqualToString:@"beauty"]) {
-        label.text=@"Smile. You're beautiful.";
+        label.text=@"You're beautiful.";
     }
     else if ([interest isEqualToString:@"exercise"]) {
         label.text=@"Work out time!";
     }
     else if ([interest isEqualToString:@"games"]) {
-        label.text=@"You're not too old to play games";
+        label.text=@"You're never too old...";
     }
     
     //label.text = @"Event Details";
@@ -190,8 +190,17 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
     
+    double size = 20.0;
     if ([place length]) {
-        label.text = [@"Place: " stringByAppendingString:place];
+        NSString *text = [@"Place: " stringByAppendingString:place];
+        label.text =text;
+        int length = [text length];
+        if (length == 0)
+            length = 1;
+        if (length > 28)
+        {
+            size = size*28/length;
+        }
     }
     
     UILabel *addressLabel = [[UILabel alloc] init];
@@ -210,7 +219,7 @@
     addressLabel.layer.shadowOffset = CGSizeMake(0.0, 0.4);
     addressLabel.layer.shadowOpacity = 1.0;
     
-    addressLabel.frame = CGRectMake(80, 116, 400, 100);
+    addressLabel.frame = CGRectMake(80, 126, 400, 100);
     addressLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:11.0];
     
     
@@ -223,7 +232,7 @@
     label.frame = CGRectMake(20, 80, 400, 100);
     
     //set font style/text
-    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
+    label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:size];
     
     //adds event details label
     [self.view addSubview:label];
@@ -247,13 +256,13 @@
     timeLabel.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    timeLabel.frame = CGRectMake(20, 170, 400, 100);
+    timeLabel.frame = CGRectMake(20, 180, 400, 100);
     
     //set font style/text
     timeLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //add up and down arrows
-    [self addTimeArrowButtons:220 y:170];
+    [self addTimeArrowButtons:220 y:180];
     
     //adds event details label
     [self.view addSubview:timeLabel];
@@ -273,7 +282,7 @@
     label.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    label.frame = CGRectMake(20, 240, 400, 100);
+    label.frame = CGRectMake(20, 250, 400, 100);
     
     //set font style/text
     label.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
@@ -299,13 +308,13 @@
     neededLabel.layer.shadowOpacity = 1.0;
     
     //create frame for text
-    neededLabel.frame = CGRectMake(20, 310, 400, 100);
+    neededLabel.frame = CGRectMake(20, 320, 400, 100);
     
     //set font style/text
     neededLabel.font = [UIFont fontWithName:@"Helvetica-LightOblique" size:20.0];
     
     //add up and down arrows
-    [self addNeededArrowButtons:220 y:310];
+    [self addNeededArrowButtons:220 y:320];
     
     //adds event details label
     [self.view addSubview:neededLabel];
