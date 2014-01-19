@@ -7,6 +7,8 @@
 //  Display query of events you've searched for so you can join them :D
 
 #import "SearchedEventsViewController.h"
+#import "JoinEventViewController.h"
+
 #import <Firebase/Firebase.h>
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -23,10 +25,6 @@
 @synthesize events;
 @synthesize interest;
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//
-//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withInterest:(NSString *)_interest
 {
@@ -111,7 +109,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         // TODO: this doesn't seem to work...
-        cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];    }
+        cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];
+    }
     
     
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
@@ -255,6 +254,12 @@
 //    [self.view addSubview:numRequiredLabel];
 //}
 
+- (void)openJoinEventView:(NSDictionary *)event
+{
+    JoinEventViewController *jevc = [[JoinEventViewController alloc] initWithEvent:event];
+    [self.navigationController pushViewController:jevc animated:YES];
+}
+
 - (void)exit
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -337,9 +342,16 @@
              if (!error && result) {
                  event[@"attendees"] = [[[result objectForKey:@"summary"] objectForKey:@"count"] stringValue];
              }
+             if (!event || !event[@"name"]) {
+                 [[snapshot ref] removeValue];
+                 [self.eventKeys removeObject:eventKey];
+             } else {
+                 // Store event in events array
+                 event[@"ref"] = [snapshot ref];
+                 event[@"interest"] = self.interest;
+                 [self.events setObject:event forKey:eventKey];
+             }
              
-             // Store event in events array
-             [self.events setObject:event forKey:eventKey];
              [self.tableView reloadData];
          }];
         
@@ -383,7 +395,8 @@
     NSString* eventKey = [self.eventKeys objectAtIndex:indexPath.row];
     NSLog(@"Selected event: %@", eventKey);
     NSMutableDictionary *event = self.events[eventKey];
-    // TODO: Navigate to event detail controller
+    
+    [self openJoinEventView:event];
 }
 
 

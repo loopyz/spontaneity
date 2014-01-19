@@ -545,6 +545,7 @@ NSDictionary *titles;
     [self addBackgroundImage:self.randInterest];
     [self addEventsDetailLabel:self.randInterest];
     
+    //customized queries for exercise
     if ([self.randInterest isEqualToString:@"exercise"]) {
         int random = arc4random_uniform(5);
         if (random == 0 || random == 1) {
@@ -630,6 +631,53 @@ NSDictionary *titles;
             _eventName = name;
             _location = [address componentsJoinedByString:@", "];
         }
+    }
+    
+    else if ([self.randInterest isEqualToString:@"parties"]) {
+        int random = arc4random_uniform(3);
+        if (random == 0) {
+            [self addPlaceLabel:@"Throw down at your place" address:nil];
+            _eventName = @"Throw down at your place";
+            _location = @"My house";
+        }
+        else if (random == 1) {
+            NSString *url = [NSString stringWithFormat:@"http://www.lucy.ws/yelp.php?term=under+21+night+clubs&ll=%f%@%f", self.latitude, @",", self.longitude];
+            
+            NSLog(@"%@", url);
+            
+            //doing dat json stuff
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                               timeoutInterval:10];
+            
+            [request setHTTPMethod: @"GET"];
+            
+            NSError *requestError;
+            NSURLResponse *urlResponse = nil;
+            
+            NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+            NSError *jsonParsingError = nil;
+            self.jsonItems = [NSJSONSerialization JSONObjectWithData:response
+                                                             options:0 error:&jsonParsingError];
+            
+            NSArray *businesses = self.jsonItems[@"businesses"];
+            id randomObj = businesses[arc4random_uniform([businesses count])];
+            NSString *name = randomObj[@"name"];
+            NSArray *address = randomObj[@"location"][@"display_address"];
+            
+            [self addPlaceLabel:name address:address];
+            
+            _eventName = name;
+            _location = [address componentsJoinedByString:@", "];
+        }
+        else if (random == 3) {
+            [self addPlaceLabel:@"Drink alone #YOLO" address:nil];
+            _eventName = @"Drink so I don't drink alone";
+            _location = @"My House";
+        }
+        
+        [self addButton:@"submit-button.png" withSelector:@selector(submitNewEvent:)];
+        
     } else {
 
         NSString *name;
