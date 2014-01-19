@@ -6,7 +6,12 @@
 //
 //  Display details about a selected event and option to join
 
+#import "AppDelegate.h"
 #import "JoinEventViewController.h"
+
+#import <Firebase/Firebase.h>
+
+#define firebaseURL @"https://spontaneity.firebaseio.com/"
 
 @interface JoinEventViewController ()
 
@@ -26,6 +31,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        // Initialize the root of our Firebase namespace.
+        self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+        
         [self addBackgroundImage:self.event[@"interest"]];
     }
     return self;
@@ -38,6 +46,10 @@
     [self addJoinButton];
 }
 
+- (void)exit
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (void)addBackgroundImage:(NSString *)interest
 {
@@ -54,7 +66,14 @@
 
 - (void)joinEvent:(id)sender
 {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString* username = appDelegate.username;
     
+    Firebase* eventsRef = [[[self.firebase childByAppendingPath:@"users"]
+                               childByAppendingPath:username] childByAppendingPath:@"events"];
+    [[eventsRef childByAutoId] setValue:self.event[@"id"]];
+    
+    [self exit];
 }
 
 - (void)addJoinButton

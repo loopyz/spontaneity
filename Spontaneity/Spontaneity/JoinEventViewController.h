@@ -7,10 +7,12 @@
 //  Display details about a selected event and option to join
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 
 @interface JoinEventViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *event;
+@property (strong, nonatomic) NSDictionary* event;
+@property (strong, nonatomic) Firebase* firebase;
 
 - (id)initWithEvent:(NSDictionary *)event;
 
