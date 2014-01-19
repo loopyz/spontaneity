@@ -460,6 +460,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // TODO: fix clubbing photo
+    self.view.backgroundColor = [UIColor darkGrayColor];
 
     // TODO: remove hardcoding
     _eventName = @"Chocolate Bar";
