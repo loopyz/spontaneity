@@ -51,7 +51,7 @@ NSDictionary *titles;
                     @"baking": @"Go baking!",
                     @"bars": @"Thirsty?",
                     @"dining": @"Grab a bite!",
-                    @"parties": @"Can't stop Won't Stop",
+                    @"parties": @"Can't Stop Won't Stop",
                     @"beauty": @"You're beautiful.",
                     @"exercise": @"Work out time!",
                     @"games": @"You're never too old..."};

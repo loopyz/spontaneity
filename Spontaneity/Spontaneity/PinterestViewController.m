@@ -75,13 +75,13 @@
 
 - (void)addSubmitButton
 {
-    UIImage *createButtonImage = [UIImage imageNamed:@"submit-button.png"];
+    UIImage *createButtonImage = [UIImage imageNamed:@"recipe-check.png"];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
                action:@selector(createFacebookEvent)
      forControlEvents:UIControlEventTouchDown];
     
-    button.frame = CGRectMake(self.view.frame.size.width/2 - 247.95/2, 480, 247.95, 42.75);
+    button.frame = CGRectMake(200, self.view.bounds.size.height - 150, 96.5, 96.5);
     [button setBackgroundImage:createButtonImage forState:UIControlStateNormal];
     [self.view addSubview:button];
 }
@@ -222,8 +222,8 @@
         ingrLabel.text = [ingredients objectAtIndex:i];
     }
     
-    UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Pinterest-logo.png"]];
-    pinImageView.frame = CGRectMake(self.view.bounds.size.width/2-25, self.view.bounds.size.height - 150, 50, 50);
+    UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pinterest.png"]];
+    pinImageView.frame = CGRectMake(30, self.view.bounds.size.height - 150, 96.5, 96.5);
     [self.view addSubview:pinImageView];
 }
 
